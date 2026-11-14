@@ -1,0 +1,588 @@
+{
+  "schema": "clarification-questions/v1",
+  "generated_at": "2026-11-13T16:42:24Z",
+  "user_input": "Execute the user's end-to-end modernization directly in workspace D:\\xampp\\htdocs: transform the PHP game-account shop into a physical electronics/technology ecommerce shop. Preserve the existing auth/admin/theme/storage and automatic bank integration while safely adding order-specific payment reconciliation (never treat order payments as wallet top-ups), physical shipping/address, cart/checkout, catalog/categories/variants/inventory, admin order/shipping management, CTV referrals with commissions and separate seller CTV attribution, and admin approval for CTV product listings. Preserve historical game-only records and deactivate game-account/cày thuê/wheel/game-item withdrawal/topup-card interfaces without destructive schema/data deletion. Preserve wallet recharge only if compatible and safe; never move payment credentials into source. Inspect relevant repository behavior without exposing/copying secrets. Implement one coherent working slice, add focused tests if setup supports, run available PHP syntax/tests. Do not commit. Use safe incremental migration and report exact changed files, migration steps/limitations, and validation results. Stop and ask only if a genuinely blocking decision arises; otherwise choose safe defaults. Work only in this workspace; do not make changes elsewhere. This is execution, not assessment/planning.",
+  "title": "PHP Shop to Electronics Ecommerce",
+  "assessment_snapshot": {
+    "intro": "The workspace scan identifies an in-place PHP monolith modernization with the existing UI stack retained:",
+    "bullets": [
+      "106 PHP files and approximately 20.4K nonblank PHP LOC; PHP remains the runtime.",
+      "Auth, admin, theme, storage, and automatic bank integration must be preserved; no frontend framework rewrite is intended.",
+      "The requested slice adds physical catalog, cart/checkout, shipping, order payment reconciliation, CTV attribution/commissions, and admin approval while preserving legacy records and deactivating game-only interfaces.",
+      "The exact current frontend/backend framework versions, UI library, screenshots, and design-token source are not specified in the request."
+    ]
+  },
+  "proposed_outcome": "Extend the existing PHP shop in place, retaining its current PHP/runtime and frontend patterns, auth/admin/theme/storage and bank integration. Implement a coherent physical electronics ecommerce slice with additive non-destructive schema changes, order-specific payment reconciliation separate from wallet top-ups, physical addresses/shipping, catalog and inventory, administrative order controls, and safe CTV attribution and listing approval. Preserve historical game-only data and disable legacy game-only interfaces without deleting their schema or records. Keep credentials outside source, validate with available syntax/tests, and do not commit.",
+  "scope": [
+    "frontend",
+    "backend",
+    "generic"
+  ],
+  "status": "awaiting_answers",
+  "questions": [
+    {
+      "id": "F1",
+      "kit": "frontend",
+      "field": "target.framework",
+      "title": "Frontend stack to retain",
+      "question": "Which frontend framework and major version should this in-place UI enhancement use? Confirm the current frontend stack/pattern to preserve (the scan facts indicate no frontend rewrite, but do not identify its framework/version), or specify a different target.",
+      "importance": "required",
+      "impact": 4,
+      "recommended": "Preserve current PHP-rendered frontend and existing framework/pattern; identify exact version from workspace",
+      "default": null,
+      "prefilled": true,
+      "prefilled_value": "Preserve current PHP-rendered frontend and existing framework/pattern; identify exact version from workspace",
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "Preserve current PHP-rendered frontend and existing framework/pattern; identify exact version from workspace",
+          "label": "Preserve current PHP-rendered frontend and existing framework/pattern (identify version from workspace)"
+        },
+        {
+          "value": "React 18",
+          "label": "React 18"
+        },
+        {
+          "value": "Vue 3",
+          "label": "Vue 3"
+        },
+        {
+          "value": "Angular 17",
+          "label": "Angular 17"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "F2",
+      "kit": "frontend",
+      "field": "target.component_library",
+      "title": "UI component library",
+      "question": "Which component/UI library should the new or updated shop interfaces use? If the existing UI has no component library, confirm that none should be added and the existing theme/pattern should be retained.",
+      "importance": "required",
+      "impact": 5,
+      "recommended": "Do not add a component library; preserve the existing UI and theme",
+      "default": null,
+      "prefilled": false,
+      "prefilled_value": null,
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "Do not add a component library; preserve the existing UI and theme",
+          "label": "Do not add a component library; preserve the existing UI and theme"
+        },
+        {
+          "value": "Bootstrap 5",
+          "label": "Bootstrap 5"
+        },
+        {
+          "value": "Tailwind CSS",
+          "label": "Tailwind CSS"
+        },
+        {
+          "value": "Other existing library; identify from workspace",
+          "label": "Other existing library; identify from workspace"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "F3",
+      "kit": "frontend",
+      "field": "visual.screenshots",
+      "title": "Current UI references",
+      "question": "Provide screenshot/screen-recording paths, a staging/production URL, or a Figma link for the current shop screens to preserve while updating the interfaces.",
+      "importance": "required",
+      "impact": 3,
+      "recommended": null,
+      "default": null,
+      "prefilled": false,
+      "prefilled_value": null,
+      "answer": null,
+      "depends_on": null,
+      "type": "text",
+      "options": []
+    },
+    {
+      "id": "F4",
+      "kit": "frontend",
+      "field": "visual.design_system",
+      "title": "Design-system source",
+      "question": "Which design system or token source should guide the new shop interfaces? Provide a Figma/Storybook URL or token/theme file path, or confirm matching the existing UI pixel-by-pixel using its extracted CSS custom properties.",
+      "importance": "required",
+      "impact": 4,
+      "recommended": "Match existing pixel-by-pixel using extracted CSS custom properties",
+      "default": "match existing pixel-by-pixel using extracted CSS custom properties",
+      "prefilled": false,
+      "prefilled_value": null,
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "Match existing pixel-by-pixel using extracted CSS custom properties",
+          "label": "Match existing pixel-by-pixel using extracted CSS custom properties"
+        },
+        {
+          "value": "Preserve existing theme while allowing minimal layout changes needed for ecommerce",
+          "label": "Preserve existing theme while allowing minimal layout changes needed for ecommerce"
+        },
+        {
+          "value": "Provide Figma, Storybook, or design-token source",
+          "label": "Provide Figma, Storybook, or design-token source"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "F5",
+      "kit": "frontend",
+      "field": "compliance.accessibility",
+      "title": "Accessibility target",
+      "question": "Which accessibility standard should the updated storefront and admin interfaces target?",
+      "importance": "recommended",
+      "impact": 3,
+      "recommended": "WCAG 2.1 AA",
+      "default": "WCAG 2.1 AA",
+      "prefilled": false,
+      "prefilled_value": null,
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "WCAG 2.1 AA",
+          "label": "WCAG 2.1 AA"
+        },
+        {
+          "value": "WCAG 2.2 AA",
+          "label": "WCAG 2.2 AA"
+        },
+        {
+          "value": "None / not required",
+          "label": "None / not required"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "F6",
+      "kit": "frontend",
+      "field": "compatibility.browsers",
+      "title": "Browser compatibility",
+      "question": "Which browser/runtime targets must the updated shop support?",
+      "importance": "recommended",
+      "impact": 2,
+      "recommended": "Modern evergreen browsers (Chrome, Firefox, Safari, Edge — latest 2 major versions)",
+      "default": "modern evergreen (Chrome, Firefox, Safari, Edge — latest 2 major versions)",
+      "prefilled": false,
+      "prefilled_value": null,
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "Modern evergreen browsers (Chrome, Firefox, Safari, Edge — latest 2 major versions)",
+          "label": "Modern evergreen browsers (Chrome, Firefox, Safari, Edge — latest 2 major versions)"
+        },
+        {
+          "value": "Match current production browser baseline",
+          "label": "Match current production browser baseline"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "F7",
+      "kit": "frontend",
+      "field": "responsive.breakpoints",
+      "title": "Responsive layout",
+      "question": "What responsive strategy should the new storefront and checkout use?",
+      "importance": "recommended",
+      "impact": 3,
+      "recommended": "Mobile-first using existing breakpoints detected from codebase",
+      "default": "mobile-first using existing breakpoints detected from codebase",
+      "prefilled": false,
+      "prefilled_value": null,
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "Mobile-first using existing breakpoints detected from codebase",
+          "label": "Mobile-first using existing breakpoints detected from codebase"
+        },
+        {
+          "value": "Match current layout and breakpoints",
+          "label": "Match current layout and breakpoints"
+        },
+        {
+          "value": "Desktop-first",
+          "label": "Desktop-first"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "F8",
+      "kit": "frontend",
+      "field": "i18n.locales",
+      "title": "Locales",
+      "question": "Which locales should remain in scope for the storefront and admin UI?",
+      "importance": "optional",
+      "impact": 1,
+      "recommended": null,
+      "default": "preserve current locales; keep existing i18n library if present",
+      "prefilled": false,
+      "prefilled_value": null,
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "Preserve current locales; keep existing i18n library if present",
+          "label": "Preserve current locales; keep existing i18n library if present"
+        },
+        {
+          "value": "Vietnamese only",
+          "label": "Vietnamese only"
+        },
+        {
+          "value": "None",
+          "label": "None"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "F9",
+      "kit": "frontend",
+      "field": "state_mgmt.preference",
+      "title": "Frontend state pattern",
+      "question": "What client-side state-management approach should the cart and checkout use?",
+      "importance": "optional",
+      "impact": 2,
+      "recommended": null,
+      "default": "preserve existing pattern if identifiable; otherwise recommend minimal (component state + server-state library)",
+      "prefilled": false,
+      "prefilled_value": null,
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "Preserve existing pattern if identifiable; otherwise use minimal component state and server-state handling",
+          "label": "Preserve existing pattern if identifiable; otherwise use minimal component state and server-state handling"
+        },
+        {
+          "value": "No additional client-side state library",
+          "label": "No additional client-side state library"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "F10",
+      "kit": "frontend",
+      "field": "routing.preference",
+      "title": "Routing strategy",
+      "question": "What routing strategy should new storefront, checkout, and order pages follow?",
+      "importance": "optional",
+      "impact": 2,
+      "recommended": null,
+      "default": "use the de-facto router for the chosen target framework",
+      "prefilled": false,
+      "prefilled_value": null,
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "Match existing routing and URL patterns",
+          "label": "Match existing routing and URL patterns"
+        },
+        {
+          "value": "Preserve current routing; use the de-facto router for the retained frontend framework",
+          "label": "Preserve current routing; use the de-facto router for the retained frontend framework"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "B1",
+      "kit": "backend",
+      "field": "target.framework",
+      "title": "Backend stack and version",
+      "question": "Confirm the current backend framework and major version to retain. The request keeps the PHP runtime, but the exact framework/runtime version is not stated; provide the detected stack/version or confirm that it should be discovered and left unchanged.",
+      "importance": "required",
+      "impact": 5,
+      "recommended": "Preserve the existing PHP monolith and runtime; detect exact framework/version in workspace",
+      "default": null,
+      "prefilled": true,
+      "prefilled_value": "Preserve the existing PHP monolith and runtime; detect exact framework/version in workspace",
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "Preserve the existing PHP monolith and runtime; detect exact framework/version in workspace",
+          "label": "Preserve the existing PHP monolith and runtime; detect exact framework/version in workspace"
+        },
+        {
+          "value": "Laravel 12",
+          "label": "Laravel 12"
+        },
+        {
+          "value": "Symfony 7",
+          "label": "Symfony 7"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "B2",
+      "kit": "backend",
+      "field": "api.contract_preservation",
+      "title": "API compatibility policy",
+      "question": "How should existing external API contracts be handled while adding the ecommerce flows? The safe default is to preserve existing endpoints, payloads, and status codes.",
+      "importance": "required",
+      "impact": 5,
+      "recommended": "must preserve",
+      "default": "must preserve",
+      "prefilled": false,
+      "prefilled_value": null,
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "must preserve",
+          "label": "Must preserve all existing API contracts"
+        },
+        {
+          "value": "can break with versioning",
+          "label": "Breaking changes allowed with versioning; retain/deprecate old routes"
+        },
+        {
+          "value": "can break",
+          "label": "Breaking changes allowed; no existing clients to protect"
+        },
+        {
+          "value": "partial: specify endpoints",
+          "label": "Preserve selected contracts (specify endpoints)"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "B3",
+      "kit": "backend",
+      "field": "data.migration_strategy",
+      "title": "Data migration approach",
+      "question": "Confirm the database migration strategy. Your request specifies safe incremental, non-destructive changes in the existing workspace while preserving historical game-only records.",
+      "importance": "required",
+      "impact": 5,
+      "recommended": "in-place",
+      "default": "TBD / assess in research phase",
+      "prefilled": true,
+      "prefilled_value": "in-place",
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "in-place",
+          "label": "In-place additive migrations; preserve existing data/schema and avoid destructive changes"
+        },
+        {
+          "value": "dual-write",
+          "label": "Add a new schema alongside the existing one and synchronize during transition"
+        },
+        {
+          "value": "new schema",
+          "label": "Create a new schema and migrate data"
+        },
+        {
+          "value": "no migration",
+          "label": "Do not change the database"
+        },
+        {
+          "value": "TBD / assess in research phase",
+          "label": "Defer the detailed migration approach to implementation research"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "B4",
+      "kit": "backend",
+      "field": "auth.framework",
+      "title": "Authentication and authorization",
+      "question": "How should authentication and authorization be handled for the new commerce flows?",
+      "importance": "recommended",
+      "impact": 4,
+      "recommended": "Preserve existing auth mechanism and detect from codebase",
+      "default": "preserve existing auth mechanism; detect from codebase",
+      "prefilled": true,
+      "prefilled_value": "preserve existing auth mechanism; detect from codebase",
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "Preserve existing auth mechanism and detect from codebase",
+          "label": "Preserve existing auth mechanism and detect from codebase"
+        },
+        {
+          "value": "Replace with a specified identity framework",
+          "label": "Replace with a specified identity framework"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "B5",
+      "kit": "backend",
+      "field": "nfr.sla",
+      "title": "Performance and availability targets",
+      "question": "Are there latency, throughput, or availability targets for the ecommerce changes?",
+      "importance": "recommended",
+      "impact": 2,
+      "recommended": "Match current production baseline; no regression",
+      "default": "match current production baseline; no regression",
+      "prefilled": false,
+      "prefilled_value": null,
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "Match current production baseline; no regression",
+          "label": "Match current production baseline; no regression"
+        },
+        {
+          "value": "Specify measurable SLA targets",
+          "label": "Specify measurable SLA targets"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "G1",
+      "kit": "generic",
+      "field": "success.definition",
+      "title": "Definition of done",
+      "question": "Confirm what success means for this modernization slice.",
+      "importance": "required",
+      "impact": 5,
+      "recommended": null,
+      "default": "feature parity with the current system; all existing user-facing behaviors preserved",
+      "prefilled": true,
+      "prefilled_value": "One coherent physical-electronics ecommerce slice works in the existing PHP shop; preserve auth/admin/theme/storage/bank integration, keep order payments separate from wallet top-ups, retain historical game-only records, disable game-only interfaces non-destructively, add focused tests where supported, and run available PHP syntax/tests.",
+      "answer": null,
+      "depends_on": null,
+      "type": "text",
+      "options": []
+    },
+    {
+      "id": "G2",
+      "kit": "generic",
+      "field": "out_of_scope",
+      "title": "Explicit exclusions",
+      "question": "Confirm any explicit exclusions or areas that must not be changed. The request already excludes destructive deletion of historical game-only schema/data and requires legacy game-only interfaces to be deactivated rather than removed from storage.",
+      "importance": "recommended",
+      "impact": 3,
+      "recommended": null,
+      "default": "no explicit exclusions; agent will infer from project structure",
+      "prefilled": true,
+      "prefilled_value": "Do not delete historical game-only records or schema; do not move payment credentials into source; do not commit; do not modify files outside D:\\xampp\\htdocs. Deactivate rather than destructively remove game-account/cày thuê/wheel/game-item withdrawal/topup-card interfaces.",
+      "answer": null,
+      "depends_on": null,
+      "type": "text",
+      "options": []
+    },
+    {
+      "id": "G3",
+      "kit": "generic",
+      "field": "existing_tests.posture",
+      "title": "Existing test policy",
+      "question": "How should existing tests and syntax checks be treated during implementation?",
+      "importance": "recommended",
+      "impact": 3,
+      "recommended": "must pass",
+      "default": "must pass",
+      "prefilled": true,
+      "prefilled_value": "must pass available existing PHP syntax checks and tests; add focused tests where setup supports",
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "must pass",
+          "label": "Must pass all available existing syntax checks and tests"
+        },
+        {
+          "value": "can rewrite",
+          "label": "Existing tests may be replaced with equivalent coverage"
+        },
+        {
+          "value": "ignore",
+          "label": "Existing test suite is outdated/broken; write new tests from scratch"
+        },
+        {
+          "value": "partial: specify suites",
+          "label": "Must pass selected checks/suites; specify which ones"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "G4",
+      "kit": "generic",
+      "field": "target.output_location",
+      "title": "Rewrite location",
+      "question": "Where should rewritten/modernized code be placed? Confirm whether changes should be made in place or in a separate directory.",
+      "importance": "required",
+      "impact": 5,
+      "recommended": "in-place: D:\\xampp\\htdocs",
+      "default": "new sibling directory: htdocs-new",
+      "prefilled": true,
+      "prefilled_value": "in-place: D:\\xampp\\htdocs",
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "in-place: D:\\xampp\\htdocs",
+          "label": "In place: D:\\xampp\\htdocs"
+        },
+        {
+          "value": "new sibling directory: htdocs-new",
+          "label": "New sibling directory: htdocs-new"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "G5",
+      "kit": "generic",
+      "field": "constraints.additional",
+      "title": "Additional constraints",
+      "question": "Add any additional requirements, exclusions, dependencies, compliance rules, or operational constraints not covered above. You can accept the default if there are none.",
+      "importance": "optional",
+      "impact": 2,
+      "recommended": null,
+      "default": "None beyond the decisions listed in this specification.",
+      "prefilled": true,
+      "prefilled_value": "None beyond the decisions listed in this specification.",
+      "answer": null,
+      "depends_on": null,
+      "type": "text",
+      "options": []
+    }
+  ]
+}

@@ -1,0 +1,710 @@
+[2026-11-13 10:39:00] Lỗi: API không trả về danh sách giao dịch thành công
+[2026-11-13 10:39:23] Lỗi: API không trả về danh sách giao dịch thành công
+[2026-11-13 10:40:42] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 10:40:42] Đã cộng tiền: tid=7732a941dd62acd8b5b3b04b39c524c9, user_id=8, tien_goc=10000, thuc_nhan=10000
+[2026-11-13 10:40:42] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 10:40:42] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 10:41:55] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 10:41:55] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 10:41:55] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 10:42:06] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 10:42:06] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 10:42:06] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 10:42:32] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 10:42:32] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 10:42:32] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 10:44:09] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 10:44:09] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 10:44:09] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 10:46:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 10:46:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 10:46:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 10:47:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 10:47:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 10:47:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 10:48:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 10:48:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 10:48:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 10:49:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 10:49:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 10:49:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 10:50:07] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 10:50:07] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 10:50:07] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 10:51:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 10:51:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 10:51:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 10:52:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 10:52:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 10:52:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 10:53:06] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 10:53:06] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 10:53:06] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 10:54:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 10:54:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 10:54:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 10:55:06] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 10:55:06] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 10:55:06] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 10:56:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 10:56:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 10:56:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 10:57:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 10:57:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 10:57:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 10:58:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 10:58:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 10:58:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 10:59:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 10:59:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 10:59:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:00:22] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:00:22] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:00:22] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:01:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:01:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:01:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:02:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:02:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:02:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:03:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:03:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:03:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:04:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:04:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:04:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:05:05] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:05:05] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:05:05] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:06:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:06:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:06:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:07:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:07:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:07:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:08:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:08:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:08:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:09:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:09:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:09:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:10:07] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:10:07] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:10:07] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:11:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:11:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:11:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:12:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:12:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:12:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:13:02] Lỗi: API không trả về danh sách giao dịch thành công
+[2026-11-13 11:14:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:14:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:14:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:16:03] Lỗi: API không trả về danh sách giao dịch thành công
+[2026-11-13 11:17:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:17:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:17:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:18:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:18:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:18:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:19:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:19:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:19:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:20:06] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:20:06] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:20:06] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:21:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:21:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:21:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:22:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:22:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:22:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:23:03] Lỗi: API không trả về danh sách giao dịch thành công
+[2026-11-13 11:24:05] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:24:05] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:24:05] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:25:05] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:25:05] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:25:05] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:26:03] Lỗi: API không trả về danh sách giao dịch thành công
+[2026-11-13 11:27:18] Lỗi: API không trả về danh sách giao dịch thành công
+[2026-11-13 11:28:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:28:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:28:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:29:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:29:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:29:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:30:14] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:30:14] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:30:14] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:31:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:31:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:31:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:32:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:32:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:32:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:33:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:33:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:33:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:34:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:34:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:34:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:35:05] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:35:05] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:35:05] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:36:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:36:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:36:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:37:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:37:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:37:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:38:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:38:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:38:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:39:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:39:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:39:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:40:07] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:40:07] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:40:07] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:41:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:41:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:41:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:42:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:42:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:42:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:43:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:43:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:43:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:44:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:44:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:44:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:46:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:46:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:46:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:47:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:47:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:47:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:48:03] Lỗi: API không trả về danh sách giao dịch thành công
+[2026-11-13 11:49:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:49:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:49:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:50:06] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:50:06] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:50:06] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:51:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:51:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:51:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:52:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:52:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:52:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:53:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:53:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:53:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:54:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:54:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:54:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:55:05] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:55:05] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:55:05] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:56:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:56:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:56:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:57:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:57:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:57:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 11:58:04] Lỗi: API không trả về danh sách giao dịch thành công
+[2026-11-13 11:59:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 11:59:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 11:59:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:00:20] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:00:20] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:00:20] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:01:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:01:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:01:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:02:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:02:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:02:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:03:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:03:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:03:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:04:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:04:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:04:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:05:05] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:05:05] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:05:05] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:06:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:06:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:06:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:07:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:07:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:07:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:08:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:08:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:08:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:09:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:09:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:09:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:10:08] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:10:08] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:10:08] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:11:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:11:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:11:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:12:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:12:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:12:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:13:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:13:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:13:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:14:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:14:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:14:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:16:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:16:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:16:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:17:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:17:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:17:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:18:03] Lỗi: API không trả về danh sách giao dịch thành công
+[2026-11-13 12:19:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:19:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:19:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:20:06] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:20:06] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:20:06] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:21:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:21:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:21:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:22:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:22:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:22:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:23:05] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:23:05] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:23:05] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:24:07] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:24:07] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:24:07] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:25:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:25:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:25:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:26:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:26:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:26:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:27:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:27:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:27:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:28:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:28:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:28:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:29:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:29:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:29:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:30:14] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:30:14] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:30:14] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:31:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:31:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:31:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:32:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:32:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:32:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:33:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:33:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:33:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:34:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:34:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:34:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:35:05] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:35:05] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:35:05] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:36:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:36:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:36:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:37:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:37:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:37:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:38:05] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:38:05] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:38:05] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:39:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:39:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:39:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:40:07] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:40:07] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:40:07] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:41:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:41:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:41:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:42:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:42:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:42:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:43:03] Lỗi: API không trả về danh sách giao dịch thành công
+[2026-11-13 12:44:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:44:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:44:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:46:07] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:46:07] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:46:07] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:47:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:47:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:47:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:48:04] Lỗi: API không trả về danh sách giao dịch thành công
+[2026-11-13 12:49:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:49:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:49:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:50:07] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:50:07] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:50:07] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:51:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:51:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:51:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:52:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:52:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:52:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:53:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:53:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:53:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:54:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:54:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:54:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:55:05] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:55:05] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:55:05] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:56:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:56:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:56:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:57:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:57:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:57:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:58:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:58:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:58:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 12:59:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 12:59:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 12:59:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:00:22] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:00:22] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:00:22] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:01:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:01:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:01:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:02:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:02:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:02:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:03:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:03:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:03:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:04:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:04:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:04:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:05:06] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:05:06] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:05:06] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:06:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:06:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:06:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:07:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:07:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:07:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:08:05] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:08:05] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:08:05] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:09:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:09:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:09:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:10:08] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:10:08] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:10:08] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:11:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:11:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:11:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:12:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:12:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:12:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:13:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:13:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:13:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:14:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:14:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:14:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:16:06] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:16:06] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:16:06] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:17:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:17:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:17:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:18:03] Lỗi: API không trả về danh sách giao dịch thành công
+[2026-11-13 13:19:05] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:19:05] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:19:05] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:20:10] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:20:10] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:20:10] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:21:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:21:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:21:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:22:03] Lỗi: API không trả về danh sách giao dịch thành công
+[2026-11-13 13:23:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:23:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:23:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:24:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:24:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:24:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:25:06] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:25:06] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:25:06] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:26:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:26:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:26:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:27:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:27:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:27:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:28:05] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:28:05] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:28:05] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:29:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:29:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:29:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:30:14] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:30:14] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:30:14] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:31:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:31:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:31:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:32:03] Lỗi: API không trả về danh sách giao dịch thành công
+[2026-11-13 13:33:02] Lỗi: API không trả về danh sách giao dịch thành công
+[2026-11-13 13:34:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:34:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:34:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:35:06] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:35:06] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:35:06] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:36:03] Lỗi: API không trả về danh sách giao dịch thành công
+[2026-11-13 13:37:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:37:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:37:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:38:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:38:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:38:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:39:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:39:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:39:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:40:09] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:40:09] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:40:09] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:41:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:41:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:41:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:42:05] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:42:05] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:42:05] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:43:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:43:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:43:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:44:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:44:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:44:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:46:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:46:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:46:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:47:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:47:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:47:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:48:03] Lỗi: API không trả về danh sách giao dịch thành công
+[2026-11-13 13:49:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:49:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:49:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:50:07] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:50:07] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:50:07] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:51:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:51:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:51:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:52:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:52:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:52:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:53:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:53:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:53:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:54:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:54:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:54:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:55:08] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:55:08] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:55:08] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:56:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:56:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:56:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:57:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:57:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:57:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:58:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:58:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:58:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 13:59:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 13:59:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 13:59:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:00:20] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:00:20] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:00:20] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:01:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:01:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:01:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:02:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:02:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:02:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:03:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:03:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:03:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:04:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:04:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:04:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:05:05] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:05:05] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:05:05] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:06:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:06:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:06:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:07:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:07:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:07:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:08:05] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:08:05] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:08:05] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:09:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:09:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:09:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:10:08] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:10:08] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:10:08] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:11:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:11:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:11:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:12:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:12:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:12:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:13:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:13:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:13:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:14:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:14:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:14:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:16:04] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:16:04] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:16:04] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:17:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:17:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:17:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:18:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:18:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:18:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:19:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:19:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:19:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:20:09] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:20:09] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:20:09] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 14:21:03] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 14:21:03] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 14:21:03] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 18:14:15] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 18:14:15] Đã cộng tiền: tid=7732a941dd62acd8b5b3b04b39c524c9, user_id=8, tien_goc=10000, thuc_nhan=10000
+[2026-11-13 18:14:15] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 18:14:15] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 18:15:16] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 18:15:16] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 18:15:16] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 18:15:32] {"tid":"97a4aab7215900e2ff661552024d1e37","description":"EC38BDDF821CD77DEA02E7213B GD 6318SHBAP285RGP7 141126-00:15:09","user_id":null,"amount":5000}
+[2026-11-13 18:15:32] Đối soát đơn hàng cần kiểm tra: result=review, tid=97a4aab7215900e2ff661552024d1e37
+[2026-11-13 18:15:32] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 18:15:32] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 18:15:32] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 18:15:58] {"tid":"97a4aab7215900e2ff661552024d1e37","description":"EC38BDDF821CD77DEA02E7213B GD 6318SHBAP285RGP7 141126-00:15:09","user_id":null,"amount":5000}
+[2026-11-13 18:15:58] Lỗi xử lý thanh toán đơn hàng: result=error, tid=97a4aab7215900e2ff661552024d1e37
+[2026-11-13 18:15:58] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 18:15:58] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 18:15:58] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 18:17:42] {"tid":"97a4aab7215900e2ff661552024d1e37","description":"EC38BDDF821CD77DEA02E7213B GD 6318SHBAP285RGP7 141126-00:15:09","user_id":null,"amount":5000}
+[2026-11-13 18:17:42] Lỗi xử lý thanh toán đơn hàng: result=error, tid=97a4aab7215900e2ff661552024d1e37
+[2026-11-13 18:17:42] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 18:17:42] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 18:17:42] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 18:17:51] {"tid":"97a4aab7215900e2ff661552024d1e37","description":"EC38BDDF821CD77DEA02E7213B GD 6318SHBAP285RGP7 141126-00:15:09","user_id":null,"amount":5000}
+[2026-11-13 18:17:51] Lỗi xử lý thanh toán đơn hàng: result=error, tid=97a4aab7215900e2ff661552024d1e37
+[2026-11-13 18:17:51] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 18:17:51] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 18:17:51] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 18:22:13] {"tid":"97a4aab7215900e2ff661552024d1e37","description":"EC38BDDF821CD77DEA02E7213B GD 6318SHBAP285RGP7 141126-00:15:09","user_id":null,"amount":5000}
+[2026-11-13 18:22:13] Lỗi xử lý thanh toán đơn hàng: result=error, tid=97a4aab7215900e2ff661552024d1e37
+[2026-11-13 18:22:13] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 18:22:13] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 18:22:13] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 18:25:45] {"tid":"97a4aab7215900e2ff661552024d1e37","description":"EC38BDDF821CD77DEA02E7213B GD 6318SHBAP285RGP7 141126-00:15:09","user_id":null,"amount":5000}
+[2026-11-13 18:25:45] Đối soát đơn hàng cần kiểm tra: result=duplicate, tid=97a4aab7215900e2ff661552024d1e37
+[2026-11-13 18:25:45] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 18:25:45] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 18:25:45] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 18:27:57] {"tid":"97a4aab7215900e2ff661552024d1e37","description":"EC38BDDF821CD77DEA02E7213B GD 6318SHBAP285RGP7 141126-00:15:09","user_id":null,"amount":5000}
+[2026-11-13 18:27:57] Đối soát đơn hàng cần kiểm tra: result=duplicate, tid=97a4aab7215900e2ff661552024d1e37
+[2026-11-13 18:27:57] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 18:27:57] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 18:27:57] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 18:28:20] {"tid":"bf4d71850d8be4c7996130d300f14f6e","description":"ECE4F2D6340D92299FC44BA632 GD 6318SHBAP2858VEV 141126-00:27:48","user_id":null,"amount":5000}
+[2026-11-13 18:28:20] Đã thanh toán đơn hàng thương mại điện tử: order_no=ECE4F2D6340D92299FC44BA632, tid=bf4d71850d8be4c7996130d300f14f6e
+[2026-11-13 18:28:20] {"tid":"97a4aab7215900e2ff661552024d1e37","description":"EC38BDDF821CD77DEA02E7213B GD 6318SHBAP285RGP7 141126-00:15:09","user_id":null,"amount":5000}
+[2026-11-13 18:28:20] Đối soát đơn hàng cần kiểm tra: result=duplicate, tid=97a4aab7215900e2ff661552024d1e37
+[2026-11-13 18:28:20] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 18:28:20] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 18:28:20] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 18:33:02] {"tid":"8444e1ad622ff1498131b7ea807dbe13","description":"EC7EFFE726535A2BC6FFEB1F03 GD 6318SHBAP285R71H 141126-00:32:56","user_id":null,"amount":5000}
+[2026-11-13 18:33:02] Đã thanh toán đơn hàng thương mại điện tử: order_no=EC7EFFE726535A2BC6FFEB1F03, tid=8444e1ad622ff1498131b7ea807dbe13
+[2026-11-13 18:33:02] {"tid":"bf4d71850d8be4c7996130d300f14f6e","description":"ECE4F2D6340D92299FC44BA632 GD 6318SHBAP2858VEV 141126-00:27:48","user_id":null,"amount":5000}
+[2026-11-13 18:33:02] Đối soát đơn hàng cần kiểm tra: result=duplicate, tid=bf4d71850d8be4c7996130d300f14f6e
+[2026-11-13 18:33:02] {"tid":"97a4aab7215900e2ff661552024d1e37","description":"EC38BDDF821CD77DEA02E7213B GD 6318SHBAP285RGP7 141126-00:15:09","user_id":null,"amount":5000}
+[2026-11-13 18:33:02] Đối soát đơn hàng cần kiểm tra: result=duplicate, tid=97a4aab7215900e2ff661552024d1e37
+[2026-11-13 18:33:02] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 18:33:02] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 18:33:02] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 18:33:46] {"tid":"8444e1ad622ff1498131b7ea807dbe13","description":"EC7EFFE726535A2BC6FFEB1F03 GD 6318SHBAP285R71H 141126-00:32:56","user_id":null,"amount":5000}
+[2026-11-13 18:33:46] Đối soát đơn hàng cần kiểm tra: result=duplicate, tid=8444e1ad622ff1498131b7ea807dbe13
+[2026-11-13 18:33:46] {"tid":"bf4d71850d8be4c7996130d300f14f6e","description":"ECE4F2D6340D92299FC44BA632 GD 6318SHBAP2858VEV 141126-00:27:48","user_id":null,"amount":5000}
+[2026-11-13 18:33:46] Đối soát đơn hàng cần kiểm tra: result=duplicate, tid=bf4d71850d8be4c7996130d300f14f6e
+[2026-11-13 18:33:46] {"tid":"97a4aab7215900e2ff661552024d1e37","description":"EC38BDDF821CD77DEA02E7213B GD 6318SHBAP285RGP7 141126-00:15:09","user_id":null,"amount":5000}
+[2026-11-13 18:33:46] Đối soát đơn hàng cần kiểm tra: result=duplicate, tid=97a4aab7215900e2ff661552024d1e37
+[2026-11-13 18:33:46] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 18:33:46] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 18:33:46] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-13 18:46:20] {"tid":"8444e1ad622ff1498131b7ea807dbe13","description":"EC7EFFE726535A2BC6FFEB1F03 GD 6318SHBAP285R71H 141126-00:32:56","user_id":null,"amount":5000}
+[2026-11-13 18:46:20] Đối soát đơn hàng cần kiểm tra: result=duplicate, tid=8444e1ad622ff1498131b7ea807dbe13
+[2026-11-13 18:46:20] {"tid":"bf4d71850d8be4c7996130d300f14f6e","description":"ECE4F2D6340D92299FC44BA632 GD 6318SHBAP2858VEV 141126-00:27:48","user_id":null,"amount":5000}
+[2026-11-13 18:46:20] Đối soát đơn hàng cần kiểm tra: result=duplicate, tid=bf4d71850d8be4c7996130d300f14f6e
+[2026-11-13 18:46:20] {"tid":"97a4aab7215900e2ff661552024d1e37","description":"EC38BDDF821CD77DEA02E7213B GD 6318SHBAP285RGP7 141126-00:15:09","user_id":null,"amount":5000}
+[2026-11-13 18:46:20] Đối soát đơn hàng cần kiểm tra: result=duplicate, tid=97a4aab7215900e2ff661552024d1e37
+[2026-11-13 18:46:20] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-13 18:46:20] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-13 18:46:20] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-14 09:30:32] {"tid":"8444e1ad622ff1498131b7ea807dbe13","description":"EC7EFFE726535A2BC6FFEB1F03 GD 6318SHBAP285R71H 141126-00:32:56","user_id":null,"amount":5000}
+[2026-11-14 09:30:32] Đối soát đơn hàng cần kiểm tra: result=unknown_order, tid=8444e1ad622ff1498131b7ea807dbe13
+[2026-11-14 09:30:32] {"tid":"bf4d71850d8be4c7996130d300f14f6e","description":"ECE4F2D6340D92299FC44BA632 GD 6318SHBAP2858VEV 141126-00:27:48","user_id":null,"amount":5000}
+[2026-11-14 09:30:32] Đối soát đơn hàng cần kiểm tra: result=unknown_order, tid=bf4d71850d8be4c7996130d300f14f6e
+[2026-11-14 09:30:32] {"tid":"97a4aab7215900e2ff661552024d1e37","description":"EC38BDDF821CD77DEA02E7213B GD 6318SHBAP285RGP7 141126-00:15:09","user_id":null,"amount":5000}
+[2026-11-14 09:30:32] Đối soát đơn hàng cần kiểm tra: result=unknown_order, tid=97a4aab7215900e2ff661552024d1e37
+[2026-11-14 09:30:32] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-14 09:30:32] Đã cộng tiền: tid=7732a941dd62acd8b5b3b04b39c524c9, user_id=8, tien_goc=10000, thuc_nhan=10000
+[2026-11-14 09:30:32] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-14 09:30:32] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-14 09:32:07] {"tid":"b275007a889fec72f1895c36a41c1c23","description":"EC6B788EE46165C5538FBA68EA GD 6318SHBAP2F2XJ9D 141126-15:31:56","user_id":null,"amount":5000}
+[2026-11-14 09:32:07] Đã thanh toán đơn hàng thương mại điện tử: order_no=EC6B788EE46165C5538FBA68EA, tid=b275007a889fec72f1895c36a41c1c23
+[2026-11-14 09:32:07] {"tid":"8444e1ad622ff1498131b7ea807dbe13","description":"EC7EFFE726535A2BC6FFEB1F03 GD 6318SHBAP285R71H 141126-00:32:56","user_id":null,"amount":5000}
+[2026-11-14 09:32:07] Đối soát đơn hàng cần kiểm tra: result=unknown_order, tid=8444e1ad622ff1498131b7ea807dbe13
+[2026-11-14 09:32:07] {"tid":"bf4d71850d8be4c7996130d300f14f6e","description":"ECE4F2D6340D92299FC44BA632 GD 6318SHBAP2858VEV 141126-00:27:48","user_id":null,"amount":5000}
+[2026-11-14 09:32:08] Đối soát đơn hàng cần kiểm tra: result=unknown_order, tid=bf4d71850d8be4c7996130d300f14f6e
+[2026-11-14 09:32:08] {"tid":"97a4aab7215900e2ff661552024d1e37","description":"EC38BDDF821CD77DEA02E7213B GD 6318SHBAP285RGP7 141126-00:15:09","user_id":null,"amount":5000}
+[2026-11-14 09:32:08] Đối soát đơn hàng cần kiểm tra: result=unknown_order, tid=97a4aab7215900e2ff661552024d1e37
+[2026-11-14 09:32:08] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-14 09:32:08] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-14 09:32:08] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
