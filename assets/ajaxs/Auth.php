@@ -6,7 +6,9 @@
     require_once('../../class/PHPMailerAutoload.php');
     require_once('../../class/class.phpmailer.php');
 
-    if($_POST['type'] == 'Login' )
+    $type = (string) ($_POST['type'] ?? '');
+
+    if($type === 'Login')
     {
         $username = check_string($_POST['username']);
         $password = TypePassword(check_string($_POST['password']));
@@ -26,22 +28,37 @@
         {
             msg_error2('Tài khoản này đã bị khóa bởi BQT');
         }
-        if(!$AZCODE->get_row(" SELECT * FROM `users` WHERE `username` = '$username' AND `password` = '".md5($password)."' "))
+        $user = $AZCODE->get_row(
+            "SELECT * FROM `users` WHERE `username` = '$username' AND `password` = '".md5($password)."'"
+        );
+        if(!$user)
         {
             msg_error2('Mật khẩu đăng nhập không chính xác');
         }
         $AZCODE->update("users", [
-            'otp' => NULL
+            'otp' => NULL,
+            'otp_created_at' => NULL
         ], " `username` = '$username' ");
         $_SESSION['username'] = $username;
-        msg_success('Đăng nhập thành công ', BASE_URL(''), 0);
+        $redirect = $user['level'] === 'admin' ? BASE_URL('Admin/Home') : BASE_URL('');
+        msg_success('Đăng nhập thành công ', $redirect, 0);
     }
 
-    if($_POST['type'] == 'Register' )
+    if($type === 'Register')
     {
+        $email = strtolower(trim(check_string($_POST['email'] ?? '')));
         $username = check_string($_POST['username']);
         $password = check_string($_POST['password']);
         $repassword = check_string($_POST['repassword']);
+        if(filter_var($email, FILTER_VALIDATE_EMAIL) === false || strlen($email) > 190)
+        {
+            msg_error2('Vui lòng nhập địa chỉ email hợp lệ');
+        }
+        $emailSql = $AZCODE->escape($email);
+        if($AZCODE->get_row("SELECT `id` FROM `users` WHERE `email` = '$emailSql' LIMIT 1"))
+        {
+            msg_error2('Địa chỉ email đã được sử dụng');
+        }
         if(empty($username))
         {
             msg_error2("Vui lòng nhập tên tài khoản !");
@@ -103,48 +120,65 @@
     }
 
 
-    if($_POST['type'] == 'ForgotPassword' )
+    if($type === 'ForgotPassword')
     {
-        $email = check_string($_POST['email']);
-        if(empty($email))
-        {
-            msg_error2("Vui lòng nhập địa chỉ email vào ô trống");
-        }
-        if(check_email($email) != True) 
+        $email = strtolower(trim((string) ($_POST['email'] ?? '')));
+        if(filter_var($email, FILTER_VALIDATE_EMAIL) === false)
         {
             msg_error2('Vui lòng nhập địa chỉ email hợp lệ');
         }
-        $row = $AZCODE->get_row(" SELECT * FROM `users` WHERE `email` = '$email' ");
-        if(!$row)
+        if (trim((string) $AZCODE->site('email')) === '' || trim((string) $AZCODE->site('pass_email')) === '')
         {
-            msg_error2('Địa chỉ email không tồn tại trong hệ thống');
+            error_log('Password reset: SMTP is not configured.');
+            msg_error2('Dịch vụ email hiện không khả dụng. Vui lòng liên hệ quản trị viên.');
         }
-        $otp = random('0123456789', '6');
-        $AZCODE->update("users", array(
-            'otp' => $otp
-        ), " `id` = '".$row['id']."' " );
-        $guitoi = $email;   
-        $subject = 'XÁC NHẬN KHÔI PHỤC MẬT KHẨU';
-        $bcc = $AZCODE->site('tenweb');
-        $hoten ='Client';
-        $noi_dung = '<h3>Có ai đó vừa yêu cầu khôi phục lại mật khẩu bằng Email này, nếu là bạn vui lòng nhập mã xác minh phía dưới để xác minh tài khoản</h3>
-        <table>
-        <tbody>
-        <tr>
-        <td style="font-size:20px;">OTP:</td>
-        <td><b style="color:blue;font-size:30px;">'.$otp.'</b></td>
-        </tr>
-        </tbody>
-        </table>';
-        sendCSM($guitoi, $hoten, $subject, $noi_dung, $bcc);   
-        msg_success('Chúng tôi đã gửi mã xác minh vào địa chỉ Email của bạn !', BASE_URL('Auth/ChangePassword'), 4000);
+        $emailSql = $AZCODE->escape($email);
+        $row = $AZCODE->get_row("SELECT `id`,`email` FROM `users` WHERE `email` = '$emailSql' LIMIT 1");
+        if($row)
+        {
+            unset($_SESSION['countVeri']);
+            $otp = str_pad((string) random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+            $otpHash = hash('sha256', $otp);
+            $otpHashSql = $AZCODE->escape($otpHash);
+            $updated = $AZCODE->update("users", [
+                'otp' => $otpHash,
+                'otp_created_at' => time()
+            ], " `id` = '".(int) $row['id']."' ");
+
+            if (!$updated)
+            {
+                error_log('Password reset: failed to save a verification code.');
+                msg_error2('Không thể tạo mã xác minh. Vui lòng thử lại.');
+            }
+            else
+            {
+                $subject = 'XÁC NHẬN KHÔI PHỤC MẬT KHẨU';
+                $siteName = htmlspecialchars((string) $AZCODE->site('tenweb'), ENT_QUOTES, 'UTF-8');
+                $body = '<h3>Yêu cầu đặt lại mật khẩu</h3>'
+                    . '<p>Mã xác minh của bạn có hiệu lực trong 10 phút:</p>'
+                    . '<p style="font-size:28px;font-weight:bold;letter-spacing:5px;">'
+                    . htmlspecialchars($otp, ENT_QUOTES, 'UTF-8') . '</p>'
+                    . '<p>Nếu bạn không yêu cầu, hãy bỏ qua email này.</p>';
+
+                if (!sendCSM($email, 'Khách hàng', $subject, $body, $siteName))
+                {
+                    $AZCODE->update("users", [
+                        'otp' => NULL,
+                        'otp_created_at' => NULL
+                    ], " `id` = '".(int) $row['id']."' AND `otp` = '$otpHashSql' ");
+                    error_log('Password reset: verification email could not be sent.');
+                    msg_error2('Không thể gửi email mã xác minh. Vui lòng thử lại sau.');
+                }
+            }
+        }
+        msg_success('Nếu email có trong hệ thống, mã xác minh sẽ được gửi đến hộp thư của bạn.', BASE_URL('Auth/ChangePassword'), 4000);
     }
 
-    if($_POST['type'] == 'ChangePassword')
+    if($type === 'ChangePassword')
     {
-        $otp = check_string($_POST['otp']);
-        $repassword = check_string($_POST['repassword']);
-        $password = check_string($_POST['password']);
+        $otp = trim((string) ($_POST['otp'] ?? ''));
+        $repassword = check_string((string) ($_POST['repassword'] ?? ''));
+        $password = check_string((string) ($_POST['password'] ?? ''));
         if(empty($otp))
         {
             msg_error2("Bạn chưa nhập OTP");
@@ -168,29 +202,43 @@
         {
             $_SESSION['countVeri'] = 0;
         }
-        $row = $AZCODE->get_row(" SELECT * FROM `users` WHERE `otp` = '$otp' ");
-        if(!$row)
-        {
-            $_SESSION['countVeri'] = $_SESSION['countVeri'] + 1;
-            msg_error2("OTP không tồn tại trong hệ thống");
-        }
         if($password != $repassword)
         {
             msg_error2("Nhập lại mật khẩu không đúng");
         }
-        if(strlen($password) < 5)
+        if(strlen($password) < 8)
         {
-            msg_error2('Vui lòng nhập mật khẩu có ích nhất 5 ký tự');
+            msg_error2('Mật khẩu phải có ít nhất 8 ký tự');
         }
-        $AZCODE->update("users", [
+        if (!preg_match('/^\d{6}$/', $otp))
+        {
+            $_SESSION['countVeri']++;
+            msg_error2('Mã xác minh không hợp lệ hoặc đã hết hạn');
+        }
+        $otpHash = $AZCODE->escape(hash('sha256', $otp));
+        $validAfter = time() - 600;
+        $row = $AZCODE->get_row(
+            "SELECT `id` FROM `users` WHERE `otp` = '$otpHash' AND `otp_created_at` >= '$validAfter' LIMIT 1"
+        );
+        if(!$row)
+        {
+            $_SESSION['countVeri']++;
+            msg_error2('Mã xác minh không hợp lệ hoặc đã hết hạn');
+        }
+        $updated = $AZCODE->update("users", [
             'otp' => NULL,
+            'otp_created_at' => NULL,
             'password' => TypePassword(md5($password))
-        ], " `id` = '".$row['id']."' ");
-    
+        ], " `id` = '".(int) $row['id']."' AND `otp` = '$otpHash' ");
+        if (!$updated)
+        {
+            msg_error2('Không thể cập nhật mật khẩu. Vui lòng thử lại.');
+        }
+        unset($_SESSION['countVeri']);
         msg_success2("Mật khẩu của bạn đã được thay đổi thành công !");
     }
 
-    if($_POST['type'] == 'DoiMatKhau')
+    if($type === 'DoiMatKhau')
     {
         if($AZCODE->site('status_demo') == 'ON')
         {
@@ -221,6 +269,7 @@
         }
         $AZCODE->update("users", [
             'otp' => NULL,
+            'otp_created_at' => NULL,
             'password' => TypePassword(md5($password))
         ], " `id` = '".$row['id']."' ");
         msg_success("Mật khẩu của bạn đã được thay đổi thành công !", "", 1000);

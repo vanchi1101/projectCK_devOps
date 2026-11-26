@@ -218,6 +218,10 @@ function sendCSM($mail_nhan,$ten_nhan,$chu_de,$noi_dung,$bcc)
         $mail->Body    = $noi_dung;
         $mail->CharSet = 'UTF-8';
         $send = $mail->send();
+        if (!$send)
+        {
+            error_log('Email delivery failed; check the configured SMTP account and settings.');
+        }
         return $send;
 }
 function parse_order_id($des)

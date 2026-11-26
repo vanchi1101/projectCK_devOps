@@ -1,98 +1,66 @@
 <?php
-    require_once("../../config/config.php");
-    require_once("../../config/function.php");
-    $title = 'THAY ĐỔI MẬT KHẨU | '.$AZCODE->site('tenweb');
-    require_once("../../public/client/Header.php");
-    //require_once("../../public/client/Nav.php");
+require_once __DIR__ . '/../../config/config.php';
+require_once __DIR__ . '/../../config/function.php';
+$title = 'ĐẶT LẠI MẬT KHẨU | ' . $AZCODE->site('tenweb');
+require_once __DIR__ . '/Header.php';
+require_once __DIR__ . '/Nav.php';
+require_once __DIR__ . '/AuthStyles.php';
 ?>
 
-<header>
-    <div class="login-head">
-        <a href="<?=BASE_URL('');?>" class="login-logo">
-            <img src="<?=$AZCODE->site('logo');?>" alt="" />
-        </a>
-    </div>
-</header>
-<section>
-    <div class="bg-gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-md-12">
-                    <div class="login-box">
-                        <h3 class="clc6 light tac welcome">
-                            Thay đổi mật khẩu </h3>
-                        <form>
-                            <div class="login-cont">
-                                <div id="thongbao"></div>
-                                <div class="login-col email-cont mb12">
-                                    <div class="login-top">
-                                        <div class="form-group field-loginform-username required">
-                                            <input type="text" id="otp" class="txt"
-                                                placeholder="Nhập OTP" autofocus aria-required="true">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="login-col pass-cont">
-                                    <div class="email-top">
-                                        <div class="form-group field-loginform-password required">
-                                            <input type="password" id="password" class="txt" placeholder="Nhập mật khẩu mới"
-                                                aria-required="true">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="login-col pass-cont">
-                                    <div class="email-top">
-                                        <div class="form-group field-loginform-password required">
-                                            <input type="password" id="repassword" class="txt" placeholder="Nhập lại mật khẩu mới"
-                                                aria-required="true">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="login-col login-btn">
-                                    <button type="submit" id="ChangePassword"
-                                        class="button button-highlight f16 pt8 pb8 sign-btn sub-btn">XÁC NHẬN</button>
-                                    <a class="button button-null tac f16 mt12 pt8 pb8 register"
-                                        href="<?=BASE_URL('Auth/Login');?>">
-                                        ĐĂNG NHẬP </a>
-                                </div>
-                                <div class="tac reg-with">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
+<main class="auth-page">
+    <section class="auth-card" aria-labelledby="change-password-title">
+        <header class="auth-card-header">
+            <h1 id="change-password-title">Đặt lại mật khẩu</h1>
+            <p>Nhập mã 6 chữ số trong email và tạo mật khẩu mới. Mã hết hạn sau 10 phút.</p>
+        </header>
+        <div id="thongbao" class="auth-message" role="status" aria-live="polite"></div>
+        <form id="change-password-form" class="auth-form">
+            <label class="auth-field" for="otp">
+                Mã xác minh
+                <input type="text" id="otp" name="otp" placeholder="Nhập mã 6 chữ số"
+                       inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required>
+            </label>
+            <label class="auth-field" for="password">
+                Mật khẩu mới
+                <input type="password" id="password" name="password" placeholder="Tối thiểu 8 ký tự"
+                       autocomplete="new-password" minlength="8" required>
+            </label>
+            <label class="auth-field" for="repassword">
+                Nhập lại mật khẩu mới
+                <input type="password" id="repassword" name="repassword" placeholder="Nhập lại mật khẩu"
+                       autocomplete="new-password" minlength="8" required>
+            </label>
+            <button type="submit" id="ChangePassword" class="auth-submit">Cập nhật mật khẩu</button>
+        </form>
+        <p class="auth-card-footer">
+            Chưa nhận được mã?
+            <a href="<?=BASE_URL('Auth/ForgotPassword');?>">Gửi lại mã</a>
+        </p>
+    </section>
+</main>
 
 <script type="text/javascript">
-$("#ChangePassword").on("click", function() {
-
-    $('#ChangePassword').html('ĐANG XỬ LÝ').prop('disabled',
-        true);
+$("#change-password-form").on("submit", function(event) {
+    event.preventDefault();
+    var button = $("#ChangePassword");
+    button.text("Đang cập nhật...").prop("disabled", true);
     $.ajax({
         url: "<?=BASE_URL("assets/ajaxs/Auth.php");?>",
         method: "POST",
         data: {
-            type: 'ChangePassword',
+            type: "ChangePassword",
             otp: $("#otp").val(),
             password: $("#password").val(),
             repassword: $("#repassword").val()
-        },
-        success: function(response) {
-            $("#thongbao").html(response);
-            $('#ChangePassword').html(
-                    'Đổi mật khẩu')
-                .prop('disabled', false);
         }
+    }).done(function(response) {
+        $("#thongbao").html(response);
+    }).fail(function() {
+        $("#thongbao").html('<div class="alert alert-danger" role="alert">Không thể cập nhật mật khẩu. Vui lòng thử lại.</div>');
+    }).always(function() {
+        button.text("Cập nhật mật khẩu").prop("disabled", false);
     });
 });
 </script>
 
-
-<?php 
-    require_once("../../public/client/Footer.php");
-?>
+<?php require_once __DIR__ . '/Footer.php'; ?>

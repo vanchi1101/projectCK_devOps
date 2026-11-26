@@ -44,8 +44,6 @@ $.widget.bridge('uibutton', $.ui.button)
 <script src="<?=BASE_URL('template/');?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?=BASE_URL('template/');?>dist/js/adminlte.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?=BASE_URL('template/');?>dist/js/pages/dashboard.js"></script>
 <!-- bootstrap color picker -->
 <script src="<?=BASE_URL('template/');?>plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
 <!-- Ekko Lightbox -->

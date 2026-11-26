@@ -25,6 +25,8 @@ RewriteRule ^Auth/Profile/ChangePassword public/client/Profile-ChangePassword.ph
 RewriteRule ^Auth/Profile$ public/client/Profile.php [L]
 RewriteRule ^Auth/Register$ public/client/Register.php [L]
 RewriteRule ^Auth/Login$ public/client/Login.php [L]
+RewriteRule ^Auth/Google$ public/client/GoogleAuth.php [L]
+RewriteRule ^Auth/Google/Callback$ public/client/GoogleCallback.php [L]
 RewriteRule ^Auth/Logout$ public/client/Logout.php [L]
 RewriteRule ^Auth/ForgotPassword$ public/client/ForgotPassword.php [L]
 RewriteRule ^Auth/ChangePassword$ public/client/ChangePassword.php [L]

@@ -1,80 +1,54 @@
 <?php
-    require_once("../../config/config.php");
-    require_once("../../config/function.php");
-    $title = 'QUÊN MẬT KHẨU | '.$AZCODE->site('tenweb');
-    require_once("../../public/client/Header.php");
-    //require_once("../../public/client/Nav.php");
+require_once __DIR__ . '/../../config/config.php';
+require_once __DIR__ . '/../../config/function.php';
+$title = 'QUÊN MẬT KHẨU | ' . $AZCODE->site('tenweb');
+require_once __DIR__ . '/Header.php';
+require_once __DIR__ . '/Nav.php';
+require_once __DIR__ . '/AuthStyles.php';
 ?>
 
-<header>
-    <div class="login-head">
-        <a href="<?=BASE_URL('');?>" class="login-logo">
-            <img src="<?=$AZCODE->site('logo');?>" alt="" />
-        </a>
-    </div>
-</header>
-<section>
-    <div class="bg-gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-md-12">
-                    <div class="login-box">
-                        <h3 class="clc6 light tac welcome">
-                            Quên mật khẩu </h3>
-                        <form>
-                            <div class="login-cont">
-                                <div id="thongbao"></div>
-                                <div class="login-col email-cont mb12">
-                                    <div class="login-top">
-                                        <div class="form-group field-loginform-username required">
-                                            <input type="text" id="email" class="txt" placeholder="Nhập địa chỉ Email"
-                                                autofocus aria-required="true">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="login-col login-btn">
-                                    <button type="submit" id="ForgotPassword"
-                                        class="button button-highlight f16 pt8 pb8 sign-btn sub-btn">XÁC NHẬN</button>
-                                    <a class="button button-null tac f16 mt12 pt8 pb8 register"
-                                        href="<?=BASE_URL('Auth/Login');?>">
-                                        ĐĂNG NHẬP </a>
-                                </div>
-                                <div class="tac reg-with">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
+<main class="auth-page">
+    <section class="auth-card" aria-labelledby="forgot-password-title">
+        <header class="auth-card-header">
+            <h1 id="forgot-password-title">Quên mật khẩu?</h1>
+            <p>Nhập email đã đăng ký. Nếu email thuộc tài khoản, mã xác minh sẽ được gửi đến hộp thư của bạn.</p>
+        </header>
+        <div id="thongbao" class="auth-message" role="status" aria-live="polite"></div>
+        <form id="forgot-password-form" class="auth-form">
+            <label class="auth-field" for="email">
+                Địa chỉ email
+                <input type="email" id="email" name="email" placeholder="you@example.com"
+                       autocomplete="email" maxlength="190" required autofocus>
+            </label>
+            <button type="submit" id="ForgotPassword" class="auth-submit">Gửi mã xác minh</button>
+        </form>
+        <p class="auth-card-footer">
+            Nhớ mật khẩu?
+            <a href="<?=BASE_URL('Auth/Login');?>">Quay lại đăng nhập</a>
+        </p>
+    </section>
+</main>
 
 <script type="text/javascript">
-$("#ForgotPassword").on("click", function() {
-
-    $('#ForgotPassword').html('ĐANG XỬ LÝ').prop('disabled',
-        true);
+$("#forgot-password-form").on("submit", function(event) {
+    event.preventDefault();
+    var button = $("#ForgotPassword");
+    button.text("Đang gửi...").prop("disabled", true);
     $.ajax({
         url: "<?=BASE_URL("assets/ajaxs/Auth.php");?>",
         method: "POST",
         data: {
-            type: 'ForgotPassword',
+            type: "ForgotPassword",
             email: $("#email").val()
-        },
-        success: function(response) {
-            $("#thongbao").html(response);
-            $('#ForgotPassword').html(
-                    'Xác minh ngay')
-                .prop('disabled', false);
         }
+    }).done(function(response) {
+        $("#thongbao").html(response);
+    }).fail(function() {
+        $("#thongbao").html('<div class="alert alert-danger" role="alert">Không thể gửi yêu cầu. Vui lòng thử lại.</div>');
+    }).always(function() {
+        button.text("Gửi mã xác minh").prop("disabled", false);
     });
 });
 </script>
 
-
-<?php 
-    require_once("../../public/client/Footer.php");
-?>
+<?php require_once __DIR__ . '/Footer.php'; ?>

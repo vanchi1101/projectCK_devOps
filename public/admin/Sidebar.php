@@ -9,7 +9,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="<?=BASE_URL('');?>" class="nav-link">Home</a>
+                    <a href="<?=BASE_URL('Admin/Ecommerce');?>" class="nav-link">Quản lý cửa hàng</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -39,10 +39,10 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item has-treeview menu-open">
-                            <a href="<?=BASE_URL('Admin/Ecommerce');?>" class="nav-link active">
+                            <a href="<?=BASE_URL('Admin/Home');?>" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                    Dashboard
+                                    Tổng quan
                                 </p>
                             </a>
                         </li>

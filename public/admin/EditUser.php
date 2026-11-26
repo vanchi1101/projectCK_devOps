@@ -81,6 +81,18 @@ if(isset($_POST['btnSaveUser']) && isset($_GET['id']) && $getUser['level'] == 'a
     {
         admin_msg_warning("Chức năng này không khả dụng trên trang web DEMO!", "", 2000);
     }
+    $email = strtolower(trim(check_string($_POST['email'] ?? '')));
+    if (filter_var($email, FILTER_VALIDATE_EMAIL) === false || strlen($email) > 190)
+    {
+        admin_msg_error('Vui lòng nhập địa chỉ email hợp lệ', '', 2000);
+    }
+    $emailSql = $AZCODE->escape($email);
+    if ($AZCODE->get_row(
+        "SELECT `id` FROM `users` WHERE `email` = '$emailSql' AND `id` != '" . (int) $row['id'] . "' LIMIT 1"
+    ))
+    {
+        admin_msg_error('Địa chỉ email đã được sử dụng bởi tài khoản khác', '', 2000);
+    }
     $token = check_string($_POST['token']);
     $otp = check_string($_POST['otp']);
     $money = check_string($_POST['money']);
@@ -98,6 +110,7 @@ if(isset($_POST['btnSaveUser']) && isset($_GET['id']) && $getUser['level'] == 'a
         ));
     }
     $AZCODE->update("users", array(
+        'email'         => $email,
         'ctv'           => check_string($_POST['ctv']),
         'ctvacc'           => check_string($_POST['ctvacc']),        
         'otp'           => $otp,
@@ -148,6 +161,16 @@ if(isset($_POST['btnSaveUser']) && isset($_GET['id']) && $getUser['level'] == 'a
                             </div>
                             <input type="hidden" class="form-control" id="inputEmail3" value="<?=$row['username'];?>"
                                 name="username" required>
+                            <div class="form-group row">
+                                <label for="userEmail" class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-10">
+                                    <div class="form-line">
+                                        <input type="email" class="form-control" id="userEmail" name="email"
+                                            value="<?=htmlspecialchars((string) ($row['email'] ?? ''), ENT_QUOTES, 'UTF-8');?>"
+                                            maxlength="190" required>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">Token</label>
                                 <div class="col-sm-10">

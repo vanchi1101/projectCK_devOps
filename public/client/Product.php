@@ -11,6 +11,10 @@ $product = !$isInstalled || $id === false ? false : $AZCODE->get_row(
     . " LEFT JOIN `ecom_categories` c ON c.`id` = p.`category_id`"
     . " WHERE p.`id` = '" . (int) $id . "' AND p.`approval_status` = 'approved'"
 );
+$productDescription = $product ? trim((string) $product['description']) : '';
+if ($productDescription !== '') {
+    $productDescription = preg_replace('/\s*Nguồn:\s*https?:\/\/\S+.*$/u', '', $productDescription);
+}
 $title = $product ? ecom_h($product['name']) . ' | ' . $AZCODE->site('tenweb') : 'Sản phẩm không tồn tại';
 $message = '';
 
@@ -155,8 +159,8 @@ require_once(__DIR__ . "/Nav.php");
                         <span>Bảo hành <?=number_format((int) $product['warranty_months']);?> tháng</span>
                     <?php } ?>
                 </div>
-                <?php if (trim((string) $product['description']) !== '') { ?>
-                    <div class="product-detail-description"><?=nl2br(ecom_h($product['description']));?></div>
+                <?php if ($productDescription !== '') { ?>
+                    <div class="product-detail-description"><?=nl2br(ecom_h($productDescription));?></div>
                 <?php } ?>
                 <?php if ((int) $product['stock'] > 0) { ?>
                     <form method="post" class="product-detail-form">

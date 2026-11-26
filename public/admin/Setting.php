@@ -197,7 +197,9 @@ if(isset($_POST['btnSaveOption']) && $getUser['level'] == 'admin')
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-line">
-                                        <input type="text" name="pass_email" value="<?=$AZCODE->site('pass_email');?>"
+                                        <input type="password" name="pass_email"
+                                            value="<?=htmlspecialchars((string) $AZCODE->site('pass_email'), ENT_QUOTES, 'UTF-8');?>"
+                                            autocomplete="new-password"
                                             class="form-control" placeholder="Nhập mật khẩu Gmail">
                                     </div>
                                 </div>

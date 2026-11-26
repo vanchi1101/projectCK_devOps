@@ -2,6 +2,90 @@
 require_once(__DIR__ . "/../../config/config.php");
 require_once(__DIR__ . "/../../config/function.php");
 require_once(__DIR__ . "/../../includes/ecommerce.php");
+require_once(__DIR__ . "/../../class/class.smtp.php");
+require_once(__DIR__ . "/../../class/PHPMailerAutoload.php");
+require_once(__DIR__ . "/../../class/class.phpmailer.php");
+
+function checkout_send_order_emails($orderNo)
+{
+    global $AZCODE;
+
+    $safeOrderNo = $AZCODE->escape($orderNo);
+    $order = $AZCODE->get_row("SELECT * FROM `ecom_orders` WHERE `order_no` = '$safeOrderNo' LIMIT 1");
+    if (!$order) {
+        error_log('Order email: newly created order could not be loaded.');
+        return false;
+    }
+
+    $items = $AZCODE->get_list(
+        "SELECT `product_name`,`sku`,`quantity`,`unit_price`,`line_total`"
+        . " FROM `ecom_order_items` WHERE `order_id` = '" . (int) $order['id'] . "' ORDER BY `id` ASC"
+    );
+    if (!$items) {
+        error_log('Order email: order items could not be loaded.');
+        return false;
+    }
+
+    $shopName = trim((string) $AZCODE->site('tenweb')) ?: 'Cửa hàng';
+    $customerEmail = strtolower(trim((string) ($order['customer_email'] ?? '')));
+    $storeEmail = strtolower(trim((string) $AZCODE->site('email_admin')));
+    $recipients = [];
+    $allSent = true;
+
+    foreach ([$customerEmail, $storeEmail] as $recipientEmail) {
+        if (filter_var($recipientEmail, FILTER_VALIDATE_EMAIL) === false) {
+            $allSent = false;
+            error_log('Order email: customer or store email address is missing or invalid.');
+            continue;
+        }
+        $recipients[$recipientEmail] = true;
+    }
+
+    if (!$recipients) {
+        return false;
+    }
+
+    $status = $order['status'] === 'pending_payment' ? 'Chờ thanh toán' : 'Đang xử lý';
+    $paymentMethod = ($order['payment_method'] ?? '') === 'cod'
+        ? 'Thanh toán khi nhận hàng (COD)'
+        : 'Chuyển khoản ngân hàng';
+    $html = '<h2>' . ecom_h($shopName) . ' - thông tin đơn hàng</h2>'
+        . '<p>Mã đơn hàng: <strong>' . ecom_h($order['order_no']) . '</strong></p>'
+        . '<p>Trạng thái: ' . ecom_h($status) . '</p>'
+        . '<p>Thanh toán: ' . ecom_h($paymentMethod) . '</p>'
+        . '<h3>Sản phẩm</h3>'
+        . '<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse;width:100%">'
+        . '<thead><tr><th>Sản phẩm</th><th>SKU</th><th>SL</th><th>Đơn giá</th><th>Thành tiền</th></tr></thead><tbody>';
+
+    foreach ($items as $item) {
+        $html .= '<tr><td>' . ecom_h($item['product_name']) . '</td>'
+            . '<td>' . ecom_h($item['sku']) . '</td>'
+            . '<td>' . (int) $item['quantity'] . '</td>'
+            . '<td>' . number_format((float) $item['unit_price'], 0, ',', '.') . ' đ</td>'
+            . '<td>' . number_format((float) $item['line_total'], 0, ',', '.') . ' đ</td></tr>';
+    }
+
+    $html .= '</tbody></table>'
+        . '<p><strong>Tạm tính:</strong> ' . number_format((float) $order['subtotal'], 0, ',', '.') . ' đ</p>'
+        . '<p><strong>Phí giao hàng:</strong> ' . number_format((float) $order['shipping_fee'], 0, ',', '.') . ' đ</p>'
+        . '<p><strong>Tổng thanh toán:</strong> ' . number_format((float) $order['total'], 0, ',', '.') . ' đ</p>'
+        . '<h3>Thông tin nhận hàng</h3>'
+        . '<p>' . ecom_h($order['customer_name']) . '<br>'
+        . ecom_h($order['customer_phone']) . '<br>'
+        . ecom_h($order['customer_email']) . '<br>'
+        . ecom_h($order['shipping_address']) . ', ' . ecom_h($order['shipping_city']) . '</p>';
+    if (trim((string) $order['shipping_note']) !== '') {
+        $html .= '<p><strong>Ghi chú:</strong> ' . nl2br(ecom_h($order['shipping_note'])) . '</p>';
+    }
+
+    foreach (array_keys($recipients) as $recipientEmail) {
+        if (!sendCSM($recipientEmail, 'Khách hàng', 'Thông tin đơn hàng ' . $order['order_no'], $html, $shopName)) {
+            $allSent = false;
+        }
+    }
+
+    return $allSent;
+}
 
 if (empty($_SESSION['username'])) {
     header('Location: ' . BASE_URL('Auth/Login'));
@@ -24,6 +108,11 @@ if ($isInstalled && $_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $result = ecom_create_order($getUser, $_POST);
         if (isset($result['order_no'])) {
+            $emailSent = checkout_send_order_emails($result['order_no']);
+            $_SESSION['ecom_order_email_notice'] = [
+                'order_no' => $result['order_no'],
+                'sent' => $emailSent
+            ];
             header('Location: ' . BASE_URL('Checkout?order=' . rawurlencode($result['order_no'])));
             exit();
         }
@@ -37,6 +126,14 @@ if ($isInstalled && $orderNo !== '' && preg_match('/^EC[A-F0-9]{24}$/i', $orderN
         "SELECT * FROM `ecom_orders` WHERE `order_no` = '$safeOrderNo'"
         . " AND `customer_user_id` = '" . (int) $getUser['id'] . "'"
     );
+}
+$emailNotice = null;
+if ($order && isset($_SESSION['ecom_order_email_notice'])) {
+    $pendingEmailNotice = $_SESSION['ecom_order_email_notice'];
+    if (($pendingEmailNotice['order_no'] ?? '') === $order['order_no']) {
+        $emailNotice = (bool) ($pendingEmailNotice['sent'] ?? false);
+        unset($_SESSION['ecom_order_email_notice']);
+    }
 }
 $items = !$order && $isInstalled ? ecom_cart_items() : [];
 $provinces = ecom_vietnam_provinces();
@@ -129,6 +226,44 @@ require_once(__DIR__ . "/Nav.php");
     .checkout-grand-total { display: flex; justify-content: space-between; gap: 12px; margin-top: 5px; padding-top: 15px; border-top: 1px solid #dfe7ef; color: #142640; font-size: 1.12rem; font-weight: 850; }
     .checkout-grand-total strong { color: #1263a5; }
     .checkout-payment-hint { margin: 17px 0 0; padding: 12px; border-radius: 11px; background: #f0f7fc; color: #52657e; font-size: .84rem; line-height: 1.5; }
+    .checkout-payment-fieldset { display: grid; gap: 12px; margin: 0; padding: 0; border: 0; }
+    .checkout-payment-legend { margin-bottom: 2px; color: #142640; font-size: 1rem; font-weight: 850; }
+    .checkout-payment-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+    .checkout-payment-option {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        min-height: 104px;
+        padding: 16px;
+        border: 1px solid #d5e0eb;
+        border-radius: 14px;
+        background: linear-gradient(145deg, #fff, #f8fbfe);
+        color: #263d57;
+        cursor: pointer;
+        transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+    }
+    .checkout-payment-option:hover { border-color: #7ab7e8; box-shadow: 0 8px 20px rgba(22, 99, 165, .08); transform: translateY(-1px); }
+    .checkout-payment-option:focus-within { outline: 3px solid rgba(49, 130, 206, .18); outline-offset: 2px; }
+    .checkout-payment-option input {
+        width: 18px;
+        height: 18px;
+        min-height: 18px;
+        flex: 0 0 18px;
+        margin: 3px 0 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        appearance: auto;
+        accent-color: #1677d2;
+    }
+    .checkout-payment-option-copy { display: grid; gap: 7px; }
+    .checkout-payment-option-title { color: #172b46; font-size: .94rem; font-weight: 850; line-height: 1.4; }
+    .checkout-payment-option-description { color: #718198; font-size: .82rem; font-weight: 450; line-height: 1.5; }
+    .checkout-payment-option-tag { width: fit-content; padding: 3px 8px; border-radius: 999px; background: #e8f4ff; color: #1768a6; font-size: .7rem; font-weight: 800; letter-spacing: .03em; text-transform: uppercase; }
+    @media (max-width: 520px) {
+        .checkout-payment-options { grid-template-columns: 1fr; }
+        .checkout-payment-option { min-height: 0; }
+    }
     .checkout-submit {
         display: block;
         width: 100%;
@@ -188,6 +323,13 @@ require_once(__DIR__ . "/Nav.php");
             <p class="checkout-intro">Nhập chính xác thông tin nhận hàng để cửa hàng giao sản phẩm đến bạn.</p>
         </header>
         <?php if ($message !== '') { ?><div class="checkout-error" role="alert"><?=ecom_h($message);?></div><?php } ?>
+        <?php if ($emailNotice !== null) { ?>
+            <div class="<?=$emailNotice ? 'checkout-info' : 'checkout-error';?>" role="<?=$emailNotice ? 'status' : 'alert';?>">
+                <?=$emailNotice
+                    ? 'Xác nhận đơn hàng đã được gửi đến email của bạn và cửa hàng.'
+                    : 'Đơn hàng đã được tạo nhưng chưa gửi được đầy đủ email xác nhận. Vui lòng liên hệ cửa hàng nếu cần hỗ trợ.';?>
+            </div>
+        <?php } ?>
 
         <?php if (!$isInstalled) { ?>
             <div class="checkout-no-items">Cửa hàng điện tử chưa được khởi tạo. Vui lòng liên hệ quản trị viên.</div>
@@ -288,9 +430,10 @@ require_once(__DIR__ . "/Nav.php");
                                 <input required type="tel" maxlength="40" name="customer_phone" autocomplete="tel"
                                        value="<?=ecom_h($_POST['customer_phone'] ?? '');?>">
                             </label>
-                            <label class="checkout-field checkout-field-full">Email (không bắt buộc)
-                                <input type="email" maxlength="190" name="customer_email" autocomplete="email"
+                            <label class="checkout-field checkout-field-full">Email nhận xác nhận đơn hàng *
+                                <input required type="email" maxlength="190" name="customer_email" autocomplete="email"
                                        value="<?=ecom_h($_POST['customer_email'] ?? ($getUser['email'] ?? ''));?>">
+                                <span class="checkout-field-hint">Cửa hàng sẽ gửi thông tin đơn hàng đến email này và email cửa hàng.</span>
                             </label>
                             <label class="checkout-field checkout-field-full">Tỉnh / thành phố *
                                 <select required name="shipping_city" autocomplete="address-level1">
@@ -310,20 +453,30 @@ require_once(__DIR__ . "/Nav.php");
                             <label class="checkout-field checkout-field-full">Ghi chú giao hàng
                                 <textarea name="shipping_note" maxlength="500" placeholder="Thời gian nhận hàng hoặc lưu ý cho người giao"><?=ecom_h($_POST['shipping_note'] ?? '');?></textarea>
                             </label>
-                            <fieldset class="checkout-field checkout-field-full" style="border:0;padding:0;margin:0">
-                                <legend style="margin-bottom:8px">Phương thức thanh toán *</legend>
-                                <label style="display:flex;align-items:flex-start;gap:9px;padding:12px;border:1px solid #cbd8e6;border-radius:10px;background:#f9fbfd;font-weight:600">
-                                    <input type="radio" name="payment_method" value="bank_transfer"
-                                           <?=((string) ($_POST['payment_method'] ?? 'bank_transfer') !== 'cod') ? 'checked' : '';?>>
-                                    <span>Chuyển khoản ngân hàng <small style="display:block;color:#718198;font-weight:450">Thanh toán trước khi cửa hàng xử lý giao hàng.</small></span>
-                                </label>
-                                <?php if ($supportsCod) { ?>
-                                    <label style="display:flex;align-items:flex-start;gap:9px;margin-top:8px;padding:12px;border:1px solid #cbd8e6;border-radius:10px;background:#f9fbfd;font-weight:600">
-                                        <input type="radio" name="payment_method" value="cod"
-                                               <?=((string) ($_POST['payment_method'] ?? '') === 'cod') ? 'checked' : '';?>>
-                                        <span>Thanh toán khi nhận hàng (COD) <small style="display:block;color:#718198;font-weight:450">Thanh toán cho nhân viên giao hàng khi nhận sản phẩm.</small></span>
+                            <fieldset class="checkout-field checkout-field-full checkout-payment-fieldset">
+                                <legend class="checkout-payment-legend">Phương thức thanh toán *</legend>
+                                <div class="checkout-payment-options">
+                                    <label class="checkout-payment-option">
+                                        <input type="radio" name="payment_method" value="bank_transfer"
+                                               <?=((string) ($_POST['payment_method'] ?? 'bank_transfer') !== 'cod') ? 'checked' : '';?>>
+                                        <span class="checkout-payment-option-copy">
+                                            <span class="checkout-payment-option-tag">Thanh toán online</span>
+                                            <span class="checkout-payment-option-title">Chuyển khoản ngân hàng</span>
+                                            <span class="checkout-payment-option-description">Thanh toán trước để cửa hàng xác nhận và xử lý đơn hàng.</span>
+                                        </span>
                                     </label>
-                                <?php } ?>
+                                    <?php if ($supportsCod) { ?>
+                                        <label class="checkout-payment-option">
+                                            <input type="radio" name="payment_method" value="cod"
+                                                   <?=((string) ($_POST['payment_method'] ?? '') === 'cod') ? 'checked' : '';?>>
+                                            <span class="checkout-payment-option-copy">
+                                                <span class="checkout-payment-option-tag">Thanh toán khi nhận</span>
+                                                <span class="checkout-payment-option-title">Tiền mặt khi giao hàng (COD)</span>
+                                                <span class="checkout-payment-option-description">Thanh toán cho nhân viên giao hàng sau khi nhận sản phẩm.</span>
+                                            </span>
+                                        </label>
+                                    <?php } ?>
+                                </div>
                             </fieldset>
                         </div>
                     </div>

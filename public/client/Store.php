@@ -38,9 +38,9 @@ if ($installed) {
     }
     $products = $AZCODE->get_list(
         "SELECT p.*, c.`title` AS `category_title` FROM `ecom_products` p"
-        . " LEFT JOIN `ecom_categories` c ON c.`id` = p.`category_id`"
+        . " INNER JOIN `ecom_categories` c ON c.`id` = p.`category_id` AND c.`status` = 'active'"
         . " WHERE " . implode(' AND ', $where)
-        . " ORDER BY p.`created_at` DESC LIMIT 100"
+        . " ORDER BY p.`created_at` DESC LIMIT 200"
     );
 }
 ?>

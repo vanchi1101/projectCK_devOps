@@ -272,9 +272,6 @@
                         alt="<?=htmlspecialchars((string) $AZCODE->site('tenweb'), ENT_QUOTES, 'UTF-8');?>">
                 </a>
                 <div class="site-header-quick">
-                    <?php if (empty($_SESSION['username'])) { ?>
-                        <a href="<?=BASE_URL('Auth/Login');?>" class="site-header-quick-link"><i class="bx bx-user"></i> Đăng nhập</a>
-                    <?php } ?>
                     <label for="menu-toggle" id="toggle" class="site-header-toggle" aria-label="Mở menu">
                         <i class="bx bx-menu"></i>
                     </label>

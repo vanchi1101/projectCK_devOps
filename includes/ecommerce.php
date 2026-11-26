@@ -243,6 +243,9 @@ function ecom_create_order($customer, $input)
     $address = trim((string) ($input['shipping_address'] ?? ''));
     $city = trim((string) ($input['shipping_city'] ?? ''));
     $email = trim((string) ($input['customer_email'] ?? ''));
+    if ($email === '') {
+        $email = trim((string) ($customer['email'] ?? ''));
+    }
     $note = trim((string) ($input['shipping_note'] ?? ''));
     $paymentMethod = (string) ($input['payment_method'] ?? 'bank_transfer');
     if ($name === '' || $phone === '' || $address === '' || $city === '') {
@@ -257,8 +260,8 @@ function ecom_create_order($customer, $input)
     if (!in_array($city, ecom_vietnam_provinces(), true)) {
         return ['error' => 'Vui lòng chọn tỉnh hoặc thành phố trong danh sách.'];
     }
-    if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        return ['error' => 'Địa chỉ email không hợp lệ.'];
+    if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return ['error' => 'Vui lòng nhập địa chỉ email hợp lệ để nhận thông tin đơn hàng.'];
     }
     if (strlen($name) > 190 || strlen($phone) > 40 || strlen($address) > 500 || strlen($city) > 120 || strlen($email) > 190) {
         return ['error' => 'Thông tin giao hàng vượt quá độ dài cho phép.'];
