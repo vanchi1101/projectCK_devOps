@@ -1,6 +1,26 @@
 <?php
 session_start();
-$base_url = rtrim(getenv('APP_URL') ?: 'http://localhost/', '/') . '/';
+
+function azcode_env($name, $default = '')
+{
+    static $config = null;
+
+    if ($config === null) {
+        // Production configuration is stored outside public_html.
+        $path = dirname(__DIR__, 2) . '/.azcode-runtime.php';
+        $config = is_file($path) ? require $path : [];
+    }
+
+    if (isset($config[$name])) {
+        return $config[$name];
+    }
+
+    $value = getenv($name);
+    return ($value !== false && $value !== '') ? $value : $default;
+}
+
+$base_url = rtrim(azcode_env('APP_URL', 'http://localhost/'), '/') . '/';
+
 class AZCODE
 {
     private $ketnoi;
@@ -8,11 +28,11 @@ class AZCODE
     {
         if (!$this->ketnoi)
         {
-            $dbHost = getenv('DB_HOST') ?: 'localhost';
-            $dbUser = getenv('DB_USER') ?: 'root';
-            $dbPassword = getenv('DB_PASSWORD') ?: '';
-            $dbName = getenv('DB_NAME') ?: 'shopvip';
-            $dbPort = (int) (getenv('DB_PORT') ?: 3306);
+            $dbHost = azcode_env('DB_HOST', 'localhost');
+            $dbUser = azcode_env('DB_USER', 'root');
+            $dbPassword = azcode_env('DB_PASSWORD', '');
+            $dbName = azcode_env('DB_NAME', 'shopvip');
+            $dbPort = (int) azcode_env('DB_PORT', '3306');
             $this->ketnoi = mysqli_connect($dbHost, $dbUser, $dbPassword, $dbName, $dbPort)
                 or die ('Chưa kết nối đến DATABASE');
             mysqli_query($this->ketnoi, "set names 'utf8'");
@@ -100,7 +120,6 @@ class AZCODE
             $value_list .= ",'".mysqli_real_escape_string($this->ketnoi, $value)."'";
         }
         $sql = 'INSERT INTO '.$table. '('.trim($field_list, ',').') VALUES ('.trim($value_list, ',').')';
- 
         return mysqli_query($this->ketnoi, $sql);
     }
     function update($table, $data, $where)
@@ -181,7 +200,7 @@ class AZCODE
 }
 
 if(isset($_SESSION['username']))
-{ 
+{
     $AZCODE= new AZCODE;
     $getUser = $AZCODE->get_row(" SELECT * FROM users WHERE username = '".$_SESSION['username']."' ");
     $my_username = True;

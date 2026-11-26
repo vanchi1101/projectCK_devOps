@@ -708,3 +708,29 @@
 [2026-11-14 09:32:08] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
 [2026-11-14 09:32:08] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
 [2026-11-14 09:32:08] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-16 07:47:34] {"tid":"273177afeb921e8d57d37358a58f38ec","description":"ECE0B1F0DD142253A468F3203E GD 6320SHBAP2F1Y8RC 161126-13:47:22","user_id":null,"amount":5000}
+[2026-11-16 07:47:34] Đã thanh toán đơn hàng thương mại điện tử: order_no=ECE0B1F0DD142253A468F3203E, tid=273177afeb921e8d57d37358a58f38ec
+[2026-11-16 07:47:34] {"tid":"b275007a889fec72f1895c36a41c1c23","description":"EC6B788EE46165C5538FBA68EA GD 6318SHBAP2F2XJ9D 141126-15:31:56","user_id":null,"amount":5000}
+[2026-11-16 07:47:34] Đối soát đơn hàng cần kiểm tra: result=duplicate, tid=b275007a889fec72f1895c36a41c1c23
+[2026-11-16 07:47:34] {"tid":"8444e1ad622ff1498131b7ea807dbe13","description":"EC7EFFE726535A2BC6FFEB1F03 GD 6318SHBAP285R71H 141126-00:32:56","user_id":null,"amount":5000}
+[2026-11-16 07:47:34] Đối soát đơn hàng cần kiểm tra: result=unknown_order, tid=8444e1ad622ff1498131b7ea807dbe13
+[2026-11-16 07:47:34] {"tid":"bf4d71850d8be4c7996130d300f14f6e","description":"ECE4F2D6340D92299FC44BA632 GD 6318SHBAP2858VEV 141126-00:27:48","user_id":null,"amount":5000}
+[2026-11-16 07:47:34] Đối soát đơn hàng cần kiểm tra: result=unknown_order, tid=bf4d71850d8be4c7996130d300f14f6e
+[2026-11-16 07:47:34] {"tid":"97a4aab7215900e2ff661552024d1e37","description":"EC38BDDF821CD77DEA02E7213B GD 6318SHBAP285RGP7 141126-00:15:09","user_id":null,"amount":5000}
+[2026-11-16 07:47:34] Đối soát đơn hàng cần kiểm tra: result=unknown_order, tid=97a4aab7215900e2ff661552024d1e37
+[2026-11-16 07:47:34] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-16 07:47:34] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-16 07:47:34] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}
+[2026-11-16 11:32:39] {"tid":"273177afeb921e8d57d37358a58f38ec","description":"ECE0B1F0DD142253A468F3203E GD 6320SHBAP2F1Y8RC 161126-13:47:22","user_id":null,"amount":5000}
+[2026-11-16 11:32:39] Đối soát đơn hàng cần kiểm tra: result=duplicate, tid=273177afeb921e8d57d37358a58f38ec
+[2026-11-16 11:32:39] {"tid":"b275007a889fec72f1895c36a41c1c23","description":"EC6B788EE46165C5538FBA68EA GD 6318SHBAP2F2XJ9D 141126-15:31:56","user_id":null,"amount":5000}
+[2026-11-16 11:32:39] Đối soát đơn hàng cần kiểm tra: result=duplicate, tid=b275007a889fec72f1895c36a41c1c23
+[2026-11-16 11:32:39] {"tid":"8444e1ad622ff1498131b7ea807dbe13","description":"EC7EFFE726535A2BC6FFEB1F03 GD 6318SHBAP285R71H 141126-00:32:56","user_id":null,"amount":5000}
+[2026-11-16 11:32:39] Đối soát đơn hàng cần kiểm tra: result=unknown_order, tid=8444e1ad622ff1498131b7ea807dbe13
+[2026-11-16 11:32:39] {"tid":"bf4d71850d8be4c7996130d300f14f6e","description":"ECE4F2D6340D92299FC44BA632 GD 6318SHBAP2858VEV 141126-00:27:48","user_id":null,"amount":5000}
+[2026-11-16 11:32:39] Đối soát đơn hàng cần kiểm tra: result=unknown_order, tid=bf4d71850d8be4c7996130d300f14f6e
+[2026-11-16 11:32:39] {"tid":"97a4aab7215900e2ff661552024d1e37","description":"EC38BDDF821CD77DEA02E7213B GD 6318SHBAP285RGP7 141126-00:15:09","user_id":null,"amount":5000}
+[2026-11-16 11:32:39] Đối soát đơn hàng cần kiểm tra: result=unknown_order, tid=97a4aab7215900e2ff661552024d1e37
+[2026-11-16 11:32:39] {"tid":"7732a941dd62acd8b5b3b04b39c524c9","description":"naptien 8 GD 6317SHBAP28PGYLJ 131126-17:35:13","user_id":8,"amount":10000}
+[2026-11-16 11:32:39] {"tid":"84c02f87d773ad939a65a9f5070836e1","description":"QR - NAP1908 GD 6315ICBVC2R7CB1N 111126-23:43:38","user_id":null,"amount":25000}
+[2026-11-16 11:32:39] {"tid":"aa9482b5cbdb8bc9df38ee129ca90f27","description":"VO TAN NAM chuyen tien GD 6306SHBAP2C5Q13K 021126-15:10:32","user_id":null,"amount":20000}

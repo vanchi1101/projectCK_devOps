@@ -27,7 +27,9 @@ jobs:
           tar -czf "$RUNNER_TEMP/source.tar.gz" \
             -C "$RUNNER_TEMP/source" \
             --exclude='./.github/modernize' \
-            --exclude='./config/config.php' \
+            --exclude='.env' \
+            --exclude='.env.*' \
+            --exclude='.azcode-runtime.php' \
             --exclude='./assets/storage' \
             --exclude='./cron/LogBank.txt' \
             --exclude='./cron/*.lock' \
@@ -124,7 +126,9 @@ jobs:
           tar -czf "$RUNNER_TEMP/site.tar.gz" \
             --exclude='./.git' \
             --exclude='./.github' \
-            --exclude='./config/config.php' \
+            --exclude='.env' \
+            --exclude='.env.*' \
+            --exclude='.azcode-runtime.php' \
             --exclude='./assets/storage' \
             --exclude='./cron/LogBank.txt' \
             --exclude='./cron/*.lock' \
@@ -133,7 +137,12 @@ jobs:
             --exclude='*/error_log' \
             --exclude='.DS_Store' \
             .
-          if tar -tzf "$RUNNER_TEMP/site.tar.gz" | grep -Eq '(^|/)(config/config\.php|assets/storage(/|$)|cron/LogBank\.txt|.*\.sql)$'; then
+          tar -tzf "$RUNNER_TEMP/site.tar.gz" > "$RUNNER_TEMP/site-files.txt"
+          if ! grep -Fxq './config/config.php' "$RUNNER_TEMP/site-files.txt"; then
+            echo "::error::Missing config/config.php in deployment package."
+            exit 1
+          fi
+          if grep -Eq '(^|/)(\.env(\.[^/]*)?|\.azcode-runtime\.php|assets/storage(/.*)?|cron/LogBank\.txt|.*\.sql)$' "$RUNNER_TEMP/site-files.txt"; then
             echo "::error::Protected configuration or database files were included in the deployment package."
             exit 1
           fi
@@ -148,6 +157,7 @@ jobs:
   deploy:
     name: Deploy to cPanel
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     needs: build
     if: github.ref == 'refs/heads/main'
     steps:
@@ -162,7 +172,13 @@ jobs:
           cat > "$RUNNER_TEMP/cpanel-shell-check.sh" <<'REMOTE'
           set -euo pipefail
           deploy_path=$1
+          # config.php reads the runtime file from the parent of public_html.
+          [[ "$deploy_path" == "$HOME/public_html" ]] || {
+            echo 'Expected Document Root: $HOME/public_html' >&2
+            exit 1
+          }
           mkdir -p -- "$deploy_path"
+          [[ "$(cd -- "$deploy_path" && pwd -P)" == "$(cd -- "$HOME" && pwd -P)/public_html" ]]
           test -w "$deploy_path"
           printf '%s\n' 'CPANEL_SHELL_READY'
           REMOTE
@@ -172,6 +188,8 @@ jobs:
           deploy_path=$2
           tar -xzf "$package_path" -C "$deploy_path"
           test -f "$deploy_path/index.php"
+          test -f "$deploy_path/config/config.php"
+          test -s "$HOME/.azcode-runtime.php"
           rm -f -- "$package_path"
           printf '%s\n' 'CPANEL_DEPLOY_OK'
           REMOTE
@@ -208,8 +226,8 @@ jobs:
           }
 
           install -m 700 -d "$HOME/.ssh"
-          printf '%s\n' "$CPANEL_SSH_PRIVATE_KEY" > "$HOME/.ssh/cpanel_deploy"
-          printf '%s\n' "$CPANEL_SSH_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          printf '%s\n' "$CPANEL_SSH_PRIVATE_KEY" | tr -d '\r' > "$HOME/.ssh/cpanel_deploy"
+          printf '%s\n' "$CPANEL_SSH_KNOWN_HOSTS" | tr -d '\r' > "$HOME/.ssh/known_hosts"
           chmod 600 "$HOME/.ssh/cpanel_deploy" "$HOME/.ssh/known_hosts"
           cat > "$HOME/.ssh/askpass" <<'ASKPASS'
           #!/bin/sh
@@ -220,7 +238,7 @@ jobs:
           echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> "$GITHUB_ENV"
           echo "SSH_AGENT_PID=$SSH_AGENT_PID" >> "$GITHUB_ENV"
           SSH_ASKPASS="$HOME/.ssh/askpass" SSH_ASKPASS_REQUIRE=force DISPLAY=:0 \
-            ssh-add "$HOME/.ssh/cpanel_deploy" </dev/null
+            timeout 30s ssh-add "$HOME/.ssh/cpanel_deploy" </dev/null
           unset CPANEL_SSH_PRIVATE_KEY CPANEL_SSH_KEY_PASSPHRASE
 
       - name: Check SSH shell access
@@ -234,7 +252,7 @@ jobs:
           set -euo pipefail
           port="${CPANEL_SSH_PORT:-22}"
           remote="${CPANEL_SSH_USER}@${CPANEL_SSH_HOST}"
-          ssh_options=(-p "$port" -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts")
+          ssh_options=(-p "$port" -o BatchMode=yes -o ConnectTimeout=15 -o ServerAliveInterval=15 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts")
           if ! ssh "${ssh_options[@]}" "$remote" bash -s -- "$CPANEL_DEPLOY_PATH" \
             < "$RUNNER_TEMP/cpanel-shell-check.sh" | tee "$RUNNER_TEMP/cpanel-shell-check.log"; then
             echo "::error::The SSH account could not execute the remote shell check. Ask the hosting provider to enable shell access."
@@ -258,9 +276,65 @@ jobs:
           remote="${CPANEL_SSH_USER}@${CPANEL_SSH_HOST}"
           package_name=".github-deploy-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.tar.gz"
           remote_package_path="${CPANEL_DEPLOY_PATH%/*}/$package_name"
-          scp -P "$port" -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+          scp -P "$port" -o BatchMode=yes -o ConnectTimeout=15 -o ServerAliveInterval=15 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
             package/site.tar.gz "$remote:$remote_package_path"
           echo "Deployment package uploaded to the configured cPanel account."
+
+      - name: Configure production database runtime
+        env:
+          CPANEL_SSH_HOST: ${{ secrets.CPANEL_SSH_HOST }}
+          CPANEL_SSH_USER: ${{ secrets.CPANEL_SSH_USER }}
+          CPANEL_SSH_PORT: ${{ secrets.CPANEL_SSH_PORT }}
+          SITE_URL: ${{ secrets.SITE_URL }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: |
+          set -euo pipefail
+          : "${DB_HOST:?Add the DB_HOST secret}"
+          : "${DB_NAME:?Add the DB_NAME secret}"
+          : "${DB_USER:?Add the DB_USER secret}"
+          : "${DB_PASSWORD:?Add the DB_PASSWORD secret}"
+          : "${SITE_URL:?Add the SITE_URL secret}"
+          umask 077
+          runtime_file="$(mktemp "$RUNNER_TEMP/azcode-runtime.XXXXXX")"
+          trap 'rm -f -- "$runtime_file"' EXIT
+          # Encode only for safe PHP syntax; base64 is not encryption.
+          python3 - "$runtime_file" <<'PYTHON'
+          import base64, json, os, sys
+          config = {key: os.environ[key] for key in (
+              'DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASSWORD'
+          )}
+          config['DB_PORT'] = '3306'
+          config['APP_URL'] = os.environ['SITE_URL']
+          payload = base64.b64encode(json.dumps(config).encode('utf-8')).decode('ascii')
+          with open(sys.argv[1], 'w', encoding='utf-8') as f:
+              f.write("<?php\nreturn json_decode(base64_decode('" + payload + "'), true, 512, JSON_THROW_ON_ERROR);\n")
+          PYTHON
+          unset DB_HOST DB_NAME DB_USER DB_PASSWORD
+          port="${CPANEL_SSH_PORT:-22}"
+          remote="${CPANEL_SSH_USER}@${CPANEL_SSH_HOST}"
+          ssh_options=(-p "$port" -o BatchMode=yes -o ConnectTimeout=15 -o ServerAliveInterval=15 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts")
+          remote_script="$(cat <<'REMOTE'
+          set -eu
+          umask 077
+          tmp=$(mktemp "$HOME/.azcode-runtime.XXXXXX")
+          trap 'rm -f -- "$tmp"' EXIT
+          cat > "$tmp"
+          test -s "$tmp"
+          chmod 600 "$tmp"
+          mv -fT -- "$tmp" "$HOME/.azcode-runtime.php"
+          printf '%s\n' 'CPANEL_RUNTIME_READY'
+          REMOTE
+          )"
+          bash -n <<< "$remote_script"
+          result="$(ssh "${ssh_options[@]}" "$remote" "$remote_script" < "$runtime_file")"
+          if ! grep -Fxq 'CPANEL_RUNTIME_READY' <<< "$result"; then
+            echo "::error::The remote account did not confirm runtime configuration."
+            exit 1
+          fi
+          echo "Production runtime configuration installed outside public_html."
 
       - name: Extract and verify deployment
         env:
@@ -274,7 +348,7 @@ jobs:
           remote="${CPANEL_SSH_USER}@${CPANEL_SSH_HOST}"
           package_name=".github-deploy-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.tar.gz"
           remote_package_path="${CPANEL_DEPLOY_PATH%/*}/$package_name"
-          ssh_options=(-p "$port" -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts")
+          ssh_options=(-p "$port" -o BatchMode=yes -o ConnectTimeout=15 -o ServerAliveInterval=15 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts")
           if ! ssh "${ssh_options[@]}" "$remote" bash -s -- "$remote_package_path" "$CPANEL_DEPLOY_PATH" \
             < "$RUNNER_TEMP/cpanel-extract.sh" | tee "$RUNNER_TEMP/cpanel-extract.log"; then
             echo "::error::Remote extraction or index.php verification failed."
@@ -292,6 +366,7 @@ jobs:
           if [[ -n "${SSH_AGENT_PID:-}" ]]; then
             ssh-agent -k >/dev/null
           fi
+          rm -f -- "$HOME/.ssh/cpanel_deploy" "$HOME/.ssh/askpass"
 
   verify:
     name: Verify live website
@@ -307,7 +382,7 @@ jobs:
           : "${SITE_URL:?Add the SITE_URL secret}"
           response_file="$(mktemp)"
           trap 'rm -f "$response_file"' EXIT
-          status="$(curl --silent --show-error --location --retry 5 --retry-delay 5 --retry-all-errors --output "$response_file" --write-out '%{http_code}' "$SITE_URL")"
+          status="$(curl --silent --show-error --location --connect-timeout 10 --max-time 30 --retry 5 --retry-delay 5 --retry-all-errors --output "$response_file" --write-out '%{http_code}' "$SITE_URL")"
           if [[ ! "$status" =~ ^2[0-9][0-9]$ ]]; then
             echo "::error::Website health check returned HTTP $status for SITE_URL."
             exit 1
