@@ -156,7 +156,29 @@ jobs:
         with:
           name: site-package
           path: package
-      - name: Configure SSH and deploy
+      - name: Validate remote Bash scripts
+        run: |
+          set -euo pipefail
+          cat > "$RUNNER_TEMP/cpanel-shell-check.sh" <<'REMOTE'
+          set -euo pipefail
+          deploy_path=$1
+          mkdir -p -- "$deploy_path"
+          test -w "$deploy_path"
+          printf '%s\n' 'CPANEL_SHELL_READY'
+          REMOTE
+          cat > "$RUNNER_TEMP/cpanel-extract.sh" <<'REMOTE'
+          set -euo pipefail
+          package_path=$1
+          deploy_path=$2
+          tar -xzf "$package_path" -C "$deploy_path"
+          test -f "$deploy_path/index.php"
+          rm -f -- "$package_path"
+          printf '%s\n' 'CPANEL_DEPLOY_OK'
+          REMOTE
+          bash -n "$RUNNER_TEMP/cpanel-shell-check.sh"
+          bash -n "$RUNNER_TEMP/cpanel-extract.sh"
+          echo "Remote Bash scripts passed syntax checks."
+      - name: Configure SSH identity
         env:
           CPANEL_SSH_HOST: ${{ secrets.CPANEL_SSH_HOST }}
           CPANEL_SSH_USER: ${{ secrets.CPANEL_SSH_USER }}
@@ -195,30 +217,81 @@ jobs:
           ASKPASS
           chmod 700 "$HOME/.ssh/askpass"
           eval "$(ssh-agent -s)"
-          trap 'ssh-agent -k >/dev/null' EXIT
+          echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> "$GITHUB_ENV"
+          echo "SSH_AGENT_PID=$SSH_AGENT_PID" >> "$GITHUB_ENV"
           SSH_ASKPASS="$HOME/.ssh/askpass" SSH_ASKPASS_REQUIRE=force DISPLAY=:0 \
             ssh-add "$HOME/.ssh/cpanel_deploy" </dev/null
           unset CPANEL_SSH_PRIVATE_KEY CPANEL_SSH_KEY_PASSPHRASE
 
+      - name: Check SSH shell access
+        env:
+          CPANEL_SSH_HOST: ${{ secrets.CPANEL_SSH_HOST }}
+          CPANEL_SSH_USER: ${{ secrets.CPANEL_SSH_USER }}
+          CPANEL_SSH_PORT: ${{ secrets.CPANEL_SSH_PORT }}
+          CPANEL_SSH_KNOWN_HOSTS: ${{ secrets.CPANEL_SSH_KNOWN_HOSTS }}
+          CPANEL_DEPLOY_PATH: ${{ secrets.CPANEL_DEPLOY_PATH }}
+        run: |
+          set -euo pipefail
+          port="${CPANEL_SSH_PORT:-22}"
+          remote="${CPANEL_SSH_USER}@${CPANEL_SSH_HOST}"
+          ssh_options=(-p "$port" -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts")
+          if ! ssh "${ssh_options[@]}" "$remote" bash -s -- "$CPANEL_DEPLOY_PATH" \
+            < "$RUNNER_TEMP/cpanel-shell-check.sh" | tee "$RUNNER_TEMP/cpanel-shell-check.log"; then
+            echo "::error::The SSH account could not execute the remote shell check. Ask the hosting provider to enable shell access."
+            exit 1
+          fi
+          if ! grep -Fxq 'CPANEL_SHELL_READY' "$RUNNER_TEMP/cpanel-shell-check.log"; then
+            echo "::error::The SSH account did not confirm shell access and write permission for the document root."
+            exit 1
+          fi
+          echo "SSH shell access and document-root write permission confirmed."
+
+      - name: Upload deployment package
+        env:
+          CPANEL_SSH_HOST: ${{ secrets.CPANEL_SSH_HOST }}
+          CPANEL_SSH_USER: ${{ secrets.CPANEL_SSH_USER }}
+          CPANEL_SSH_PORT: ${{ secrets.CPANEL_SSH_PORT }}
+          CPANEL_DEPLOY_PATH: ${{ secrets.CPANEL_DEPLOY_PATH }}
+        run: |
+          set -euo pipefail
+          port="${CPANEL_SSH_PORT:-22}"
+          remote="${CPANEL_SSH_USER}@${CPANEL_SSH_HOST}"
+          package_name=".github-deploy-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.tar.gz"
+          remote_package_path="${CPANEL_DEPLOY_PATH%/*}/$package_name"
+          scp -P "$port" -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+            package/site.tar.gz "$remote:$remote_package_path"
+          echo "Deployment package uploaded to the configured cPanel account."
+
+      - name: Extract and verify deployment
+        env:
+          CPANEL_SSH_HOST: ${{ secrets.CPANEL_SSH_HOST }}
+          CPANEL_SSH_USER: ${{ secrets.CPANEL_SSH_USER }}
+          CPANEL_SSH_PORT: ${{ secrets.CPANEL_SSH_PORT }}
+          CPANEL_DEPLOY_PATH: ${{ secrets.CPANEL_DEPLOY_PATH }}
+        run: |
+          set -euo pipefail
+          port="${CPANEL_SSH_PORT:-22}"
           remote="${CPANEL_SSH_USER}@${CPANEL_SSH_HOST}"
           package_name=".github-deploy-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.tar.gz"
           remote_package_path="${CPANEL_DEPLOY_PATH%/*}/$package_name"
           ssh_options=(-p "$port" -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts")
-          shell_check="$(ssh "${ssh_options[@]}" "$remote" \
-            "mkdir -p -- '$CPANEL_DEPLOY_PATH' && test -w '$CPANEL_DEPLOY_PATH' && printf '%s\\n' 'CPANEL_SHELL_READY')")"
-          if ! grep -Fxq 'CPANEL_SHELL_READY' <<< "$shell_check"; then
-            echo "::error::The SSH account did not execute remote shell commands. Ask the hosting provider to enable shell access."
+          if ! ssh "${ssh_options[@]}" "$remote" bash -s -- "$remote_package_path" "$CPANEL_DEPLOY_PATH" \
+            < "$RUNNER_TEMP/cpanel-extract.sh" | tee "$RUNNER_TEMP/cpanel-extract.log"; then
+            echo "::error::Remote extraction or index.php verification failed."
             exit 1
           fi
-          scp -P "$port" -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
-            package/site.tar.gz "$remote:$remote_package_path"
-          deploy_result="$(ssh "${ssh_options[@]}" "$remote" \
-            "tar -xzf '$remote_package_path' -C '$CPANEL_DEPLOY_PATH' && test -f '$CPANEL_DEPLOY_PATH/index.php' && rm -f -- '$remote_package_path' && printf '%s\\n' 'CPANEL_DEPLOY_OK')")"
-          if ! grep -Fxq 'CPANEL_DEPLOY_OK' <<< "$deploy_result"; then
+          if ! grep -Fxq 'CPANEL_DEPLOY_OK' "$RUNNER_TEMP/cpanel-extract.log"; then
             echo "::error::The remote command did not confirm extraction of index.php into the configured document root."
             exit 1
           fi
-          echo "Deployment files uploaded to the configured cPanel document root."
+          echo "Deployment files extracted and index.php verified."
+
+      - name: Stop SSH agent
+        if: always()
+        run: |
+          if [[ -n "${SSH_AGENT_PID:-}" ]]; then
+            ssh-agent -k >/dev/null
+          fi
 
   verify:
     name: Verify live website
