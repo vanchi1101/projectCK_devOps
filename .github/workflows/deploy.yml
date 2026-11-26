@@ -204,12 +204,20 @@ jobs:
           package_name=".github-deploy-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.tar.gz"
           remote_package_path="${CPANEL_DEPLOY_PATH%/*}/$package_name"
           ssh_options=(-p "$port" -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts")
-          ssh "${ssh_options[@]}" "$remote" \
-            "mkdir -p -- '$CPANEL_DEPLOY_PATH' && test -w '$CPANEL_DEPLOY_PATH'"
+          shell_check="$(ssh "${ssh_options[@]}" "$remote" \
+            "mkdir -p -- '$CPANEL_DEPLOY_PATH' && test -w '$CPANEL_DEPLOY_PATH' && printf '%s\\n' 'CPANEL_SHELL_READY')")"
+          if ! grep -Fxq 'CPANEL_SHELL_READY' <<< "$shell_check"; then
+            echo "::error::The SSH account did not execute remote shell commands. Ask the hosting provider to enable shell access."
+            exit 1
+          fi
           scp -P "$port" -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
             package/site.tar.gz "$remote:$remote_package_path"
-          ssh "${ssh_options[@]}" "$remote" \
-            "tar -xzf '$remote_package_path' -C '$CPANEL_DEPLOY_PATH' && rm -f -- '$remote_package_path'"
+          deploy_result="$(ssh "${ssh_options[@]}" "$remote" \
+            "tar -xzf '$remote_package_path' -C '$CPANEL_DEPLOY_PATH' && test -f '$CPANEL_DEPLOY_PATH/index.php' && rm -f -- '$remote_package_path' && printf '%s\\n' 'CPANEL_DEPLOY_OK')")"
+          if ! grep -Fxq 'CPANEL_DEPLOY_OK' <<< "$deploy_result"; then
+            echo "::error::The remote command did not confirm extraction of index.php into the configured document root."
+            exit 1
+          fi
           echo "Deployment files uploaded to the configured cPanel document root."
 
   verify:
@@ -224,9 +232,15 @@ jobs:
         run: |
           set -euo pipefail
           : "${SITE_URL:?Add the SITE_URL secret}"
-          status="$(curl --silent --show-error --location --retry 5 --retry-delay 5 --retry-all-errors --output /dev/null --write-out '%{http_code}' "$SITE_URL")"
+          response_file="$(mktemp)"
+          trap 'rm -f "$response_file"' EXIT
+          status="$(curl --silent --show-error --location --retry 5 --retry-delay 5 --retry-all-errors --output "$response_file" --write-out '%{http_code}' "$SITE_URL")"
           if [[ ! "$status" =~ ^2[0-9][0-9]$ ]]; then
             echo "::error::Website health check returned HTTP $status for SITE_URL."
+            exit 1
+          fi
+          if grep -Eiq 'Index of /|Chưa kết nối đến DATABASE|Fatal error|Uncaught Error' "$response_file"; then
+            echo "::error::The website returned a directory listing or PHP/database error instead of the application."
             exit 1
           fi
           echo "Website health check passed with HTTP $status."

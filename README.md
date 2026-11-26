@@ -120,9 +120,14 @@ after deployment. If a job fails:
 3. **Build**: check Composer dependency resolution and the deployment-package
    protection check.
 4. **Deploy**: confirm SSH access, authorized key, verified host key, port, and
-   document-root permissions. Missing secrets are reported as explicit errors.
+   document-root permissions. If the log says shell access is not enabled,
+   ask the hosting provider to enable shell access for the cPanel account;
+   this workflow needs remote SSH commands to extract the package. Missing
+   secrets or unexecuted remote commands are reported as explicit errors.
 5. **Verify**: check that `SITE_URL` is correct, publicly reachable over HTTPS,
-   and returns HTTP 2xx. A 2xx check confirms availability, not database health.
+   and returns HTTP 2xx with application content rather than a directory
+   listing or a PHP/database error. This is still a basic health check, not a
+   full database integration test.
 
 If a deployment causes a problem, first restore the affected files from the
 hosting backup if the extraction was incomplete. Then revert the faulty commit
