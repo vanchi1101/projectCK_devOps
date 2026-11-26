@@ -592,19 +592,34 @@ function pagination_control($url, $page, $total, $perPage, $pageParam = 'page')
         return '';
     }
     $page = min($totalPages, max(1, (int) $page));
-    $separator = strpos($url, '?') === false ? '?' : '&';
 
-    $link = function ($number, $label, $active = false) use ($url, $separator) {
-        $class = $active
-            ? 'border-red-600 bg-red-600 text-white'
-            : 'border-gray-300 bg-white text-gray-800';
-        $href = htmlspecialchars($url . $separator . rawurlencode($pageParam) . '=' . $number, ENT_QUOTES, 'UTF-8');
-        return '<li><a class="mx-1 border rounded px-3 py-2 text-sm font-medium inline-flex items-center justify-center ' . $class . '"'
+    $parts = parse_url($url);
+    $query = [];
+    if (!empty($parts['query'])) {
+        parse_str($parts['query'], $query);
+    }
+    $authority = '';
+    if (!empty($parts['host'])) {
+        $authority = $parts['scheme'] . '://' . $parts['host'];
+        if (!empty($parts['port'])) {
+            $authority .= ':' . $parts['port'];
+        }
+    }
+    $baseUrl = $authority !== '' ? ($authority . ($parts['path'] ?? '')) : ($parts['path'] ?? $url);
+
+    $link = function ($number, $label, $active = false) use ($baseUrl, $query, $pageParam) {
+        $targetQuery = $query;
+        $targetQuery[$pageParam] = $number;
+        $href = htmlspecialchars($baseUrl . '?' . http_build_query($targetQuery), ENT_QUOTES, 'UTF-8');
+        $background = $active ? '#dc3545' : '#fff';
+        $color = $active ? '#fff' : '#495057';
+        $border = $active ? '#dc3545' : '#dee2e6';
+        return '<li style="list-style:none;margin:0 2px;"><a style="display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:34px;padding:0 10px;border:1px solid ' . $border . ';border-radius:4px;background:' . $background . ';color:' . $color . ';text-decoration:none;font-weight:600;"'
             . ($active ? ' aria-current="page"' : '')
             . ' href="' . $href . '">' . $label . '</a></li>';
     };
 
-    $out = ['<nav class="mt-4 flex justify-center" aria-label="Phân trang"><ul class="flex list-none items-center p-0">'];
+    $out = ['<nav style="width:100%;margin:16px 0;" aria-label="Phân trang"><ul style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2px;margin:0;padding:0;">'];
     if ($page > 1) {
         $out[] = $link($page - 1, '&laquo;');
     }
@@ -612,13 +627,13 @@ function pagination_control($url, $page, $total, $perPage, $pageParam = 'page')
     $last = min($totalPages, $page + 2);
     if ($first > 1) {
         $out[] = $link(1, '1');
-        if ($first > 2) $out[] = '<li class="mx-2 text-gray-500">&hellip;</li>';
+        if ($first > 2) $out[] = '<li style="list-style:none;margin:0 6px;color:#6c757d;">&hellip;</li>';
     }
     for ($number = $first; $number <= $last; $number++) {
         $out[] = $link($number, (string) $number, $number === $page);
     }
     if ($last < $totalPages) {
-        if ($last < $totalPages - 1) $out[] = '<li class="mx-2 text-gray-500">&hellip;</li>';
+        if ($last < $totalPages - 1) $out[] = '<li style="list-style:none;margin:0 6px;color:#6c757d;">&hellip;</li>';
         $out[] = $link($totalPages, (string) $totalPages);
     }
     if ($page < $totalPages) {

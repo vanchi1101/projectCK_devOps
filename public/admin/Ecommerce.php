@@ -284,6 +284,13 @@ $productPage = max(1, (int) ($_GET['product_page'] ?? 1));
 $orderPage = max(1, (int) ($_GET['order_page'] ?? 1));
 $reviewPage = max(1, (int) ($_GET['review_page'] ?? 1));
 $payoutPage = max(1, (int) ($_GET['payout_page'] ?? 1));
+$adminPaginationParams = [
+    'product_page' => $productPage,
+    'order_page' => $orderPage,
+    'review_page' => $reviewPage,
+    'payout_page' => $payoutPage
+];
+$adminPaginationUrl = BASE_URL('Admin/Ecommerce') . '?' . http_build_query($adminPaginationParams);
 $products = [];
 $orders = [];
 $paymentReviews = [];
@@ -401,7 +408,7 @@ require_once(__DIR__ . "/Sidebar.php");
                         </td></tr>
                     <?php } ?>
                     </tbody></table>
-                    <?=pagination_control(BASE_URL('Admin/Ecommerce'), $productPage, $productTotal, $perPage, 'product_page');?>
+                    <?=pagination_control($adminPaginationUrl, $productPage, $productTotal, $perPage, 'product_page');?>
                 </div>
             </div>
             <?php if (!ecom_supports_cash_on_delivery()) { ?>
@@ -433,7 +440,7 @@ require_once(__DIR__ . "/Sidebar.php");
                         </tr>
                     <?php } ?>
                     </tbody></table>
-                    <?=pagination_control(BASE_URL('Admin/Ecommerce'), $orderPage, $orderTotal, $perPage, 'order_page');?>
+                    <?=pagination_control($adminPaginationUrl, $orderPage, $orderTotal, $perPage, 'order_page');?>
                 </div>
             </div>
             <div class="card"><div class="card-header"><h3 class="card-title">Giao dịch cần đối soát</h3></div>
@@ -443,7 +450,7 @@ require_once(__DIR__ . "/Sidebar.php");
                         <tr><td><?=ecom_h($payment['order_no']);?></td><td><?=ecom_h($payment['transaction_id']);?></td><td><?=number_format((float) $payment['amount'],0,',','.');?> đ</td><td><?=ecom_h($payment['status']);?></td><td><?=ecom_h($payment['description']);?></td><td><?=ecom_h($payment['created_at']);?></td></tr>
                     <?php } ?>
                     </tbody></table>
-                    <?=pagination_control(BASE_URL('Admin/Ecommerce'), $reviewPage, $reviewTotal, $perPage, 'review_page');?>
+                    <?=pagination_control($adminPaginationUrl, $reviewPage, $reviewTotal, $perPage, 'review_page');?>
                 </div>
             </div>
             <div class="card"><div class="card-header"><h3 class="card-title">Đối soát thanh toán hoa hồng</h3></div>
@@ -463,7 +470,7 @@ require_once(__DIR__ . "/Sidebar.php");
                         </td></tr>
                     <?php } ?>
                     </tbody></table>
-                    <?=pagination_control(BASE_URL('Admin/Ecommerce'), $payoutPage, $payoutTotal, $perPage, 'payout_page');?>
+                    <?=pagination_control($adminPaginationUrl, $payoutPage, $payoutTotal, $perPage, 'payout_page');?>
                 </div>
             </div>
         <?php } ?>
