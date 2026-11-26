@@ -162,6 +162,7 @@ jobs:
           CPANEL_SSH_USER: ${{ secrets.CPANEL_SSH_USER }}
           CPANEL_SSH_PORT: ${{ secrets.CPANEL_SSH_PORT }}
           CPANEL_SSH_PRIVATE_KEY: ${{ secrets.CPANEL_SSH_PRIVATE_KEY }}
+          CPANEL_SSH_KEY_PASSPHRASE: ${{ secrets.CPANEL_SSH_KEY_PASSPHRASE }}
           CPANEL_SSH_KNOWN_HOSTS: ${{ secrets.CPANEL_SSH_KNOWN_HOSTS }}
           CPANEL_DEPLOY_PATH: ${{ secrets.CPANEL_DEPLOY_PATH }}
           SITE_URL: ${{ secrets.SITE_URL }}
@@ -170,6 +171,7 @@ jobs:
           : "${CPANEL_SSH_HOST:?Add the CPANEL_SSH_HOST secret}"
           : "${CPANEL_SSH_USER:?Add the CPANEL_SSH_USER secret}"
           : "${CPANEL_SSH_PRIVATE_KEY:?Add the CPANEL_SSH_PRIVATE_KEY secret}"
+          : "${CPANEL_SSH_KEY_PASSPHRASE:?Add the CPANEL_SSH_KEY_PASSPHRASE secret}"
           : "${CPANEL_SSH_KNOWN_HOSTS:?Add the CPANEL_SSH_KNOWN_HOSTS secret}"
           : "${CPANEL_DEPLOY_PATH:?Add the CPANEL_DEPLOY_PATH secret}"
           : "${SITE_URL:?Add the SITE_URL secret}"
@@ -187,14 +189,24 @@ jobs:
           printf '%s\n' "$CPANEL_SSH_PRIVATE_KEY" > "$HOME/.ssh/cpanel_deploy"
           printf '%s\n' "$CPANEL_SSH_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
           chmod 600 "$HOME/.ssh/cpanel_deploy" "$HOME/.ssh/known_hosts"
+          cat > "$HOME/.ssh/askpass" <<'ASKPASS'
+          #!/bin/sh
+          printf '%s\n' "$CPANEL_SSH_KEY_PASSPHRASE"
+          ASKPASS
+          chmod 700 "$HOME/.ssh/askpass"
+          eval "$(ssh-agent -s)"
+          trap 'ssh-agent -k >/dev/null' EXIT
+          SSH_ASKPASS="$HOME/.ssh/askpass" SSH_ASKPASS_REQUIRE=force DISPLAY=:0 \
+            ssh-add "$HOME/.ssh/cpanel_deploy" </dev/null
+          unset CPANEL_SSH_PRIVATE_KEY CPANEL_SSH_KEY_PASSPHRASE
 
           remote="${CPANEL_SSH_USER}@${CPANEL_SSH_HOST}"
           package_name=".github-deploy-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.tar.gz"
           remote_package_path="${CPANEL_DEPLOY_PATH%/*}/$package_name"
-          ssh_options=(-i "$HOME/.ssh/cpanel_deploy" -p "$port" -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts")
+          ssh_options=(-p "$port" -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts")
           ssh "${ssh_options[@]}" "$remote" \
             "mkdir -p -- '$CPANEL_DEPLOY_PATH' && test -w '$CPANEL_DEPLOY_PATH'"
-          scp -i "$HOME/.ssh/cpanel_deploy" -P "$port" -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+          scp -P "$port" -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
             package/site.tar.gz "$remote:$remote_package_path"
           ssh "${ssh_options[@]}" "$remote" \
             "tar -xzf '$remote_package_path' -C '$CPANEL_DEPLOY_PATH' && rm -f -- '$remote_package_path'"

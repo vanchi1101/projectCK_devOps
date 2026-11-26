@@ -69,12 +69,15 @@ repository secret** and add:
 | `CPANEL_SSH_USER` | cPanel account username |
 | `CPANEL_SSH_PORT` | SSH port; optional, defaults to `22` |
 | `CPANEL_SSH_PRIVATE_KEY` | Private key for an SSH key authorized by cPanel |
+| `CPANEL_SSH_KEY_PASSPHRASE` | Passphrase set when generating the cPanel SSH key |
 | `CPANEL_SSH_KNOWN_HOSTS` | Verified SSH host-key line(s) for this server and port |
 | `CPANEL_DEPLOY_PATH` | Absolute document-root path, commonly `/home/CPANEL_USER/public_html` |
 | `SITE_URL` | Public HTTPS URL to check after deployment, e.g. `https://example.com/` |
 
 Enable SSH access in cPanel, create/import an SSH key pair, and authorize its
 public key. Add the private key only as the `CPANEL_SSH_PRIVATE_KEY` secret.
+Store the key's passphrase as `CPANEL_SSH_KEY_PASSPHRASE`; the workflow loads
+the encrypted key into a temporary SSH agent without printing the passphrase.
 Obtain the server host key with `ssh-keyscan -p PORT HOST`, verify its
 fingerprint with the hosting provider, and store the verified line as
 `CPANEL_SSH_KNOWN_HOSTS`. Do not disable SSH host-key checking. Confirm the
