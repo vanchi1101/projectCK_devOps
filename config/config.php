@@ -1,6 +1,6 @@
 <?php
 session_start();
-$base_url = 'http://localhost/'; // thay url website
+$base_url = rtrim(getenv('APP_URL') ?: 'http://localhost/', '/') . '/';
 class AZCODE
 {
     private $ketnoi;
@@ -8,7 +8,13 @@ class AZCODE
     {
         if (!$this->ketnoi)
         {
-            $this->ketnoi = mysqli_connect('localhost', 'root', '', 'shopvip') or die ('Chưa kết nối đến DATABASE');
+            $dbHost = getenv('DB_HOST') ?: 'localhost';
+            $dbUser = getenv('DB_USER') ?: 'root';
+            $dbPassword = getenv('DB_PASSWORD') ?: '';
+            $dbName = getenv('DB_NAME') ?: 'shopvip';
+            $dbPort = (int) (getenv('DB_PORT') ?: 3306);
+            $this->ketnoi = mysqli_connect($dbHost, $dbUser, $dbPassword, $dbName, $dbPort)
+                or die ('Chưa kết nối đến DATABASE');
             mysqli_query($this->ketnoi, "set names 'utf8'");
         }
     }
