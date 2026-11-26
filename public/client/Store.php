@@ -36,11 +36,22 @@ if ($installed) {
     if ($categoryId !== false) {
         $where[] = "p.`category_id` = '" . (int) $categoryId . "'";
     }
+    $perPage = 12;
+    $page = max(1, (int) ($_GET['page'] ?? 1));
+    $countRow = $AZCODE->get_row(
+        "SELECT COUNT(*) AS total FROM `ecom_products` p"
+        . " INNER JOIN `ecom_categories` c ON c.`id` = p.`category_id` AND c.`status` = 'active'"
+        . " WHERE " . implode(' AND ', $where)
+    );
+    $total = (int) ($countRow['total'] ?? 0);
+    $totalPages = max(1, (int) ceil($total / $perPage));
+    $page = min($page, $totalPages);
+    $offset = ($page - 1) * $perPage;
     $products = $AZCODE->get_list(
         "SELECT p.*, c.`title` AS `category_title` FROM `ecom_products` p"
         . " INNER JOIN `ecom_categories` c ON c.`id` = p.`category_id` AND c.`status` = 'active'"
         . " WHERE " . implode(' AND ', $where)
-        . " ORDER BY p.`created_at` DESC LIMIT 200"
+        . " ORDER BY p.`created_at` DESC LIMIT $offset,$perPage"
     );
 }
 ?>
@@ -421,7 +432,7 @@ if ($installed) {
                     <h2><?=($search !== '' || $categoryId !== false) ? 'Sản phẩm phù hợp' : 'Sản phẩm nổi bật';?></h2>
                     <p>Thiết bị công nghệ được tuyển chọn cho nhu cầu mỗi ngày.</p>
                 </div>
-                <span class="store-section-count"><?=count($products);?> sản phẩm</span>
+                <span class="store-section-count"><?=$total;?> sản phẩm</span>
             </div>
 
             <?php if (!$products) { ?>
@@ -457,6 +468,14 @@ if ($installed) {
                         </article>
                     <?php } ?>
                 </div>
+                <?php
+                    $paginationParams = [];
+                    if ($search !== '') $paginationParams['q'] = $search;
+                    if ($categoryId !== false) $paginationParams['category'] = (int) $categoryId;
+                    $paginationUrl = BASE_URL('Shop');
+                    if ($paginationParams) $paginationUrl .= '?' . http_build_query($paginationParams);
+                    echo pagination_control($paginationUrl, $page, $total, $perPage);
+                ?>
             <?php } ?>
         <?php } ?>
     </div>

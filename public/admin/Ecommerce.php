@@ -279,25 +279,56 @@ if ($isInstalled && $_SERVER['REQUEST_METHOD'] === 'POST') {
 $categories = $isInstalled ? $AZCODE->get_list(
     "SELECT * FROM `ecom_categories` ORDER BY `sort_order`,`title`"
 ) : [];
-$products = $isInstalled ? $AZCODE->get_list(
-    "SELECT p.*,u.`username` AS `seller_name`,c.`title` AS `category_title`"
-    . " FROM `ecom_products` p LEFT JOIN `users` u ON u.`id` = p.`seller_user_id`"
-    . " LEFT JOIN `ecom_categories` c ON c.`id` = p.`category_id`"
-    . " ORDER BY FIELD(p.`approval_status`,'pending','approved','rejected','hidden'),p.`created_at` DESC LIMIT 200"
-) : [];
-$orders = $isInstalled ? $AZCODE->get_list(
-    "SELECT o.*,u.`username` FROM `ecom_orders` o LEFT JOIN `users` u ON u.`id` = o.`customer_user_id`"
-    . " ORDER BY o.`created_at` DESC LIMIT 200"
-) : [];
-$paymentReviews = $isInstalled ? $AZCODE->get_list(
-    "SELECT p.*,o.`order_no` FROM `ecom_bank_payments` p"
-    . " LEFT JOIN `ecom_orders` o ON o.`id` = p.`order_id`"
-    . " WHERE p.`status` <> 'accepted' ORDER BY p.`created_at` DESC LIMIT 100"
-) : [];
-$payouts = $isInstalled ? $AZCODE->get_list(
-    "SELECT p.*,u.`username` FROM `ecom_payouts` p LEFT JOIN `users` u ON u.`id` = p.`ctv_user_id`"
-    . " ORDER BY FIELD(p.`status`,'requested','approved','paid','rejected'),p.`created_at` DESC LIMIT 100"
-) : [];
+$perPage = 20;
+$productPage = max(1, (int) ($_GET['product_page'] ?? 1));
+$orderPage = max(1, (int) ($_GET['order_page'] ?? 1));
+$reviewPage = max(1, (int) ($_GET['review_page'] ?? 1));
+$payoutPage = max(1, (int) ($_GET['payout_page'] ?? 1));
+$products = [];
+$orders = [];
+$paymentReviews = [];
+$payouts = [];
+$productTotal = $orderTotal = $reviewTotal = $payoutTotal = 0;
+if ($isInstalled) {
+    $count = $AZCODE->get_row("SELECT COUNT(*) AS total FROM `ecom_products`");
+    $productTotal = (int) ($count['total'] ?? 0);
+    $productPage = min($productPage, max(1, (int) ceil($productTotal / $perPage)));
+    $offset = ($productPage - 1) * $perPage;
+    $products = $AZCODE->get_list(
+        "SELECT p.*,u.`username` AS `seller_name`,c.`title` AS `category_title`"
+        . " FROM `ecom_products` p LEFT JOIN `users` u ON u.`id` = p.`seller_user_id`"
+        . " LEFT JOIN `ecom_categories` c ON c.`id` = p.`category_id`"
+        . " ORDER BY FIELD(p.`approval_status`,'pending','approved','rejected','hidden'),p.`created_at` DESC LIMIT $offset,$perPage"
+    );
+
+    $count = $AZCODE->get_row("SELECT COUNT(*) AS total FROM `ecom_orders`");
+    $orderTotal = (int) ($count['total'] ?? 0);
+    $orderPage = min($orderPage, max(1, (int) ceil($orderTotal / $perPage)));
+    $offset = ($orderPage - 1) * $perPage;
+    $orders = $AZCODE->get_list(
+        "SELECT o.*,u.`username` FROM `ecom_orders` o LEFT JOIN `users` u ON u.`id` = o.`customer_user_id`"
+        . " ORDER BY o.`created_at` DESC LIMIT $offset,$perPage"
+    );
+
+    $count = $AZCODE->get_row("SELECT COUNT(*) AS total FROM `ecom_bank_payments` WHERE `status` <> 'accepted'");
+    $reviewTotal = (int) ($count['total'] ?? 0);
+    $reviewPage = min($reviewPage, max(1, (int) ceil($reviewTotal / $perPage)));
+    $offset = ($reviewPage - 1) * $perPage;
+    $paymentReviews = $AZCODE->get_list(
+        "SELECT p.*,o.`order_no` FROM `ecom_bank_payments` p"
+        . " LEFT JOIN `ecom_orders` o ON o.`id` = p.`order_id`"
+        . " WHERE p.`status` <> 'accepted' ORDER BY p.`created_at` DESC LIMIT $offset,$perPage"
+    );
+
+    $count = $AZCODE->get_row("SELECT COUNT(*) AS total FROM `ecom_payouts`");
+    $payoutTotal = (int) ($count['total'] ?? 0);
+    $payoutPage = min($payoutPage, max(1, (int) ceil($payoutTotal / $perPage)));
+    $offset = ($payoutPage - 1) * $perPage;
+    $payouts = $AZCODE->get_list(
+        "SELECT p.*,u.`username` FROM `ecom_payouts` p LEFT JOIN `users` u ON u.`id` = p.`ctv_user_id`"
+        . " ORDER BY FIELD(p.`status`,'requested','approved','paid','rejected'),p.`created_at` DESC LIMIT $offset,$perPage"
+    );
+}
 
 require_once(__DIR__ . "/Header.php");
 require_once(__DIR__ . "/Sidebar.php");
@@ -370,6 +401,7 @@ require_once(__DIR__ . "/Sidebar.php");
                         </td></tr>
                     <?php } ?>
                     </tbody></table>
+                    <?=pagination_control(BASE_URL('Admin/Ecommerce'), $productPage, $productTotal, $perPage, 'product_page');?>
                 </div>
             </div>
             <?php if (!ecom_supports_cash_on_delivery()) { ?>
@@ -401,6 +433,7 @@ require_once(__DIR__ . "/Sidebar.php");
                         </tr>
                     <?php } ?>
                     </tbody></table>
+                    <?=pagination_control(BASE_URL('Admin/Ecommerce'), $orderPage, $orderTotal, $perPage, 'order_page');?>
                 </div>
             </div>
             <div class="card"><div class="card-header"><h3 class="card-title">Giao dịch cần đối soát</h3></div>
@@ -410,6 +443,7 @@ require_once(__DIR__ . "/Sidebar.php");
                         <tr><td><?=ecom_h($payment['order_no']);?></td><td><?=ecom_h($payment['transaction_id']);?></td><td><?=number_format((float) $payment['amount'],0,',','.');?> đ</td><td><?=ecom_h($payment['status']);?></td><td><?=ecom_h($payment['description']);?></td><td><?=ecom_h($payment['created_at']);?></td></tr>
                     <?php } ?>
                     </tbody></table>
+                    <?=pagination_control(BASE_URL('Admin/Ecommerce'), $reviewPage, $reviewTotal, $perPage, 'review_page');?>
                 </div>
             </div>
             <div class="card"><div class="card-header"><h3 class="card-title">Đối soát thanh toán hoa hồng</h3></div>
@@ -429,6 +463,7 @@ require_once(__DIR__ . "/Sidebar.php");
                         </td></tr>
                     <?php } ?>
                     </tbody></table>
+                    <?=pagination_control(BASE_URL('Admin/Ecommerce'), $payoutPage, $payoutTotal, $perPage, 'payout_page');?>
                 </div>
             </div>
         <?php } ?>

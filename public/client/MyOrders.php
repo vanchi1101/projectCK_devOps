@@ -18,9 +18,23 @@ $orderStatusLabels = [
     'refunded' => 'Đã hoàn tiền',
     'payment_review' => 'Chờ đối soát'
 ];
-$orders = ecom_is_installed() ? $AZCODE->get_list(
-    "SELECT * FROM `ecom_orders` WHERE `customer_user_id` = '" . (int) $getUser['id'] . "' ORDER BY `created_at` DESC LIMIT 100"
-) : [];
+$perPage = 15;
+$page = max(1, (int) ($_GET['page'] ?? 1));
+$orders = [];
+$totalOrders = 0;
+if (ecom_is_installed()) {
+    $countRow = $AZCODE->get_row(
+        "SELECT COUNT(*) AS total FROM `ecom_orders` WHERE `customer_user_id` = '" . (int) $getUser['id'] . "'"
+    );
+    $totalOrders = (int) ($countRow['total'] ?? 0);
+    $totalPages = max(1, (int) ceil($totalOrders / $perPage));
+    $page = min($page, $totalPages);
+    $offset = ($page - 1) * $perPage;
+    $orders = $AZCODE->get_list(
+        "SELECT * FROM `ecom_orders` WHERE `customer_user_id` = '" . (int) $getUser['id'] . "'"
+        . " ORDER BY `created_at` DESC LIMIT $offset,$perPage"
+    );
+}
 require_once(__DIR__ . "/Header.php");
 require_once(__DIR__ . "/Nav.php");
 ?>
@@ -68,6 +82,7 @@ require_once(__DIR__ . "/Nav.php");
                 </tbody>
             </table>
         </div>
+        <?=pagination_control(BASE_URL('MyOrders'), $page, $totalOrders, $perPage);?>
     <?php } ?>
 </main>
 <?php require_once(__DIR__ . "/Footer.php"); ?>

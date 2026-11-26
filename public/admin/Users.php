@@ -52,8 +52,18 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $i = 0;
-                                    foreach($AZCODE->get_list(" SELECT * FROM `users` WHERE `username` IS NOT NULL ORDER BY id DESC ") as $row){
+                                    $perPage = 20;
+                                    $page = max(1, (int) ($_GET['page'] ?? 1));
+                                    $countRow = $AZCODE->get_row("SELECT COUNT(*) AS total FROM `users` WHERE `username` IS NOT NULL");
+                                    $totalUsers = (int) ($countRow['total'] ?? 0);
+                                    $totalPages = max(1, (int) ceil($totalUsers / $perPage));
+                                    $page = min($page, $totalPages);
+                                    $offset = ($page - 1) * $perPage;
+                                    $users = $AZCODE->get_list(
+                                        "SELECT * FROM `users` WHERE `username` IS NOT NULL "
+                                        . "ORDER BY id DESC LIMIT $offset,$perPage"
+                                    );
+                                    foreach ($users as $row) {
                                     ?>
                                     <tr>
                                         <td><?=$row['id'];?></td>
@@ -73,6 +83,7 @@
                                     <?php }?>
                                 </tbody>
                             </table>
+                            <?=pagination_control(BASE_URL('Admin/Users'), $page, $totalUsers, $perPage);?>
                         </div>
                     </div>
                 </div>
@@ -129,12 +140,6 @@ function rsTotalMoney() {
 </script>
 <script>
 
-$(function() {
-    $("#datatable").DataTable({
-        "responsive": true,
-        "autoWidth": false,
-    });
-});
 </script>
 
 

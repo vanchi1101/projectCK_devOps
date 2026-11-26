@@ -584,6 +584,50 @@ function TypePassword($string)
 {
     return $string;
 }
+function pagination_control($url, $page, $total, $perPage, $pageParam = 'page')
+{
+    $perPage = max(1, (int) $perPage);
+    $totalPages = (int) ceil(max(0, (int) $total) / $perPage);
+    if ($totalPages <= 1) {
+        return '';
+    }
+    $page = min($totalPages, max(1, (int) $page));
+    $separator = strpos($url, '?') === false ? '?' : '&';
+
+    $link = function ($number, $label, $active = false) use ($url, $separator) {
+        $class = $active
+            ? 'border-red-600 bg-red-600 text-white'
+            : 'border-gray-300 bg-white text-gray-800';
+        $href = htmlspecialchars($url . $separator . rawurlencode($pageParam) . '=' . $number, ENT_QUOTES, 'UTF-8');
+        return '<li><a class="mx-1 border rounded px-3 py-2 text-sm font-medium inline-flex items-center justify-center ' . $class . '"'
+            . ($active ? ' aria-current="page"' : '')
+            . ' href="' . $href . '">' . $label . '</a></li>';
+    };
+
+    $out = ['<nav class="mt-4 flex justify-center" aria-label="Phân trang"><ul class="flex list-none items-center p-0">'];
+    if ($page > 1) {
+        $out[] = $link($page - 1, '&laquo;');
+    }
+    $first = max(1, $page - 2);
+    $last = min($totalPages, $page + 2);
+    if ($first > 1) {
+        $out[] = $link(1, '1');
+        if ($first > 2) $out[] = '<li class="mx-2 text-gray-500">&hellip;</li>';
+    }
+    for ($number = $first; $number <= $last; $number++) {
+        $out[] = $link($number, (string) $number, $number === $page);
+    }
+    if ($last < $totalPages) {
+        if ($last < $totalPages - 1) $out[] = '<li class="mx-2 text-gray-500">&hellip;</li>';
+        $out[] = $link($totalPages, (string) $totalPages);
+    }
+    if ($page < $totalPages) {
+        $out[] = $link($page + 1, '&raquo;');
+    }
+    $out[] = '</ul></nav>';
+    return implode('', $out);
+}
+
 function phantrang($url, $start, $total, $kmess)
 {
     $out[] = ' <nav class="relative z-0 inline-flex v-pagination mx-auto v-text-1 v-light-theme">';
