@@ -15,6 +15,11 @@ $productDescription = $product ? trim((string) $product['description']) : '';
 if ($productDescription !== '') {
     $productDescription = preg_replace('/\s*Nguồn:\s*https?:\/\/\S+.*$/u', '', $productDescription);
 }
+$cart = $product ? ecom_cart() : [];
+$productQuantityInCart = $product ? (int) ($cart[(int) $product['id']] ?? 0) : 0;
+$quantityLimit = $product
+    ? min(99, max(0, (int) $product['stock'] - $productQuantityInCart))
+    : 0;
 $title = $product ? ecom_h($product['name']) . ' | ' . $AZCODE->site('tenweb') : 'Sản phẩm không tồn tại';
 $message = '';
 
@@ -23,13 +28,14 @@ if ($product && $_SERVER['REQUEST_METHOD'] === 'POST') {
         $message = 'Phiên biểu mẫu không hợp lệ, vui lòng tải lại trang.';
     } else {
         $quantity = filter_var($_POST['quantity'] ?? 1, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1, 'max_range' => 99]]);
-        if ($quantity === false) {
+        if ($quantityLimit < 1) {
+            $message = 'Bạn đã thêm toàn bộ số lượng còn hàng này vào giỏ.';
+        } elseif ($quantity === false) {
             $message = 'Số lượng không hợp lệ.';
-        } elseif ((int) $product['stock'] < $quantity) {
-            $message = 'Sản phẩm không đủ tồn kho.';
+        } elseif ($quantity > $quantityLimit) {
+            $message = 'Số lượng vượt quá số sản phẩm còn có thể thêm vào giỏ.';
         } else {
-            $cart = ecom_cart();
-            $cart[(int) $product['id']] = min(99, (int) ($cart[(int) $product['id']] ?? 0) + $quantity);
+            $cart[(int) $product['id']] = $productQuantityInCart + $quantity;
             $_SESSION['ecom_cart'] = $cart;
             header('Location: ' . BASE_URL('Cart'));
             exit();
@@ -102,6 +108,21 @@ require_once(__DIR__ . "/Nav.php");
         color: #172b46;
         background: #fff;
     }
+    .product-quantity-control { display: flex; align-items: center; gap: 7px; }
+    .product-detail-form .product-quantity-step {
+        display: inline-grid;
+        width: 46px;
+        min-height: 46px;
+        place-items: center;
+        padding: 0;
+        border: 1px solid #cbd9e8;
+        background: #f4f8fc;
+        color: #214766;
+        font-size: 1.25rem;
+        box-shadow: none;
+    }
+    .product-detail-form .product-quantity-step:hover:not(:disabled) { background: #e8f4fd; }
+    .product-detail-form .product-quantity-step:disabled { opacity: .45; cursor: not-allowed; }
     .product-detail-form button {
         min-height: 46px;
         padding: 0 20px;
@@ -162,15 +183,23 @@ require_once(__DIR__ . "/Nav.php");
                 <?php if ($productDescription !== '') { ?>
                     <div class="product-detail-description"><?=nl2br(ecom_h($productDescription));?></div>
                 <?php } ?>
-                <?php if ((int) $product['stock'] > 0) { ?>
+                <?php if ($quantityLimit > 0) { ?>
                     <form method="post" class="product-detail-form">
                         <input type="hidden" name="csrf_token" value="<?=ecom_h(ecom_csrf_token());?>">
-                        <label for="quantity">Số lượng
-                        <input id="quantity" name="quantity" type="number" min="1" max="<?=min(99, (int) $product['stock']);?>" value="1"
-                               >
-                        </label>
+                        <label for="quantity">Số lượng</label>
+                        <span class="product-quantity-control">
+                            <button class="product-quantity-step" type="button" data-quantity-step="-1" aria-label="Giảm số lượng">−</button>
+                            <input id="quantity" name="quantity" type="number" min="1" max="<?=$quantityLimit;?>" value="1"
+                                   inputmode="numeric" required aria-label="Số lượng sản phẩm">
+                            <button class="product-quantity-step" type="button" data-quantity-step="1" aria-label="Tăng số lượng">+</button>
+                        </span>
                         <button type="submit">Thêm vào giỏ hàng</button>
+                        <?php if ($productQuantityInCart > 0) { ?>
+                            <small class="product-detail-cart-note">Đã có <?=number_format($productQuantityInCart);?> sản phẩm này trong giỏ.</small>
+                        <?php } ?>
                     </form>
+                <?php } elseif ((int) $product['stock'] > 0) { ?>
+                    <p class="product-detail-out">Bạn đã thêm toàn bộ số lượng còn hàng này vào giỏ.</p>
                 <?php } else { ?>
                     <p class="product-detail-out">Sản phẩm đã hết hàng.</p>
                 <?php } ?>
@@ -179,4 +208,27 @@ require_once(__DIR__ . "/Nav.php");
     <?php } ?>
     </div>
 </main>
+<script>
+    document.querySelectorAll('.product-quantity-control').forEach(function (control) {
+        var input = control.querySelector('input[name="quantity"]');
+        var updateButtons = function () {
+            var value = Number(input.value) || Number(input.min) || 1;
+            control.querySelector('[data-quantity-step="-1"]').disabled = value <= Number(input.min);
+            control.querySelector('[data-quantity-step="1"]').disabled = value >= Number(input.max);
+        };
+        input.addEventListener('input', updateButtons);
+        input.addEventListener('change', updateButtons);
+        control.querySelectorAll('[data-quantity-step]').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var min = Number(input.min) || 1;
+                var max = Number(input.max) || 99;
+                var step = Number(button.getAttribute('data-quantity-step'));
+                var value = Number(input.value) || min;
+                input.value = Math.max(min, Math.min(max, value + step));
+                updateButtons();
+            });
+        });
+        updateButtons();
+    });
+</script>
 <?php require_once(__DIR__ . "/Footer.php"); ?>
