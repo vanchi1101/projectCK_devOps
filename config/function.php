@@ -68,21 +68,6 @@ function insert_options($name, $value)
 function format_date($time){
     return date("H:i:s d/m/Y", $time);
 }
-function card24h($api_card, $loaithe, $menhgia, $seri, $pin, $code)
-{
-    $callback = BASE_URL('api/card.php');
-    $url_api = 'https://card365.vn/';
-    $json = json_decode(curl_get($url_api.'api/card-auto.php?auto=true&type='.$loaithe.'&menhgia='.$menhgia.'&seri='.$seri.'&pin='.$pin.'&APIKey='.$api_card.'&callback='.$callback.'&content='.$code), true);
-    return $json;
-} 
-
-$list_loaithe = [
-    'VIETTEL',
-    'VINAPHONE',
-    'MOBIFONE',
-    'ZING',
-];
-
 /* CONFIG RÚT TIỀN */
 function listbank()
 {
