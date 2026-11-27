@@ -107,21 +107,7 @@ composer install
 
 Nếu Composer chưa có sẵn, cài Composer trước rồi mới chạy lệnh trên.
 
-### 5. Chạy migration bổ sung
-
-Thực hiện các migration cần thiết bằng phpMyAdmin hoặc MySQL:
-
-```sql
-SOURCE database/migrations/20261126_add_google_login.sql;
-SOURCE database/migrations/20261126_add_password_reset_expiry.sql;
-SOURCE database/migrations/20261126_seed_laptop_categories.sql;
-SOURCE database/migrations/20261126_seed_tgdd_laptop_products.sql;
-SOURCE database/migrations/20261127_remove_ctvacc_role.sql;
-```
-
-Các migration này có thể chạy với database `shopvip`. Migration seed danh mục/laptop được thiết kế để chạy lại an toàn.
-
-### 6. Truy cập ứng dụng
+### 5. Truy cập ứng dụng
 
 - Cửa hàng: `http://localhost/`
 - Đăng nhập: `http://localhost/Auth/Login`
