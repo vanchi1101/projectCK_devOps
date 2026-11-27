@@ -39,6 +39,10 @@ $assertSame(
     ecom_h('<script>"x"</script>'),
     'HTML output is escaped'
 );
+$assertSame(true, ecom_image_url_is_valid('/assets/storage/images/products/product_2.webp'), 'local product image paths are accepted');
+$assertSame(false, ecom_image_url_is_valid('/assets/storage/images/products/../private.png'), 'local product image paths cannot traverse directories');
+$assertSame(true, ecom_image_url_is_valid('https://images.example.test/product.jpg'), 'HTTPS image URLs remain accepted');
+$assertSame(false, ecom_image_url_is_valid('javascript:alert(1)'), 'non-HTTP image URLs are rejected');
 
 $adminEcommerceSource = file_get_contents(__DIR__ . '/../public/admin/Ecommerce.php');
 $storeSource = file_get_contents(__DIR__ . '/../public/client/Store.php');

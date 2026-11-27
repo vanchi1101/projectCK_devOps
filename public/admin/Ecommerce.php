@@ -109,11 +109,10 @@ if ($isInstalled && $_SERVER['REQUEST_METHOD'] === 'POST') {
             $stock = filter_var($_POST['stock'] ?? '', FILTER_VALIDATE_INT, ['options' => ['min_range' => 0, 'max_range' => 1000000]]);
             $warranty = filter_var($_POST['warranty_months'] ?? 0, FILTER_VALIDATE_INT, ['options' => ['min_range' => 0, 'max_range' => 120]]);
             $categoryId = filter_var($_POST['category_id'] ?? '', FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
-            $imageValid = $imageUrl === '' || filter_var($imageUrl, FILTER_VALIDATE_URL);
-            $imageScheme = $imageUrl === '' || in_array(strtolower((string) parse_url($imageUrl, PHP_URL_SCHEME)), ['http', 'https'], true);
+            $imageValid = ecom_image_url_is_valid($imageUrl);
             if ($name === '' || strlen($name) > 190 || strlen($sku) < 3 || strlen($sku) > 80
                 || !$priceValid || (float) $price <= 0 || $stock === false || $warranty === false
-                || $categoryId === false || !$imageValid || !$imageScheme) {
+                || $categoryId === false || !$imageValid) {
                 $message = 'Thông tin sản phẩm không hợp lệ.';
             } else {
                 $categoryId = (int) $categoryId;
@@ -151,13 +150,12 @@ if ($isInstalled && $_SERVER['REQUEST_METHOD'] === 'POST') {
             $stock = filter_var($_POST['stock'] ?? '', FILTER_VALIDATE_INT, ['options' => ['min_range' => 0, 'max_range' => 1000000]]);
             $warranty = filter_var($_POST['warranty_months'] ?? '', FILTER_VALIDATE_INT, ['options' => ['min_range' => 0, 'max_range' => 120]]);
             $categoryId = filter_var($_POST['category_id'] ?? '', FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
-            $imageValid = $imageUrl === '' || filter_var($imageUrl, FILTER_VALIDATE_URL);
-            $imageScheme = $imageUrl === '' || in_array(strtolower((string) parse_url($imageUrl, PHP_URL_SCHEME)), ['http', 'https'], true);
+            $imageValid = ecom_image_url_is_valid($imageUrl);
 
             if ($productId === false || $name === '' || strlen($name) > 190 || strlen($sku) < 3 || strlen($sku) > 80
                 || strlen($brand) > 120 || strlen($model) > 120 || strlen($imageUrl) > 500
                 || !$priceValid || (float) $price <= 0 || $stock === false || $warranty === false
-                || $categoryId === false || !$imageValid || !$imageScheme) {
+                || $categoryId === false || !$imageValid) {
                 $message = 'Thông tin sản phẩm không hợp lệ.';
             } else {
                 $categoryId = (int) $categoryId;
@@ -561,7 +559,7 @@ require_once(__DIR__ . "/Sidebar.php");
                                         <div class="form-group col-md-3"><label>Model</label><input class="form-control" name="model" maxlength="120"></div>
                                         <div class="form-group col-md-2"><label>Số lượng tồn</label><input class="form-control" type="number" min="0" max="1000000" name="stock" value="0" required></div>
                                         <div class="form-group col-md-2"><label>Bảo hành (tháng)</label><input class="form-control" type="number" min="0" max="120" name="warranty_months" value="12" required></div>
-                                        <div class="form-group col-md-2"><label>URL ảnh</label><input class="form-control" type="url" name="image_url" maxlength="500"></div>
+                                        <div class="form-group col-md-2"><label>Đường dẫn ảnh</label><input class="form-control" type="text" name="image_url" maxlength="500" placeholder="/assets/storage/images/products/..."></div>
                                     </div>
                                     <div class="form-group"><label>Mô tả / thông số</label><textarea class="form-control" name="description" rows="3"></textarea></div>
                                     <button class="btn btn-success"><i class="fas fa-check mr-1"></i>Tạo và mở bán</button>
@@ -630,7 +628,7 @@ require_once(__DIR__ . "/Sidebar.php");
                                                     <div class="form-group col-md-3"><label>Model</label><input class="form-control" name="model" maxlength="120" value="<?=ecom_h($product['model']);?>"></div>
                                                     <div class="form-group col-md-2"><label>Số lượng tồn</label><input class="form-control" type="number" min="0" max="1000000" name="stock" value="<?=(int) $product['stock'];?>" required></div>
                                                     <div class="form-group col-md-2"><label>Bảo hành (tháng)</label><input class="form-control" type="number" min="0" max="120" name="warranty_months" value="<?=(int) $product['warranty_months'];?>" required></div>
-                                                    <div class="form-group col-md-2"><label>URL ảnh</label><input class="form-control" type="url" name="image_url" maxlength="500" value="<?=ecom_h($product['image_url']);?>"></div>
+                                                    <div class="form-group col-md-2"><label>Đường dẫn ảnh</label><input class="form-control" type="text" name="image_url" maxlength="500" value="<?=ecom_h($product['image_url']);?>">
                                                 </div>
                                                 <div class="form-group"><label>Mô tả / thông số</label><textarea class="form-control" name="description" rows="3"><?=ecom_h($product['description']);?></textarea></div>
                                                 <button class="btn btn-primary"><i class="fas fa-save mr-1"></i>Lưu thay đổi</button>

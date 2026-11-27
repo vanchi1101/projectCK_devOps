@@ -5,6 +5,26 @@ function ecom_h($value)
     return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
 }
 
+function ecom_image_url_is_valid($value)
+{
+    $value = (string) $value;
+    if ($value === '') {
+        return true;
+    }
+    if (strlen($value) > 500) {
+        return false;
+    }
+    if (preg_match('#\A/assets/storage/images/products/[A-Za-z0-9_-]+\.(?:avif|gif|jpe?g|png|webp)\z#i', $value) === 1) {
+        return true;
+    }
+
+    if (filter_var($value, FILTER_VALIDATE_URL) === false) {
+        return false;
+    }
+
+    return in_array(strtolower((string) parse_url($value, PHP_URL_SCHEME)), ['http', 'https'], true);
+}
+
 function ecom_is_installed()
 {
     global $AZCODE;

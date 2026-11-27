@@ -33,12 +33,11 @@ if ($isInstalled && $_SERVER['REQUEST_METHOD'] === 'POST') {
         $stock = filter_var($_POST['stock'] ?? '', FILTER_VALIDATE_INT, ['options' => ['min_range' => 0, 'max_range' => 1000000]]);
         $warranty = filter_var($_POST['warranty_months'] ?? 0, FILTER_VALIDATE_INT, ['options' => ['min_range' => 0, 'max_range' => 120]]);
         $categoryId = filter_var($_POST['category_id'] ?? '', FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
-        $imageValid = $imageUrl === '' || filter_var($imageUrl, FILTER_VALIDATE_URL);
-        $imageScheme = $imageUrl === '' ? true : in_array(strtolower((string) parse_url($imageUrl, PHP_URL_SCHEME)), ['http', 'https'], true);
+        $imageValid = ecom_image_url_is_valid($imageUrl);
 
         if ($name === '' || strlen($name) > 190 || strlen($sku) < 3 || strlen($sku) > 80
             || !$priceValid || (float) $priceInput <= 0 || $stock === false || $warranty === false
-            || $categoryId === false || !$imageValid || !$imageScheme) {
+            || $categoryId === false || !$imageValid) {
             $message = 'Thông tin sản phẩm không hợp lệ. Hãy kiểm tra tên, SKU, giá, tồn kho, danh mục và đường dẫn ảnh.';
         } else {
             $categoryId = (int) $categoryId;
@@ -77,11 +76,10 @@ if ($isInstalled && $_SERVER['REQUEST_METHOD'] === 'POST') {
         $description = trim((string) ($_POST['description'] ?? ''));
         $imageUrl = trim((string) ($_POST['image_url'] ?? ''));
         $priceValid = preg_match('/^\d{1,12}(?:\.0{1,2})?$/D', $priceInput) === 1;
-        $imageValid = $imageUrl === '' || filter_var($imageUrl, FILTER_VALIDATE_URL);
-        $imageScheme = $imageUrl === '' || in_array(strtolower((string) parse_url($imageUrl, PHP_URL_SCHEME)), ['http', 'https'], true);
+        $imageValid = ecom_image_url_is_valid($imageUrl);
         if ($productId === false || $stock === false || !$priceValid || (float) $priceInput <= 0
             || $name === '' || $textLength($name) > 190 || $textLength($brand) > 120 || $textLength($model) > 120
-            || $textLength($imageUrl) > 500 || !$imageValid || !$imageScheme) {
+            || $textLength($imageUrl) > 500 || !$imageValid) {
             $message = 'Thông tin sản phẩm không hợp lệ.';
         } else {
             $productId = (int) $productId;
@@ -167,7 +165,7 @@ require_once(__DIR__ . "/Sidebar.php");
                                 <div class="form-group col-md-2"><label>Tồn kho</label><input class="form-control" type="number" min="0" name="stock" value="0" required></div>
                                 <div class="form-group col-md-2"><label>Bảo hành (tháng)</label><input class="form-control" type="number" min="0" max="120" name="warranty_months" value="12"></div>
                             </div>
-                            <div class="form-group"><label>URL ảnh (http/https)</label><input class="form-control" type="url" name="image_url" maxlength="500"></div>
+                            <div class="form-group"><label>Đường dẫn ảnh</label><input class="form-control" type="text" name="image_url" maxlength="500" placeholder="/assets/storage/images/products/..."></div>
                             <div class="form-group"><label>Mô tả/thông số</label><textarea class="form-control" name="description" rows="4"></textarea></div>
                             <button class="btn btn-primary">Gửi duyệt</button>
                         </form>
@@ -191,7 +189,7 @@ require_once(__DIR__ . "/Sidebar.php");
                                         <div class="form-group col-md-2"><label>Tồn kho</label><input class="form-control form-control-sm" type="number" min="0" name="stock" value="<?=(int) $product['stock'];?>" required></div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-4"><label>URL ảnh</label><input class="form-control form-control-sm" type="url" name="image_url" maxlength="500" value="<?=ecom_h($product['image_url']);?>"></div>
+                                        <div class="form-group col-md-4"><label>Đường dẫn ảnh</label><input class="form-control form-control-sm" type="text" name="image_url" maxlength="500" value="<?=ecom_h($product['image_url']);?>"></div>
                                         <div class="form-group col-md-8"><label>Mô tả/thông số</label><textarea class="form-control form-control-sm" name="description" rows="2"><?=ecom_h($product['description']);?></textarea></div>
                                     </div>
                                     <button class="btn btn-sm btn-primary">Lưu và gửi duyệt</button>
