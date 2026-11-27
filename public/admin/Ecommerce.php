@@ -628,7 +628,7 @@ require_once(__DIR__ . "/Sidebar.php");
                                                     <div class="form-group col-md-3"><label>Model</label><input class="form-control" name="model" maxlength="120" value="<?=ecom_h($product['model']);?>"></div>
                                                     <div class="form-group col-md-2"><label>Số lượng tồn</label><input class="form-control" type="number" min="0" max="1000000" name="stock" value="<?=(int) $product['stock'];?>" required></div>
                                                     <div class="form-group col-md-2"><label>Bảo hành (tháng)</label><input class="form-control" type="number" min="0" max="120" name="warranty_months" value="<?=(int) $product['warranty_months'];?>" required></div>
-                                                    <div class="form-group col-md-2"><label>Đường dẫn ảnh</label><input class="form-control" type="text" name="image_url" maxlength="500" value="<?=ecom_h($product['image_url']);?>">
+                                                    <div class="form-group col-md-2"><label>Đường dẫn ảnh</label><input class="form-control" type="text" name="image_url" maxlength="500" value="<?=ecom_h($product['image_url']);?>"></div>
                                                 </div>
                                                 <div class="form-group"><label>Mô tả / thông số</label><textarea class="form-control" name="description" rows="3"><?=ecom_h($product['description']);?></textarea></div>
                                                 <button class="btn btn-primary"><i class="fas fa-save mr-1"></i>Lưu thay đổi</button>
