@@ -134,7 +134,7 @@ if ($user) {
         google_login_fail('Email này đã có tài khoản. Hãy đăng nhập bằng tài khoản hiện tại; Google không tự gộp các tài khoản.');
     }
 
-    if ($AZCODE->num_rows("SELECT `id` FROM `users` WHERE `ip` = '" . $AZCODE->escape(myip()) . "'") > 3) {
+    if ($AZCODE->num_rows("SELECT `id` FROM `users` WHERE `ip` = '" . $AZCODE->escape(myip()) . "'") > 10) {
         google_login_fail('Bạn đã đạt giới hạn tạo tài khoản từ địa chỉ mạng này.');
     }
 
