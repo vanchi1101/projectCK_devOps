@@ -419,11 +419,14 @@ $productPage = max(1, (int) ($_GET['product_page'] ?? 1));
 $orderPage = max(1, (int) ($_GET['order_page'] ?? 1));
 $reviewPage = max(1, (int) ($_GET['review_page'] ?? 1));
 $payoutPage = max(1, (int) ($_GET['payout_page'] ?? 1));
+$productSearch = trim((string) ($_GET['product_search'] ?? ''));
+$productSearch = substr($productSearch, 0, 100);
 $adminPaginationParams = [
     'product_page' => $productPage,
     'order_page' => $orderPage,
     'review_page' => $reviewPage,
-    'payout_page' => $payoutPage
+    'payout_page' => $payoutPage,
+    'product_search' => $productSearch
 ];
 $adminPaginationUrl = BASE_URL('Admin/Ecommerce') . '?' . http_build_query($adminPaginationParams + ['tab' => 'products']);
 $adminOrdersPaginationUrl = BASE_URL('Admin/Ecommerce') . '?' . http_build_query($adminPaginationParams + ['tab' => 'orders']);
@@ -439,7 +442,21 @@ $paymentReviews = [];
 $payouts = [];
 $productTotal = $orderTotal = $reviewTotal = $payoutTotal = 0;
 if ($isInstalled) {
-    $count = $AZCODE->get_row("SELECT COUNT(*) AS total FROM `ecom_products`");
+    $productSearchSql = $AZCODE->escape($productSearch);
+    $productSearchWhere = $productSearch === ''
+        ? ''
+        : " WHERE (p.`name` LIKE '%$productSearchSql%'"
+            . " OR p.`sku` LIKE '%$productSearchSql%'"
+            . " OR p.`brand` LIKE '%$productSearchSql%'"
+            . " OR p.`model` LIKE '%$productSearchSql%'"
+            . " OR c.`title` LIKE '%$productSearchSql%'"
+            . " OR u.`username` LIKE '%$productSearchSql%')";
+    $count = $AZCODE->get_row(
+        "SELECT COUNT(*) AS total FROM `ecom_products` p"
+        . " LEFT JOIN `users` u ON u.`id` = p.`seller_user_id`"
+        . " LEFT JOIN `ecom_categories` c ON c.`id` = p.`category_id`"
+        . $productSearchWhere
+    );
     $productTotal = (int) ($count['total'] ?? 0);
     $productPage = min($productPage, max(1, (int) ceil($productTotal / $perPage)));
     $offset = ($productPage - 1) * $perPage;
@@ -447,6 +464,7 @@ if ($isInstalled) {
         "SELECT p.*,u.`username` AS `seller_name`,c.`title` AS `category_title`"
         . " FROM `ecom_products` p LEFT JOIN `users` u ON u.`id` = p.`seller_user_id`"
         . " LEFT JOIN `ecom_categories` c ON c.`id` = p.`category_id`"
+        . $productSearchWhere
         . " ORDER BY FIELD(p.`approval_status`,'pending','approved','rejected','hidden'),p.`created_at` DESC LIMIT $offset,$perPage"
     );
 
@@ -551,10 +569,23 @@ require_once(__DIR__ . "/Sidebar.php");
                             </div>
                         </div>
                         <div class="card-body table-responsive">
+                            <form method="get" class="form-inline mb-3">
+                                <input type="hidden" name="tab" value="products">
+                                <input type="hidden" name="product_page" value="1">
+                                <div class="input-group" style="width: min(100%, 420px);">
+                                    <input type="search" class="form-control" name="product_search" maxlength="100" value="<?=ecom_h($productSearch);?>" placeholder="Tìm theo tên, SKU, danh mục hoặc người bán" aria-label="Tìm kiếm sản phẩm">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit" title="Tìm kiếm"><i class="fas fa-search mr-1"></i>Tìm kiếm</button>
+                                    </div>
+                                </div>
+                                <?php if ($productSearch !== '') { ?>
+                                    <a class="btn btn-outline-secondary ml-2 mt-2 mt-sm-0" href="<?=ecom_h(BASE_URL('Admin/Ecommerce') . '?tab=products');?>"><i class="fas fa-times mr-1"></i>Xóa bộ lọc</a>
+                                <?php } ?>
+                            </form>
                             <table class="table table-hover">
                                 <thead><tr><th>Sản phẩm</th><th>Danh mục</th><th>SKU</th><th>Giá</th><th>Tồn kho</th><th>Người bán</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
                                 <tbody>
-                                <?php if (empty($products)) { ?><tr><td colspan="8" class="text-center text-muted py-4">Chưa có sản phẩm nào.</td></tr><?php } ?>
+                                <?php if (empty($products)) { ?><tr><td colspan="8" class="text-center text-muted py-4"><?= $productSearch === '' ? 'Chưa có sản phẩm nào.' : 'Không tìm thấy sản phẩm phù hợp.'; ?></td></tr><?php } ?>
                                 <?php foreach ($products as $product) { $productId = (int) $product['id']; ?>
                                     <tr>
                                         <td><strong><?=ecom_h($product['name']);?></strong><br><small class="text-muted"><?=ecom_h(trim((string) $product['brand'] . ' ' . (string) $product['model']));?></small></td>
