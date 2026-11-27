@@ -24,7 +24,7 @@ jobs:
         run: |
           mkdir "$RUNNER_TEMP/source"
           git archive --format=tar HEAD | tar -xf - -C "$RUNNER_TEMP/source"
-          tar -czf "$RUNNER_TEMP/source.tar.gz" \
+          tar -cf "$RUNNER_TEMP/source.tar" \
             -C "$RUNNER_TEMP/source" \
             --exclude='./.github/modernize' \
             --exclude='.env' \
@@ -38,6 +38,8 @@ jobs:
             --exclude='*/error_log' \
             --exclude='.DS_Store' \
             .
+          tar -rf "$RUNNER_TEMP/source.tar" -C "$RUNNER_TEMP/source" assets/storage/images/products
+          gzip -n "$RUNNER_TEMP/source.tar"
       - name: Upload source artifact
         uses: actions/upload-artifact@v4
         with:
@@ -123,7 +125,7 @@ jobs:
       - name: Package application without hosting data
         working-directory: app
         run: |
-          tar -czf "$RUNNER_TEMP/site.tar.gz" \
+          tar -cf "$RUNNER_TEMP/site.tar" \
             --exclude='./.git' \
             --exclude='./.github' \
             --exclude='.env' \
@@ -137,13 +139,19 @@ jobs:
             --exclude='*/error_log' \
             --exclude='.DS_Store' \
             .
+          tar -rf "$RUNNER_TEMP/site.tar" assets/storage/images/products
+          gzip -n "$RUNNER_TEMP/site.tar"
           tar -tzf "$RUNNER_TEMP/site.tar.gz" > "$RUNNER_TEMP/site-files.txt"
           if ! grep -Fxq './config/config.php' "$RUNNER_TEMP/site-files.txt"; then
             echo "::error::Missing config/config.php in deployment package."
             exit 1
           fi
-          if grep -Eq '(^|/)(\.env(\.[^/]*)?|\.azcode-runtime\.php|assets/storage(/.*)?|cron/LogBank\.txt|.*\.sql)$' "$RUNNER_TEMP/site-files.txt"; then
+          if grep -Eq '(^|/)(\.env(\.[^/]*)?|\.azcode-runtime\.php|cron/LogBank\.txt|.*\.sql)$' "$RUNNER_TEMP/site-files.txt"; then
             echo "::error::Protected configuration or database files were included in the deployment package."
+            exit 1
+          fi
+          if grep -Ev '(^|/)assets/storage/images/products(/|$)' "$RUNNER_TEMP/site-files.txt" | grep -Eq '(^|/)assets/storage(/|$)'; then
+            echo "::error::Hosting storage outside product images was included in the deployment package."
             exit 1
           fi
       - name: Upload deployment package
