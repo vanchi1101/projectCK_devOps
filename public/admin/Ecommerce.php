@@ -7,6 +7,11 @@ require_once(__DIR__ . "/../../includes/login-admin.php");
 $title = 'Danh mục sản phẩm | ' . $AZCODE->site('tenweb');
 $message = '';
 $isInstalled = ecom_is_installed();
+$textLength = static function ($value) {
+    $matches = [];
+    $length = preg_match_all('/./us', (string) $value, $matches);
+    return $length === false ? PHP_INT_MAX : $length;
+};
 $orderStatusLabels = [
     'pending_payment' => 'Chờ thanh toán',
     'paid' => 'Đã thanh toán',
@@ -25,7 +30,7 @@ if ($isInstalled && $_SERVER['REQUEST_METHOD'] === 'POST') {
         $action = (string) ($_POST['action'] ?? '');
         if ($action === 'create_category') {
             $categoryTitle = trim((string) ($_POST['title'] ?? ''));
-            if ($categoryTitle === '' || strlen($categoryTitle) > 190) {
+            if ($categoryTitle === '' || $textLength($categoryTitle) > 190) {
                 $message = 'Tên danh mục không hợp lệ.';
             } else {
                 $slug = 'cat-' . strtolower(bin2hex(random_bytes(5)));
@@ -38,6 +43,55 @@ if ($isInstalled && $_SERVER['REQUEST_METHOD'] === 'POST') {
                     'created_at' => date('Y-m-d H:i:s')
                 ]);
                 $message = $created ? 'Đã tạo danh mục.' : 'Không thể tạo danh mục.';
+            }
+        } elseif ($action === 'update_category') {
+            $categoryId = filter_var($_POST['category_id'] ?? '', FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+            $categoryTitle = trim((string) ($_POST['title'] ?? ''));
+            if ($categoryId === false || $categoryTitle === '' || $textLength($categoryTitle) > 190) {
+                $message = 'Tên danh mục không hợp lệ.';
+            } else {
+                $categoryId = (int) $categoryId;
+                $category = $AZCODE->get_row(
+                    "SELECT `id` FROM `ecom_categories` WHERE `id` = '$categoryId'"
+                );
+                if (!$category) {
+                    $message = 'Không tìm thấy danh mục cần cập nhật.';
+                } else {
+                    $updated = $AZCODE->query(
+                        "UPDATE `ecom_categories` SET `title` = '" . $AZCODE->escape($categoryTitle)
+                        . "' WHERE `id` = '$categoryId'"
+                    );
+                    $message = $updated ? 'Đã cập nhật danh mục.' : 'Không thể cập nhật danh mục.';
+                }
+            }
+        } elseif ($action === 'delete_category') {
+            $categoryId = filter_var($_POST['category_id'] ?? '', FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+            if ($categoryId === false) {
+                $message = 'Yêu cầu xóa danh mục không hợp lệ.';
+            } elseif (!$AZCODE->begin_transaction()) {
+                $message = 'Không thể khởi tạo thao tác xóa danh mục.';
+            } else {
+                $categoryId = (int) $categoryId;
+                $category = $AZCODE->get_row(
+                    "SELECT `id` FROM `ecom_categories` WHERE `id` = '$categoryId' FOR UPDATE"
+                );
+                if (!$category) {
+                    $AZCODE->rollback();
+                    $message = 'Không tìm thấy danh mục cần xóa.';
+                } else {
+                    $productsUnassigned = $AZCODE->query(
+                        "UPDATE `ecom_products` SET `category_id` = NULL WHERE `category_id` = '$categoryId'"
+                    );
+                    $deleted = $productsUnassigned && $AZCODE->query(
+                        "DELETE FROM `ecom_categories` WHERE `id` = '$categoryId'"
+                    );
+                    if ($deleted && $AZCODE->commit()) {
+                        $message = 'Đã xóa danh mục. Sản phẩm thuộc danh mục này được chuyển sang “Chưa phân loại”.';
+                    } else {
+                        $AZCODE->rollback();
+                        $message = 'Không thể xóa danh mục.';
+                    }
+                }
             }
         } elseif ($action === 'create_product') {
             $name = trim((string) ($_POST['name'] ?? ''));
@@ -121,6 +175,40 @@ if ($isInstalled && $_SERVER['REQUEST_METHOD'] === 'POST') {
                     $message = $updated
                         ? 'Đã cập nhật thông tin và số lượng sản phẩm.'
                         : 'Không thể cập nhật sản phẩm. SKU có thể đã được sử dụng.';
+                }
+            }
+        } elseif ($action === 'delete_product') {
+            $productId = filter_var($_POST['product_id'] ?? '', FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+            if ($productId === false) {
+                $message = 'Yêu cầu xóa sản phẩm không hợp lệ.';
+            } elseif (!$AZCODE->begin_transaction()) {
+                $message = 'Không thể khởi tạo thao tác xóa sản phẩm.';
+            } else {
+                $productId = (int) $productId;
+                $product = $AZCODE->get_row(
+                    "SELECT `id` FROM `ecom_products` WHERE `id` = '$productId' FOR UPDATE"
+                );
+                if (!$product) {
+                    $AZCODE->rollback();
+                    $message = 'Không tìm thấy sản phẩm cần xóa.';
+                } else {
+                    $orderItem = $AZCODE->get_row(
+                        "SELECT `id` FROM `ecom_order_items` WHERE `product_id` = '$productId' LIMIT 1 FOR UPDATE"
+                    );
+                    if ($orderItem) {
+                        $AZCODE->rollback();
+                        $message = 'Sản phẩm đã có lịch sử đơn hàng nên không thể xóa. Hãy chuyển trạng thái sang “Đã ẩn”.';
+                    } else {
+                        $deleted = $AZCODE->query(
+                            "DELETE FROM `ecom_products` WHERE `id` = '$productId'"
+                        );
+                        if ($deleted && $AZCODE->commit()) {
+                            $message = 'Đã xóa sản phẩm.';
+                        } else {
+                            $AZCODE->rollback();
+                            $message = 'Không thể xóa sản phẩm.';
+                        }
+                    }
                 }
             }
         } elseif ($action === 'save_settings') {
@@ -415,6 +503,10 @@ require_once(__DIR__ . "/Sidebar.php");
                 .ecommerce-admin .table td { vertical-align: middle; }
                 .ecommerce-admin .product-edit-row > td { background: #f7f9fc; padding: 1.25rem; }
                 .ecommerce-admin .category-chip { display: inline-flex; align-items: center; padding: .5rem .75rem; margin: .25rem; background: #eef6ff; color: #1768b2; border-radius: 2rem; font-weight: 600; }
+                .ecommerce-admin .category-management-list { display: grid; gap: .65rem; max-width: 760px; }
+                .ecommerce-admin .category-management-item { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .65rem; padding: .65rem; border: 1px solid #e8edf3; border-radius: .6rem; }
+                .ecommerce-admin .category-management-item .category-chip { margin: 0; }
+                .ecommerce-admin .category-management-edit { width: 100%; padding: .5rem .25rem .1rem; }
                 @media (max-width: 575.98px) { .ecommerce-admin .nav-pills .nav-link { padding: .5rem .65rem; font-size: .9rem; } }
             </style>
             <ul class="nav nav-pills flex-wrap" role="tablist">
@@ -480,6 +572,11 @@ require_once(__DIR__ . "/Sidebar.php");
                                                 </select>
                                                 <button class="btn btn-sm btn-outline-secondary" title="Lưu trạng thái"><i class="fas fa-save"></i></button>
                                             </form>
+                                            <form method="post" class="d-inline" onsubmit="return confirm('Bạn có chắc muốn xóa sản phẩm này?');">
+                                                <input type="hidden" name="csrf_token" value="<?=ecom_h(ecom_csrf_token());?>">
+                                                <input type="hidden" name="action" value="delete_product"><input type="hidden" name="product_id" value="<?=$productId;?>">
+                                                <button class="btn btn-sm btn-outline-danger" type="submit" title="Xóa sản phẩm" aria-label="Xóa sản phẩm"><i class="fas fa-trash"></i></button>
+                                            </form>
                                         </td>
                                     </tr>
                                     <tr class="collapse product-edit-row" id="edit-product-<?=$productId;?>">
@@ -525,7 +622,29 @@ require_once(__DIR__ . "/Sidebar.php");
                             </form>
                             <h5 class="mb-2">Danh mục hiện có <span class="badge badge-light"><?=count($categories);?></span></h5>
                             <?php if (empty($categories)) { ?><p class="text-muted mb-0">Chưa có danh mục nào.</p><?php } ?>
-                            <?php foreach ($categories as $category) { ?><span class="category-chip"><i class="fas fa-tag mr-2"></i><?=ecom_h($category['title']);?><?php if ($category['status'] !== 'active') { ?><small class="ml-2 text-muted">(ẩn)</small><?php } ?></span><?php } ?>
+                            <div class="category-management-list">
+                                <?php foreach ($categories as $category) { $categoryId = (int) $category['id']; ?>
+                                    <div class="category-management-item">
+                                        <span class="category-chip"><i class="fas fa-tag mr-2"></i><?=ecom_h($category['title']);?><?php if ($category['status'] !== 'active') { ?><small class="ml-2 text-muted">(ẩn)</small><?php } ?></span>
+                                        <div class="text-nowrap">
+                                            <button class="btn btn-sm btn-outline-primary" type="button" data-toggle="collapse" data-target="#edit-category-<?=$categoryId;?>" aria-expanded="false"><i class="fas fa-pen mr-1"></i>Sửa</button>
+                                            <form method="post" class="d-inline" onsubmit="return confirm('Xóa danh mục này? Sản phẩm thuộc danh mục sẽ được chuyển sang Chưa phân loại.');">
+                                                <input type="hidden" name="csrf_token" value="<?=ecom_h(ecom_csrf_token());?>">
+                                                <input type="hidden" name="action" value="delete_category"><input type="hidden" name="category_id" value="<?=$categoryId;?>">
+                                                <button class="btn btn-sm btn-outline-danger" type="submit" title="Xóa danh mục" aria-label="Xóa danh mục"><i class="fas fa-trash"></i></button>
+                                            </form>
+                                        </div>
+                                        <form method="post" class="collapse category-management-edit" id="edit-category-<?=$categoryId;?>">
+                                            <input type="hidden" name="csrf_token" value="<?=ecom_h(ecom_csrf_token());?>">
+                                            <input type="hidden" name="action" value="update_category"><input type="hidden" name="category_id" value="<?=$categoryId;?>">
+                                            <div class="form-row align-items-end">
+                                                <div class="form-group col-md-8 mb-md-0"><label for="category-title-<?=$categoryId;?>">Tên danh mục</label><input id="category-title-<?=$categoryId;?>" class="form-control" name="title" maxlength="190" value="<?=ecom_h($category['title']);?>" required></div>
+                                                <div class="form-group col-md-4 mb-md-0"><button class="btn btn-primary"><i class="fas fa-save mr-1"></i>Lưu tên</button></div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
                 </div>
