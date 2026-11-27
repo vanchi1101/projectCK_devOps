@@ -389,7 +389,7 @@ require_once(__DIR__ . "/Nav.php");
                     <?php } elseif ($awaitingPayment && $bank && $qrUrl !== '') { ?>
                         <div class="checkout-pending" role="status" aria-live="polite">
                             <p class="checkout-state-title">Đang chờ ngân hàng xác nhận</p>
-                            Trang sẽ tự động kiểm tra lại sau mỗi 60 giây.
+                            Trang sẽ tự động kiểm tra lại sau mỗi 30 giây.
                         </div>
                         <div class="checkout-order-number"><?=ecom_h($order['order_no']);?></div>
                         <div class="checkout-bank-details">
