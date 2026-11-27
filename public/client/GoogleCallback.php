@@ -75,9 +75,9 @@ if (isset($_GET['error'])) {
 }
 
 $code = (string) ($_GET['code'] ?? '');
-$clientId = getenv('GOOGLE_CLIENT_ID');
-$clientSecret = getenv('GOOGLE_CLIENT_SECRET');
-$redirectUri = getenv('GOOGLE_REDIRECT_URI') ?: 'http://localhost/Auth/Google/Callback';
+$clientId = azcode_env('GOOGLE_CLIENT_ID');
+$clientSecret = azcode_env('GOOGLE_CLIENT_SECRET');
+$redirectUri = azcode_env('GOOGLE_REDIRECT_URI', BASE_URL('Auth/Google/Callback'));
 
 if ($code === '' || !$clientId || !$clientSecret) {
     google_login_fail('Không thể hoàn tất đăng nhập Google. Vui lòng thử lại.');

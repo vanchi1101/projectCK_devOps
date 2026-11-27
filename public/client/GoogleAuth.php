@@ -2,9 +2,9 @@
 require_once __DIR__ . '/../../config/config.php';
 require_once __DIR__ . '/../../config/function.php';
 
-$clientId = getenv('GOOGLE_CLIENT_ID');
-$clientSecret = getenv('GOOGLE_CLIENT_SECRET');
-$redirectUri = getenv('GOOGLE_REDIRECT_URI') ?: 'http://localhost/Auth/Google/Callback';
+$clientId = azcode_env('GOOGLE_CLIENT_ID');
+$clientSecret = azcode_env('GOOGLE_CLIENT_SECRET');
+$redirectUri = azcode_env('GOOGLE_REDIRECT_URI', BASE_URL('Auth/Google/Callback'));
 
 if (!$clientId || !$clientSecret) {
     error_log('Google OAuth cannot start because server credentials are missing.');

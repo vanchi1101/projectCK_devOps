@@ -6,9 +6,16 @@ function azcode_env($name, $default = '')
     static $config = null;
 
     if ($config === null) {
-        // Production configuration is stored outside public_html.
-        $path = dirname(__DIR__, 2) . '/.azcode-runtime.php';
-        $config = is_file($path) ? require $path : [];
+        $externalPath = dirname(__DIR__, 2) . '/.azcode-runtime.php';
+        $localPath = dirname(__DIR__) . '/.azcode-runtime.php';
+        $localConfig = is_file($localPath) ? require $localPath : [];
+        $externalConfig = is_file($externalPath) ? require $externalPath : [];
+        $config = $localConfig;
+        foreach ($externalConfig as $key => $value) {
+            if ($value !== null && $value !== '') {
+                $config[$key] = $value;
+            }
+        }
     }
 
     if (isset($config[$name])) {
