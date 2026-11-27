@@ -112,7 +112,6 @@ if(isset($_POST['btnSaveUser']) && isset($_GET['id']) && $getUser['level'] == 'a
     $AZCODE->update("users", array(
         'email'         => $email,
         'ctv'           => check_string($_POST['ctv']),
-        'ctvacc'           => check_string($_POST['ctvacc']),        
         'otp'           => $otp,
         'token'         => $token,
         'money'         => $money,
@@ -237,15 +236,6 @@ if(isset($_POST['btnSaveUser']) && isset($_GET['id']) && $getUser['level'] == 'a
                                     <select class="custom-select" name="ctv">
                                         <option <?=$row['ctv'] == 0 ? 'selected' : '';?> value="0">Không</option>
                                         <option <?=$row['ctv'] == 1 ? 'selected' : '';?> value="1">Có</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputPassword3" class="col-sm-2 col-form-label">CTV BÁN ACC</label>
-                                <div class="col-sm-10">
-                                    <select class="custom-select" name="ctvacc">
-                                        <option <?=$row['ctvacc'] == 0 ? 'selected' : '';?> value="0">Không</option>
-                                        <option <?=$row['ctvacc'] == 1 ? 'selected' : '';?> value="1">Có</option>
                                     </select>
                                 </div>
                             </div>

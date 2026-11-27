@@ -41,6 +41,12 @@ as hashes, and expire after 10 minutes.
 Existing accounts without an email must have one added by an admin in
 **Thành viên → Chỉnh sửa** before password recovery can be used.
 
+## CTV bán tài khoản
+
+The legacy `ctvacc` role has been removed. For existing databases, run
+`database/migrations/20261127_remove_ctvacc_role.sql` to revoke any users that
+still have the old role enabled.
+
 ## Order email
 
 After an order is created, the customer and the store email configured in

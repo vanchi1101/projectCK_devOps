@@ -389,18 +389,6 @@ function display_ctv($data)
     }
     return NULL;
 }
-function display_ctvacc($data)
-{
-    if ($data == 1)
-    {
-        return '<span class="badge badge-success">CTV BÁN ACC</span>';
-    }
-    if ($data == 0)
-    {
-        return '';
-    }
-    return NULL;
-}
 function display_loaithe($data)
 {
     if ($data == 0)

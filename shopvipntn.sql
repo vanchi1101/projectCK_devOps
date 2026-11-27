@@ -214,7 +214,6 @@ CREATE TABLE `users` (
   `chitieu` int(11) NOT NULL DEFAULT 0,
   `total_money` int(11) NOT NULL DEFAULT 0,
   `ctv` int(11) DEFAULT 0,
-  `ctvacc` int(11) DEFAULT 0,
   `google_sub` varchar(255) CHARACTER SET ascii COLLATE ascii_bin DEFAULT NULL,
   `otp_created_at` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;

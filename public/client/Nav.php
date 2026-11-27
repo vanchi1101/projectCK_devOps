@@ -283,14 +283,14 @@
                             <li><a href="<?=BASE_URL('Cart');?>"><i class="bx bx-cart"></i> Giỏ hàng (<?=function_exists('ecom_cart') ? array_sum(ecom_cart()) : 0;?>)</a></li>
                             <?php if (!empty($_SESSION['username'])) { ?>
                                 <li><a href="<?=BASE_URL('MyOrders');?>"><i class="bx bx-package"></i> Đơn hàng</a></li>
-                                <?php if (($getUser['level'] ?? '') !== 'admin' && (int) ($getUser['ctv'] ?? 0) !== 1 && (int) ($getUser['ctvacc'] ?? 0) !== 1) { ?>
+                                <?php if (($getUser['level'] ?? '') !== 'admin' && (int) ($getUser['ctv'] ?? 0) !== 1) { ?>
                                     <li><a href="<?=BASE_URL('Affiliate');?>"><i class="bx bx-share-alt"></i> Tiếp thị liên kết</a></li>
                                 <?php } ?>
                             <?php } ?>
                             <?php if (isset($_SESSION['username']) && ($getUser['level'] ?? '') === 'admin') { ?>
                                 <li><a href="<?=BASE_URL('admin/');?>"><i class="bx bx-cog"></i> Quản trị website</a></li>
                             <?php } ?>
-                            <?php if (isset($_SESSION['username']) && ((int) ($getUser['ctv'] ?? 0) === 1 || (int) ($getUser['ctvacc'] ?? 0) === 1)) { ?>
+                            <?php if (isset($_SESSION['username']) && (int) ($getUser['ctv'] ?? 0) === 1) { ?>
                                 <li><a href="<?=BASE_URL('public/ctv/Products.php');?>"><i class="bx bx-grid-alt"></i> Panel CTV</a></li>
                             <?php } ?>
                             <?php if (empty($_SESSION['username'])) { ?>

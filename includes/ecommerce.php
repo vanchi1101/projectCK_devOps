@@ -95,12 +95,12 @@ function ecom_commission_kind_for_user($userId)
     }
 
     $user = $AZCODE->get_row(
-        "SELECT `level`,`banned`,`ctv`,`ctvacc` FROM `users` WHERE `id` = '$userId'"
+        "SELECT `level`,`banned`,`ctv` FROM `users` WHERE `id` = '$userId'"
     );
     if (!$user || (int) $user['banned'] !== 0 || $user['level'] === 'admin') {
         return null;
     }
-    if ((int) $user['ctv'] === 1 || (int) $user['ctvacc'] === 1) {
+    if ((int) $user['ctv'] === 1) {
         return 'seller';
     }
     return 'referral';

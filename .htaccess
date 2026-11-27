@@ -9,7 +9,6 @@ RewriteRule ^Admin/(Category|Groups/|Group/Edit/|Accounts/|Account/Edit/|Account
 RewriteRule ^public/admin/(Accounts|Account-Sold|Category|CategoryCayThue|EditCategoryCayThue|Groups|GroupsCayThue|EditGroup|EditGroupsCayThue|EditAccount|Mini-game|EditVongQuay|WithDraw|DonHangCayThue|DonHangBiHuy|DonHangXuLy|DonHangHoanTat|Storage)\.php$ /Admin/Ecommerce [R=302,L,NC]
 RewriteRule ^public/client/(Accounts|Groups|Orders|History|CayThue|HistoryCayThue|Wheel|Withdraw)\.php$ /Shop [R=302,L,NC]
 RewriteRule ^public/ctv/(ThemTaiKhoan|EditAccount|DonHangCayThue|Soid)\.php$ /Shop [R=302,L,NC]
-RewriteRule ^public/ctvacc(/.*)?$ /Shop [R=302,L,NC]
 RewriteRule ^assets/ajaxs/(Orders|CayThue|Withdraw|Quay)\.php$ - [F,L,NC]
 RewriteRule ^assets/ajaxs/(admin|ctv)/(delete-account|delete-category-caythue|delete-group|delete-category)\.php$ - [F,L,NC]
 

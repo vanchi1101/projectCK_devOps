@@ -45,7 +45,6 @@
                                         <th>TOTAL MONEY</th>
                                         <th>CREATEDATE</th>
                                         <th>CTV</th>
-                                        <th>CTV BÁN ACC</th>
                                         <th>STATUS</th>
                                         <th>ACTION</th>
                                     </tr>
@@ -72,7 +71,6 @@
                                         <td><?=format_cash($row['total_money']);?></td>
                                         <td><span class="badge badge-dark"><?=$row['createdate'];?></span></td>
                                         <td><?=display_ctv($row['ctv']);?></td>
-                                        <td><?=display_ctvacc($row['ctvacc']);?></td>
                                         <td><?=display_banned($row['banned']);?></td>
                                         <td>
                                             <a type="button" href="<?=BASE_URL('Admin/User/Edit/');?><?=$row['id'];?>"
