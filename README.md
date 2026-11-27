@@ -147,8 +147,6 @@ Trước khi bật Google OAuth:
 
 ## Khôi phục mật khẩu
 
-Chạy migration `20261126_add_password_reset_expiry.sql`. Mã khôi phục được:
-
 - Gửi qua SMTP đã cấu hình trong bảng `options`.
 - Lưu dưới dạng hash.
 - Hết hạn sau 10 phút.
