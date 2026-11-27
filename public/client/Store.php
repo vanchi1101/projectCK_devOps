@@ -508,6 +508,21 @@ if ($installed) {
                 const response = await fetch(url.toString(), {
                     headers: { 'X-Requested-With': 'XMLHttpRequest' }
                 });
+                const contentType = response.headers.get('Content-Type') || '';
+                if (contentType.toLowerCase().indexOf('json') !== -1) {
+                    const payload = await response.json();
+                    const responseMessage = payload && typeof payload.message === 'string'
+                        ? payload.message
+                        : payload && typeof payload.error === 'string'
+                            ? payload.error
+                            : response.ok
+                                ? 'The server reported that the request failed.'
+                                : 'Store filter request failed: ' + response.status;
+                    if (!response.ok || (payload && payload.success === false)) {
+                        throw new Error(responseMessage);
+                    }
+                    throw new Error('Store filter returned JSON instead of an HTML page.');
+                }
                 if (!response.ok) throw new Error('Store filter request failed: ' + response.status);
 
                 const responseHtml = await response.text();
@@ -538,7 +553,8 @@ if ($installed) {
         };
 
         const urlFromForm = function () {
-            const url = new URL(form.action, window.location.href);
+            const actionUrl = form.getAttribute('action') || window.location.href;
+            const url = new URL(actionUrl, window.location.href);
             url.search = new URLSearchParams(new FormData(form)).toString();
             return url;
         };

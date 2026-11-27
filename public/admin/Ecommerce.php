@@ -780,6 +780,21 @@ require_once(__DIR__ . "/Sidebar.php");
                             };
                             if (body) options.body = body;
                             var response = await fetch(url.toString(), options);
+                            var contentType = response.headers.get('Content-Type') || '';
+                            if (contentType.toLowerCase().indexOf('json') !== -1) {
+                                var payload = await response.json();
+                                var responseMessage = payload && typeof payload.message === 'string'
+                                    ? payload.message
+                                    : payload && typeof payload.error === 'string'
+                                        ? payload.error
+                                        : response.ok
+                                            ? 'The server reported that the request failed.'
+                                            : 'Admin request failed: ' + response.status;
+                                if (!response.ok || (payload && payload.success === false)) {
+                                    throw new Error(responseMessage);
+                                }
+                                throw new Error('Admin request returned JSON instead of an HTML page.');
+                            }
                             if (!response.ok) throw new Error('Admin request failed: ' + response.status);
 
                             var responseHtml = await response.text();
@@ -829,7 +844,8 @@ require_once(__DIR__ . "/Sidebar.php");
                         }
                         formData.set('active_tab', tabKey || 'products');
                         formData.set('scroll_y', String(Math.round(window.scrollY || window.pageYOffset || 0)));
-                        loadAdminPage(new URL(form.action, window.location.href), 'POST', formData, 'replace', tabKey);
+                        var actionUrl = form.getAttribute('action') || window.location.href;
+                        loadAdminPage(new URL(actionUrl, window.location.href), 'POST', formData, 'replace', tabKey);
                     });
 
                     document.addEventListener('click', function (event) {

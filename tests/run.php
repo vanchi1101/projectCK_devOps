@@ -40,6 +40,30 @@ $assertSame(
     'HTML output is escaped'
 );
 
+$adminEcommerceSource = file_get_contents(__DIR__ . '/../public/admin/Ecommerce.php');
+$storeSource = file_get_contents(__DIR__ . '/../public/client/Store.php');
+$assertSame(true, is_string($adminEcommerceSource), 'admin ecommerce source is available for regression checks');
+$assertSame(true, is_string($storeSource), 'store source is available for regression checks');
+foreach ([
+    'admin ecommerce' => $adminEcommerceSource,
+    'store filter' => $storeSource
+] as $formSourceName => $formSource) {
+    if (!is_string($formSource)) {
+        continue;
+    }
+
+    $assertSame(
+        0,
+        preg_match('/\bform\.(?:action|method|submit)\b/', $formSource),
+        $formSourceName . ' does not read shadowable form action, method, or submit properties'
+    );
+    $assertSame(
+        true,
+        strpos($formSource, "form.getAttribute('action') || window.location.href") !== false,
+        $formSourceName . ' resolves its endpoint from the action attribute with a same-page fallback'
+    );
+}
+
 $_SESSION = [];
 $token = ecom_csrf_token();
 $assertSame(64, strlen($token), 'CSRF token is generated with the expected entropy');
