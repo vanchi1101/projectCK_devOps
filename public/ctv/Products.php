@@ -7,6 +7,11 @@ require_once(__DIR__ . "/../../includes/login-ctv-any.php");
 $title = 'KÊNH BÁN HÀNG CTV | ' . $AZCODE->site('tenweb');
 $message = '';
 $isInstalled = ecom_is_installed();
+$textLength = static function ($value) {
+    $matches = [];
+    $length = preg_match_all('/./us', (string) $value, $matches);
+    return $length === false ? PHP_INT_MAX : $length;
+};
 
 if ($isInstalled && $_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!ecom_check_csrf()) {
@@ -71,12 +76,12 @@ if ($isInstalled && $_SERVER['REQUEST_METHOD'] === 'POST') {
         $model = trim((string) ($_POST['model'] ?? ''));
         $description = trim((string) ($_POST['description'] ?? ''));
         $imageUrl = trim((string) ($_POST['image_url'] ?? ''));
-        $priceValid = preg_match('/^\d{1,12}$/D', $priceInput) === 1;
+        $priceValid = preg_match('/^\d{1,12}(?:\.0{1,2})?$/D', $priceInput) === 1;
         $imageValid = $imageUrl === '' || filter_var($imageUrl, FILTER_VALIDATE_URL);
         $imageScheme = $imageUrl === '' || in_array(strtolower((string) parse_url($imageUrl, PHP_URL_SCHEME)), ['http', 'https'], true);
         if ($productId === false || $stock === false || !$priceValid || (float) $priceInput <= 0
-            || $name === '' || strlen($name) > 190 || strlen($brand) > 120 || strlen($model) > 120
-            || strlen($imageUrl) > 500 || !$imageValid || !$imageScheme) {
+            || $name === '' || $textLength($name) > 190 || $textLength($brand) > 120 || $textLength($model) > 120
+            || $textLength($imageUrl) > 500 || !$imageValid || !$imageScheme) {
             $message = 'Thông tin sản phẩm không hợp lệ.';
         } else {
             $productId = (int) $productId;
@@ -182,7 +187,7 @@ require_once(__DIR__ . "/Sidebar.php");
                                         <div class="form-group col-md-4"><label>Tên</label><input class="form-control form-control-sm" name="name" maxlength="190" value="<?=ecom_h($product['name']);?>" required></div>
                                         <div class="form-group col-md-2"><label>Thương hiệu</label><input class="form-control form-control-sm" name="brand" maxlength="120" value="<?=ecom_h($product['brand']);?>"></div>
                                         <div class="form-group col-md-2"><label>Model</label><input class="form-control form-control-sm" name="model" maxlength="120" value="<?=ecom_h($product['model']);?>"></div>
-                                        <div class="form-group col-md-2"><label>Giá</label><input class="form-control form-control-sm" type="number" min="1" step="1" name="price" value="<?=ecom_h($product['price']);?>" required></div>
+                                        <div class="form-group col-md-2"><label>Giá</label><input class="form-control form-control-sm" type="number" min="1" step="1" name="price" value="<?=(int) $product['price'];?>" required></div>
                                         <div class="form-group col-md-2"><label>Tồn kho</label><input class="form-control form-control-sm" type="number" min="0" name="stock" value="<?=(int) $product['stock'];?>" required></div>
                                     </div>
                                     <div class="form-row">
