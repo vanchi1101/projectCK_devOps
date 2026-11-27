@@ -249,6 +249,10 @@ if ($installed) {
     .store-filter-button { background: #1677d2; color: #fff; cursor: pointer; }
     .store-cart-link { border: 1px solid #cbd9e8; background: #fff; color: #173d70; }
     .store-filter-button:hover, .store-cart-link:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(23,61,112,.15); }
+    .store-filter-status { display: none; margin: -18px 0 24px; color: #52657e; font-size: .9rem; }
+    .store-filter-status.is-loading, .store-filter-status.is-error { display: block; }
+    .store-filter-status.is-error { padding: 11px 14px; border: 1px solid #fecaca; border-radius: 10px; background: #fff7f7; color: #b42318; }
+    .store-filter-panel button:disabled { opacity: .65; cursor: wait; }
     .store-section-heading {
         display: flex;
         align-items: end;
@@ -411,7 +415,7 @@ if ($installed) {
                 <code>ecommerce-migration.sql</code> trước khi mở bán.
             </div>
         <?php } else { ?>
-            <form method="get" action="<?=ecom_h(BASE_URL('Shop'));?>" class="store-filter-panel">
+            <form method="get" action="<?=ecom_h(BASE_URL('Shop'));?>" class="store-filter-panel" data-store-filter>
                 <input name="q" value="<?=ecom_h($search);?>" placeholder="Tìm tên sản phẩm, hãng hoặc model">
                 <select name="category" aria-label="Lọc theo danh mục">
                     <option value="">Tất cả danh mục</option>
@@ -427,6 +431,8 @@ if ($installed) {
                 </a>
             </form>
 
+            <div class="store-filter-status" data-store-filter-status role="status" aria-live="polite"></div>
+            <div id="store-results" aria-busy="false">
             <div class="store-section-heading">
                 <div>
                     <h2><?=($search !== '' || $categoryId !== false) ? 'Sản phẩm phù hợp' : 'Sản phẩm nổi bật';?></h2>
@@ -477,10 +483,89 @@ if ($installed) {
                     echo pagination_control($paginationUrl, $page, $total, $perPage);
                 ?>
             <?php } ?>
+            </div>
         <?php } ?>
     </div>
 </main>
 <script>
+    (function () {
+        const form = document.querySelector('[data-store-filter]');
+        const results = document.querySelector('#store-results');
+        const status = document.querySelector('[data-store-filter-status]');
+        if (!form || !results || !status) return;
+
+        const submitButton = form.querySelector('.store-filter-button');
+        let latestRequest = 0;
+
+        const updateResults = async function (url, addHistoryEntry) {
+            const requestId = ++latestRequest;
+            results.setAttribute('aria-busy', 'true');
+            status.className = 'store-filter-status is-loading';
+            status.textContent = 'Đang cập nhật danh sách sản phẩm...';
+            if (submitButton) submitButton.disabled = true;
+
+            try {
+                const response = await fetch(url.toString(), {
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                });
+                if (!response.ok) throw new Error('Store filter request failed: ' + response.status);
+
+                const responseHtml = await response.text();
+                const parsedDocument = new DOMParser().parseFromString(responseHtml, 'text/html');
+                const updatedResults = parsedDocument.querySelector('#store-results');
+                if (!updatedResults) throw new Error('Store results container was not found.');
+                if (requestId !== latestRequest) return;
+
+                results.innerHTML = updatedResults.innerHTML;
+                form.elements.q.value = url.searchParams.get('q') || '';
+                form.elements.category.value = url.searchParams.get('category') || '';
+                if (addHistoryEntry) {
+                    window.history.pushState({}, '', url.pathname + url.search);
+                }
+                status.className = 'store-filter-status';
+                status.textContent = '';
+            } catch (error) {
+                if (requestId !== latestRequest) return;
+                console.error(error);
+                status.className = 'store-filter-status is-error';
+                status.textContent = 'Không thể cập nhật danh sách sản phẩm. Vui lòng thử lại.';
+            } finally {
+                if (requestId === latestRequest) {
+                    results.setAttribute('aria-busy', 'false');
+                    if (submitButton) submitButton.disabled = false;
+                }
+            }
+        };
+
+        const urlFromForm = function () {
+            const url = new URL(form.action, window.location.href);
+            url.search = new URLSearchParams(new FormData(form)).toString();
+            return url;
+        };
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            updateResults(urlFromForm(), true);
+        });
+        form.elements.category.addEventListener('change', function () {
+            updateResults(urlFromForm(), true);
+        });
+        document.addEventListener('click', function (event) {
+            const link = event.target.closest('#store-results nav a');
+            if (!link) return;
+            const url = new URL(link.href, window.location.href);
+            if (url.origin !== window.location.origin) return;
+            event.preventDefault();
+            updateResults(url, true);
+        });
+        window.addEventListener('popstate', function () {
+            const url = new URL(window.location.href);
+            form.elements.q.value = url.searchParams.get('q') || '';
+            form.elements.category.value = url.searchParams.get('category') || '';
+            updateResults(url, false);
+        });
+    })();
+
     (function () {
         const carousel = document.querySelector('[data-store-banner]');
         if (!carousel) return;

@@ -1,154 +1,241 @@
-# projectCK_devOps
+# Project CK - DevOps
 
-## Laptop storefront categories
+Ứng dụng thương mại điện tử và quản lý tài khoản được xây dựng bằng PHP thuần, MySQL và Bootstrap. Dự án hỗ trợ cửa hàng laptop, giỏ hàng, thanh toán, nạp tiền, quản lý đơn hàng, tài khoản người dùng, đăng nhập Google và quy trình CI/CD tới cPanel.
 
-Run `database/migrations/20261126_seed_laptop_categories.sql` against the configured
-`shopvip` database to create the eight laptop categories. The migration is safe to
-run again and hides the old `TV` demo category from the public storefront.
+## Tính năng
 
-Run `database/migrations/20261126_seed_tgdd_laptop_products.sql` to add the 149
-currently listed laptop models. The source currently has 17 MacBook and 12
-Gigabyte models in these category pages. Imported products start with stock 1 as
-a display placeholder; update inventory before accepting real orders.
+- Cửa hàng laptop với danh mục, tìm kiếm, phân trang và chi tiết sản phẩm.
+- Giỏ hàng, đặt hàng, theo dõi trạng thái đơn hàng và thanh toán.
+- Nạp tiền, nạp thẻ, lịch sử giao dịch và các luồng tích hợp ngân hàng.
+- Đăng ký, đăng nhập, quên mật khẩu, đổi mật khẩu và đăng nhập Google OAuth 2.0.
+- Khu vực quản trị: người dùng, sản phẩm, danh mục, đơn hàng, cấu hình và ngân hàng.
+- Chương trình giới thiệu/hoa hồng và rút hoa hồng.
+- Gửi email xác nhận đơn hàng qua PHPMailer.
+- Pipeline GitHub Actions kiểm tra PHP, chạy test, đóng gói và triển khai bằng SSH tới cPanel.
 
-The public storefront is available at `/`; the admin dashboard is available at
-`/Admin` after signing in with an admin account. Use **Quản lý cửa hàng** in the
-admin area to add product records with their authorized image URLs, prices, and
-specifications.
+## Công nghệ
 
-## Google sign-in
+| Thành phần | Công nghệ |
+| --- | --- |
+| Backend | PHP 8.2+, MySQL/MariaDB, mysqli |
+| Frontend | HTML, CSS, JavaScript, Bootstrap |
+| Thư viện PHP | PHPMailer, Mobile Detect, Gregwar Captcha |
+| Dependency | Composer |
+| Web server | Apache + mod_rewrite (khuyến nghị XAMPP/cPanel) |
+| CI/CD | GitHub Actions, SSH/SFTP, Bash |
 
-Run `database/migrations/20261126_add_google_login.sql` against `shopvip` before
-enabling Google sign-in. In Google Cloud Console, create an OAuth 2.0 Web
-application client and add this authorized redirect URI:
+Các thư viện nằm trong `vendor/` và được quản lý bởi `composer.json`.
 
-`http://localhost/Auth/Google/Callback`
+## Cấu trúc thư mục
 
-Set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` in the Apache environment
-(for example, in the local XAMPP Apache configuration), then restart Apache.
-Optionally set `GOOGLE_REDIRECT_URI` if the callback URL differs. Do not commit
-the client secret or share it in chat. First-time Google sign-ins create regular
-customer accounts; they are not automatically linked to existing accounts by
-email. Existing Google-linked accounts continue to sign in using their Google
-subject identifier.
+```text
+api/                  API bank và callback
+assets/               Hình ảnh, AJAX, model và tài nguyên tĩnh
+class/                Các class hỗ trợ
+config/               Cấu hình database, URL và hàm chung
+cron/                 Tiến trình cron kiểm tra giao dịch
+database/migrations/  Migration và dữ liệu mẫu
+includes/             Nghiệp vụ dùng chung
+public/admin/         Giao diện và xử lý quản trị
+public/client/        Giao diện và xử lý người dùng
+template/             CSS, JavaScript và template dùng chung
+tests/                Kiểm thử ứng dụng
+.github/workflows/    Pipeline CI/CD
+```
 
-## Password recovery
+## Yêu cầu
 
-Run `database/migrations/20261126_add_password_reset_expiry.sql` against
-`shopvip`. New registrations require a valid email address. Password reset
-codes are sent using the existing SMTP settings in the `options` table, stored
-as hashes, and expire after 10 minutes.
-Existing accounts without an email must have one added by an admin in
-**Thành viên → Chỉnh sửa** before password recovery can be used.
+- PHP 8.2 trở lên với các extension: `curl`, `gd`, `mbstring`, `mysqli`
+- MySQL hoặc MariaDB
+- Composer
+- Apache có bật `mod_rewrite`
+- XAMPP trên Windows hoặc môi trường PHP/MySQL tương đương
 
-## CTV bán tài khoản
+## Cài đặt local bằng XAMPP
 
-The legacy `ctvacc` role has been removed. For existing databases, run
-`database/migrations/20261127_remove_ctvacc_role.sql` to revoke any users that
-still have the old role enabled.
+### 1. Cài mã nguồn
 
-## Order email
+Đặt mã nguồn tại thư mục web root của XAMPP:
 
-After an order is created, the customer and the store email configured in
-`options.email_admin` receive its items, totals, payment method, and delivery details.
-Checkout requires a valid customer email (pre-filled from the account when
-available). Delivery uses the SMTP account configured in `options.email` and
-`options.pass_email`; configure the recipient in **Admin → Cấu hình**. An email
-delivery issue does not cancel the order.
+```text
+D:\xampp\htdocs
+```
 
-## GitHub Actions CI/CD to cPanel
+Bật Apache và MySQL trong XAMPP Control Panel.
 
-The workflow in `.github/workflows/deploy.yml` runs six separate jobs in order:
-Checkout → Validate PHP → Test application logic → Build deployment package →
-Deploy to cPanel → Verify live website. It runs on pushes to `main` and can also
-be started with **Actions → PHP CI/CD to cPanel → Run workflow**. Manual runs
-deploy only when the selected branch is `main`.
+### 2. Tạo database
+
+Tạo database `shopvip` bằng phpMyAdmin hoặc MySQL CLI, sau đó import:
+
+```text
+shopvipntn.sql
+```
+
+Database mẫu đã gồm các bảng thương mại điện tử và dữ liệu cấu hình nền.
+
+### 3. Cấu hình ứng dụng
+
+Cấu hình mặc định được đặt trong `config/config.php`:
+
+- Database: `localhost`
+- Port: `3306`
+- Database name: `shopvip`
+- User: `root`
+- Password: rỗng
+- App URL: `http://localhost/`
+
+Có thể ghi đè bằng biến môi trường Apache:
+
+| Biến | Mặc định |
+| --- | --- |
+| `APP_URL` | `http://localhost/` |
+| `DB_HOST` | `localhost` |
+| `DB_PORT` | `3306` |
+| `DB_NAME` | `shopvip` |
+| `DB_USER` | `root` |
+| `DB_PASSWORD` | rỗng |
+
+Nếu máy chủ hỗ trợ Apache environment, có thể dùng `SetEnv` trong virtual host hoặc cấu hình phù hợp. Không commit mật khẩu database thật.
+
+### 4. Cài dependencies
+
+Trong thư mục dự án:
+
+```powershell
+composer install
+```
+
+Nếu Composer chưa có sẵn, cài Composer trước rồi mới chạy lệnh trên.
+
+### 5. Chạy migration bổ sung
+
+Thực hiện các migration cần thiết bằng phpMyAdmin hoặc MySQL:
+
+```sql
+SOURCE database/migrations/20261126_add_google_login.sql;
+SOURCE database/migrations/20261126_add_password_reset_expiry.sql;
+SOURCE database/migrations/20261126_seed_laptop_categories.sql;
+SOURCE database/migrations/20261126_seed_tgdd_laptop_products.sql;
+SOURCE database/migrations/20261127_remove_ctvacc_role.sql;
+```
+
+Các migration này có thể chạy với database `shopvip`. Migration seed danh mục/laptop được thiết kế để chạy lại an toàn.
+
+### 6. Truy cập ứng dụng
+
+- Cửa hàng: `http://localhost/`
+- Đăng nhập: `http://localhost/Auth/Login`
+- Đăng ký: `http://localhost/Auth/Register`
+- Quản trị: `http://localhost/Admin`
+
+Trang quản trị yêu cầu tài khoản có quyền `admin`.
+
+## Cấu hình cửa hàng laptop
+
+Các danh mục laptop được tạo từ `20261126_seed_laptop_categories.sql`. Migration sản phẩm sẽ thêm laptop mẫu và dữ liệu thông số; tồn kho ban đầu có thể được đặt là giá trị hiển thị và cần kiểm tra trước khi nhận đơn thật.
+
+Trong khu vực quản trị, mở **Quản lý cửa hàng** để:
+
+- Tạo, sửa hoặc đổi trạng thái danh mục và sản phẩm.
+- Cập nhật giá, mã SKU, tồn kho và thông số kỹ thuật.
+- Sử dụng URL hình ảnh được phép.
+- Duyệt hoặc từ chối sản phẩm.
+- Quản lý đơn hàng và trạng thái thanh toán.
+
+## Đăng nhập Google
+
+Trước khi bật Google OAuth:
+
+1. Chạy migration `20261126_add_google_login.sql`.
+2. Tạo OAuth 2.0 Web Client trong Google Cloud Console.
+3. Thêm Authorized redirect URI:
+
+   ```text
+   http://localhost/Auth/Google/Callback
+   ```
+
+4. Cung cấp `GOOGLE_CLIENT_ID` và `GOOGLE_CLIENT_SECRET` qua môi trường Apache.
+5. Khởi động lại Apache.
+
+`GOOGLE_REDIRECT_URI` có thể được đặt khi callback khác URL mặc định. Không commit hoặc chia sẻ client secret.
+
+## Khôi phục mật khẩu
+
+Chạy migration `20261126_add_password_reset_expiry.sql`. Mã khôi phục được:
+
+- Gửi qua SMTP đã cấu hình trong bảng `options`.
+- Lưu dưới dạng hash.
+- Hết hạn sau 10 phút.
+- Yêu cầu tài khoản có email hợp lệ.
+
+Tài khoản cũ chưa có email cần được quản trị viên cập nhật trong **Thành viên → Chỉnh sửa**.
+
+## Test
+
+Chạy bộ kiểm tra ứng dụng:
+
+```powershell
+php tests/run.php
+```
+
+Các test hiện tại kiểm tra trạng thái đơn hàng, escape output, CSRF và một số logic nghiệp vụ. Kiểm tra syntax toàn bộ mã PHP:
+
+```powershell
+Get-ChildItem -Recurse -Filter *.php | Where-Object { $_.FullName -notmatch '\\vendor\\' } | ForEach-Object { php -l $_.FullName }
+```
+
+## CI/CD
+
+Workflow `.github/workflows/deploy.yml` thực hiện 6 job theo thứ tự:
+
+1. Checkout và tạo source artifact.
+2. Validate syntax PHP 8.2 và `composer.json`.
+3. Chạy `tests/run.php`.
+4. Cài dependency production và tạo deployment package.
+5. Triển khai bằng SSH tới document root cPanel.
+6. Kiểm tra HTTP của website sau triển khai.
+
+Push lên nhánh `main` hoặc chạy workflow thủ công bằng GitHub Actions.
 
 ### GitHub Secrets
 
-In the repository, open **Settings → Secrets and variables → Actions → New
-repository secret** and add:
+Thêm các secret sau trong **Settings → Secrets and variables → Actions**:
 
-| Secret | Value |
+| Secret | Mô tả |
 | --- | --- |
-| `CPANEL_SSH_HOST` | cPanel SSH hostname (or IPv4 address) |
-| `CPANEL_SSH_USER` | cPanel account username |
-| `CPANEL_SSH_PORT` | SSH port; optional, defaults to `22` |
-| `CPANEL_SSH_PRIVATE_KEY` | Private key for an SSH key authorized by cPanel |
-| `CPANEL_SSH_KEY_PASSPHRASE` | Passphrase set when generating the cPanel SSH key |
-| `CPANEL_SSH_KNOWN_HOSTS` | Verified SSH host-key line(s) for this server and port |
-| `CPANEL_DEPLOY_PATH` | Absolute document-root path, commonly `/home/CPANEL_USER/public_html` |
-| `SITE_URL` | Public HTTPS URL to check after deployment, e.g. `https://example.com/` |
+| `CPANEL_SSH_HOST` | Hostname hoặc IPv4 của cPanel |
+| `CPANEL_SSH_USER` | Tài khoản SSH cPanel |
+| `CPANEL_SSH_PORT` | Port SSH, mặc định `22` |
+| `CPANEL_SSH_PRIVATE_KEY` | Private key đã được cPanel authorize |
+| `CPANEL_SSH_KEY_PASSPHRASE` | Passphrase của private key |
+| `CPANEL_SSH_KNOWN_HOSTS` | Host key đã xác minh |
+| `CPANEL_DEPLOY_PATH` | Đường dẫn tuyệt đối document root |
+| `SITE_URL` | URL HTTPS công khai để health check |
 
-Enable SSH access in cPanel, create/import an SSH key pair, and authorize its
-public key. Add the private key only as the `CPANEL_SSH_PRIVATE_KEY` secret.
-Store the key's passphrase as `CPANEL_SSH_KEY_PASSPHRASE`; the workflow loads
-the encrypted key into a temporary SSH agent without printing the passphrase.
-Obtain the server host key with `ssh-keyscan -p PORT HOST`, verify its
-fingerprint with the hosting provider, and store the verified line as
-`CPANEL_SSH_KNOWN_HOSTS`. Do not disable SSH host-key checking. Confirm the
-document root in cPanel's **Domains** page or ask the hosting provider; do not
-assume every domain uses `public_html`.
+Lấy host key bằng `ssh-keyscan`, xác minh fingerprint với nhà cung cấp hosting trước khi lưu. Không tắt SSH host-key checking.
 
-### What deployment preserves
+## Bảo vệ dữ liệu triển khai
 
-The package installs Composer production dependencies, then uploads files over
-SSH and extracts them in the configured document root. It does not delete
-remote files. The package excludes `config/config.php`, `assets/storage/`,
-`cron/LogBank.txt`, cron lock files, SQL files, and error logs. Therefore the
-hosting database credentials/configuration, uploaded storage, and MySQL data
-remain untouched; the workflow never imports dumps or runs database migrations.
-Keep the production database settings in the existing cPanel copy of
-`config/config.php`. Before the first deployment, create/configure that file in
-cPanel with the cPanel MySQL database name, user, password, and the site's
-production base URL; do not upload the local XAMPP configuration. The PHP
-application reads its database settings from this file, not from GitHub Actions
-environment variables. Apply any required database migration manually after
-backing up the database.
+Deployment package không chứa dữ liệu hosting:
 
-For cPanel setups that support Apache environment variables, `config/config.php`
-also accepts `APP_URL`, `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, and
-`DB_PASSWORD`. For example, Apache can set them with `SetEnv DB_NAME shopvip`
-inside the relevant virtual-host or `.htaccess` configuration, subject to the
-host's policy. Existing local defaults remain unchanged when these variables
-are absent. Never add real database passwords to `.env.example`, source control,
-workflow files, or GitHub Actions logs.
+- `assets/storage/`
+- `cron/LogBank.txt` và cron lock
+- File SQL
+- File error log
+- File môi trường
+- File runtime `.azcode-runtime.php`
 
-### Checks and troubleshooting
+`config/config.php` được đóng gói làm mã cấu hình ứng dụng. Khi deploy, thông tin database thực tế nên được đặt trong file `.azcode-runtime.php` ở thư mục cha của document root hoặc qua biến môi trường Apache, không đặt trực tiếp trong Git. Workflow không import SQL hoặc chạy migration production. Luôn sao lưu database và file trước khi triển khai hoặc áp dụng migration thủ công.
 
-Open **Actions**, select the run, then open a job or step to inspect its log.
-Deploy is gated on successful validation, tests, and build; Verify runs only
-after deployment. If a job fails:
+## Khắc phục sự cố
 
-1. **Validate**: check the PHP parse error and Composer manifest/lock output;
-   verify that the cPanel PHP version is compatible with PHP 8.2.
-2. **Test**: review the failing application assertion in `tests/run.php`.
-3. **Build**: check Composer dependency resolution and the deployment-package
-   protection check.
-4. **Deploy**: confirm SSH access, authorized key, verified host key, port, and
-   document-root permissions. If the log says shell access is not enabled,
-   ask the hosting provider to enable shell access for the cPanel account;
-   this workflow needs remote SSH commands to extract the package. Missing
-   secrets or unexecuted remote commands are reported as explicit errors.
-5. **Verify**: check that `SITE_URL` is correct, publicly reachable over HTTPS,
-   and returns HTTP 2xx with application content rather than a directory
-   listing or a PHP/database error. This is still a basic health check, not a
-   full database integration test.
+| Vấn đề | Cách kiểm tra |
+| --- | --- |
+| Không kết nối database | Kiểm tra MySQL, tên database, user, password và port |
+| 404 hoặc route không hoạt động | Bật `mod_rewrite` và kiểm tra `.htaccess` |
+| Không gửi được email | Kiểm tra SMTP trong bảng `options` |
+| Google OAuth bị lỗi callback | Kiểm tra redirect URI, client ID và client secret |
+| Deploy SSH thất bại | Kiểm tra host, port, private key, known hosts và quyền document root |
+| Verify sau deploy thất bại | Kiểm tra `SITE_URL`, HTTPS và file application |
 
-If a deployment causes a problem, first restore the affected files from the
-hosting backup if the extraction was incomplete. Then revert the faulty commit
-(`git revert <commit>`) and push the revert to `main`; the same tested workflow
-will deploy the previous code. Do not restore or overwrite `config/config.php`
-or database files as part of a code rollback. Keep regular cPanel file and
-MySQL backups before the first production deployment.
-
-### Demo flow
-
-1. Configure and verify the secrets, then run **Run workflow** once on `main`
-   to confirm the connection.
-2. Make a small, safe PHP or CSS change locally.
-3. Run `php tests/run.php` and commit/push the change to `main`.
-4. In **Actions**, show the six sequential jobs and their step logs; wait for
-   Validate, Test, Build, Deploy, and Verify to pass.
-5. Refresh the public site and show the updated change. The workflow run and
-   job logs provide the demo evidence.
+Sau khi rollback mã nguồn, chạy lại workflow đã kiểm tra thay vì khôi phục trực tiếp `config/config.php` hoặc dữ liệu database hosting.

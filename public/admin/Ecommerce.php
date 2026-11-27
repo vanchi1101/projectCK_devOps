@@ -7,6 +7,10 @@ require_once(__DIR__ . "/../../includes/login-admin.php");
 $title = 'Danh mục sản phẩm | ' . $AZCODE->site('tenweb');
 $message = '';
 $isInstalled = ecom_is_installed();
+$restoreScrollY = filter_var($_POST['scroll_y'] ?? '', FILTER_VALIDATE_INT, [
+    'options' => ['min_range' => 0, 'max_range' => 10000000]
+]);
+$restoreScrollY = $restoreScrollY === false ? 0 : (int) $restoreScrollY;
 $textLength = static function ($value) {
     $matches = [];
     $length = preg_match_all('/./us', (string) $value, $matches);
@@ -741,17 +745,113 @@ require_once(__DIR__ . "/Sidebar.php");
                 </div>
             </div>
             <script>
-                $(function () {
-                    $('form').on('submit', function () {
-                        var $form = $(this);
-                        var $tabInput = $form.find('input[name="active_tab"]');
-                        var activeTab = $('.nav-pills .nav-link.active').data('tab-key') || 'products';
-                        if (!$tabInput.length) {
-                            $tabInput = $('<input>', { type: 'hidden', name: 'active_tab' }).appendTo($form);
+                (function () {
+                    var requestPending = false;
+
+                    var showRequestError = function (message) {
+                        var container = document.querySelector('.content-wrapper .content .container-fluid');
+                        if (!container) return;
+                        var alert = document.createElement('div');
+                        alert.className = 'alert alert-danger';
+                        alert.setAttribute('role', 'alert');
+                        alert.textContent = message;
+                        container.insertBefore(alert, container.firstChild);
+                    };
+
+                    var loadAdminPage = async function (url, method, body, historyMode, activeTab) {
+                        if (requestPending) return;
+                        requestPending = true;
+                        var wrapper = document.querySelector('.content-wrapper');
+                        if (!wrapper) {
+                            requestPending = false;
+                            return;
                         }
-                        $tabInput.val(activeTab);
+                        var scrollY = window.scrollY || window.pageYOffset || 0;
+                        var openCollapses = Array.prototype.map.call(
+                            wrapper.querySelectorAll('.ecommerce-admin .collapse.show'),
+                            function (element) { return element.id; }
+                        ).filter(Boolean);
+                        wrapper.setAttribute('aria-busy', 'true');
+
+                        try {
+                            var options = {
+                                method: method,
+                                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                            };
+                            if (body) options.body = body;
+                            var response = await fetch(url.toString(), options);
+                            if (!response.ok) throw new Error('Admin request failed: ' + response.status);
+
+                            var responseHtml = await response.text();
+                            var parsedDocument = new DOMParser().parseFromString(responseHtml, 'text/html');
+                            var updatedWrapper = parsedDocument.querySelector('.content-wrapper');
+                            if (!updatedWrapper) throw new Error('Admin content was not found in the response.');
+
+                            wrapper.innerHTML = updatedWrapper.innerHTML;
+                            wrapper.setAttribute('aria-busy', 'false');
+                            openCollapses.forEach(function (id) {
+                                var collapse = document.getElementById(id);
+                                if (collapse) {
+                                    collapse.classList.add('show');
+                                    var toggle = document.querySelector('[data-target="#' + id + '"]');
+                                    if (toggle) toggle.setAttribute('aria-expanded', 'true');
+                                }
+                            });
+                            window.requestAnimationFrame(function () {
+                                window.scrollTo(0, scrollY);
+                            });
+
+                            if (historyMode === 'push') {
+                                window.history.pushState({}, '', url.pathname + url.search);
+                            } else if (historyMode === 'replace') {
+                                var currentUrl = new URL(window.location.href);
+                                currentUrl.searchParams.set('tab', activeTab || 'products');
+                                window.history.replaceState({}, '', currentUrl.pathname + currentUrl.search);
+                            }
+                        } catch (error) {
+                            console.error(error);
+                            wrapper.setAttribute('aria-busy', 'false');
+                            showRequestError('Không thể hoàn tất thao tác. Vui lòng kiểm tra kết nối và thử lại.');
+                        } finally {
+                            requestPending = false;
+                        }
+                    };
+
+                    document.addEventListener('submit', function (event) {
+                        var form = event.target.closest('.ecommerce-admin form');
+                        if (!form) return;
+                        event.preventDefault();
+                        var activeTab = document.querySelector('.nav-pills .nav-link.active');
+                        var tabKey = activeTab ? activeTab.getAttribute('data-tab-key') : 'products';
+                        var formData = new FormData(form);
+                        if (event.submitter && event.submitter.name) {
+                            formData.set(event.submitter.name, event.submitter.value);
+                        }
+                        formData.set('active_tab', tabKey || 'products');
+                        formData.set('scroll_y', String(Math.round(window.scrollY || window.pageYOffset || 0)));
+                        loadAdminPage(new URL(form.action, window.location.href), 'POST', formData, 'replace', tabKey);
                     });
-                });
+
+                    document.addEventListener('click', function (event) {
+                        var target = event.target instanceof Element ? event.target : null;
+                        var link = target ? target.closest('.ecommerce-admin nav[aria-label="Pagination"] a') : null;
+                        if (!link) return;
+                        var url = new URL(link.href, window.location.href);
+                        if (url.origin !== window.location.origin) return;
+                        event.preventDefault();
+                        loadAdminPage(url, 'GET', null, 'push', null);
+                    });
+
+                    window.addEventListener('popstate', function () {
+                        loadAdminPage(new URL(window.location.href), 'GET', null, 'none', null);
+                    });
+
+                    <?php if ($restoreScrollY > 0) { ?>
+                        window.addEventListener('load', function () {
+                            window.scrollTo(0, <?=$restoreScrollY;?>);
+                        });
+                    <?php } ?>
+                })();
             </script>
         <?php } ?>
         </div>
