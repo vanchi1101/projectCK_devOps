@@ -7,14 +7,17 @@ require_once(__DIR__ . "/../../includes/login-admin.php");
 $title = 'Quản trị | ' . $AZCODE->site('tenweb');
 $isInstalled = ecom_is_installed();
 $activeCategoryCount = 0;
+$productCount = 0;
 $orderCount = 0;
 
 if ($isInstalled) {
     $categoryCount = $AZCODE->get_row(
         "SELECT COUNT(*) AS `total` FROM `ecom_categories` WHERE `status` = 'active'"
     );
+    $productCountRow = $AZCODE->get_row("SELECT COUNT(*) AS `total` FROM `ecom_products`");
     $orderCountRow = $AZCODE->get_row("SELECT COUNT(*) AS `total` FROM `ecom_orders`");
     $activeCategoryCount = (int) ($categoryCount['total'] ?? 0);
+    $productCount = (int) ($productCountRow['total'] ?? 0);
     $orderCount = (int) ($orderCountRow['total'] ?? 0);
 }
 
@@ -42,6 +45,15 @@ require_once(__DIR__ . "/Sidebar.php");
                                 <p>Danh mục đang hoạt động</p>
                             </div>
                             <div class="icon"><i class="fas fa-tags"></i></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-primary">
+                            <div class="inner">
+                                <h3><?=$productCount;?></h3>
+                                <p>Tổng sản phẩm</p>
+                            </div>
+                            <div class="icon"><i class="fas fa-box-open"></i></div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-6">
