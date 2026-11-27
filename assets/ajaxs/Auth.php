@@ -87,7 +87,7 @@
         {
             msg_error2('Nhập lại mật khẩu không đúng');
         }
-        if($AZCODE->num_rows(" SELECT * FROM `users` WHERE `ip` = '".myip()."' ") > 3)
+        if($AZCODE->num_rows(" SELECT * FROM `users` WHERE `ip` = '".myip()."' ") > 10)
         {
             msg_error2('Bạn đã đạt giới hạn tạo tài khoản');
         }
